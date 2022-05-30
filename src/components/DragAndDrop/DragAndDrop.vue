@@ -1,152 +1,145 @@
 <template>
-  <v-row>
-    <v-content>
-      <v-container fluid class="wrapper">
-        <v-row>
-          <v-col>
-            <drop-list
-              :items="items"
-              class="list"
-              @insert="onInsert($event, 'items')"
-              @reorder="$event.apply(items)"
-              mode="cut"
-            >
-              <template v-slot:item="{item}">
-                <drag
-                  class="item"
-                  :class="{ 'selected' : selected.indexOf(item) > -1 }"
-                  @click="toggleSelected(items, item)"
-                  @cut="remove(items, item)"
-                  :data="selection(item)"
-                  :key="item.name"
-                >{{item.name}}</drag>
-              </template>
-              <template v-slot:feedback="{data}">
-                <template v-if="selected.length > 0">
-                  <div v-for="f in data" class="item feedback" :key="f.name">{{f.name}}</div>
-                </template>
-                <template v-else>
-                  <div class="item feedback" :key="data.name">{{data.name}}</div>
-                </template>
-              </template>
-            </drop-list>
-          </v-col>
-          <v-col>
-            <drop-list
-              :items="items2"
-              class="list"
-              @insert="onInsert($event, 'items2')"
-              @reorder="$event.apply(items2)"
-              mode="cut"
-            >
-              <template v-slot:item="{item}">
-                <drag
-                  class="item"
-                  :class="{ 'selected' : selected.indexOf(item) > -1 }"
-                  @cut="remove(items2, item)"
-                  @click="toggleSelected(items2, item)"
-                  :data="selection(item)"
-                  :key="item.name"
-                >{{item.name}}</drag>
-              </template>
-              <template v-slot:feedback="{data}">
-                <template v-if="selected.length > 0">
-                  <div v-for="f in data" class="item feedback" :key="f.name">{{f.name}}</div>
-                </template>
-                <template v-else>
-                  <div class="item feedback" :key="data.name">{{data.name}}</div>
-                </template>
-              </template>
-            </drop-list>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-content>
-  </v-row>
+  <div
+    id="app"
+    class="min-h-screen
+    w-screen
+    bg-gray-200
+    flex
+    flex-col
+    pt-20
+    justify-center
+    items-center
+    md:items-start md:flex-row"
+  >
+    <div class="w-full max-w-md text-center px-3">
+      <p class="mb-2 text-gray-700 font-semibold font-sans tracking-wide">List 1</p>
+      <draggable
+        tag="ul"
+        group="all-users"
+        class="draggable-list"
+        ghost-class="moving-card"
+        filter=".action-button"
+        :list="users"
+        :animation="200"
+      >
+        <user-card
+          v-for="user in users"
+          :user="user"
+          :key="user.id"
+          @on-edit="onEdit"
+          @on-delete="onDelete"
+        ></user-card>
+      </draggable>
+    </div>
+
+    <div class="w-full max-w-md md:ml-6 text-center px-3">
+      <p class="mb-2 text-gray-700 font-semibold font-sans tracking-wide">List 2</p>
+      <draggable
+        tag="ul"
+        group="all-users"
+        class="draggable-list"
+        ghost-class="moving-card"
+        filter=".action-button"
+        :list="newUsers"
+        :animation="200"
+      >
+        <user-card
+          v-for="user in newUsers"
+          :user="user"
+          :key="user.id"
+          @on-edit="onEdit"
+          @on-delete="onDelete"
+        ></user-card>
+      </draggable>
+    </div>
+  </div>
 </template>
 
 <script>
-import { Drag, DropList } from 'vue-easy-dnd';
+import Draggable from 'vuedraggable';
+import UserCard from './UserCard.vue';
 
 export default {
   name: 'DragAndDrop',
   components: {
-    Drag,
-    DropList,
+    Draggable,
+    UserCard,
   },
   data() {
     return {
-      items: [
+      users: [
         {
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
+          id: 1,
+          name: 'Adrian Schubert',
+          avatar:
+            'https://pickaface.net/gallery/avatar/unr_sample_161118_2054_ynlrg.png',
         },
         {
-          name: 'Ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
+          id: 2,
+          name: 'Violet Gates',
+          avatar: 'https://pickaface.net/gallery/avatar/freud51c8b3f65e7dc.png',
         },
         {
-          name: 'Eclair',
-          calories: 262,
-          fat: 16.0,
+          id: 3,
+          name: 'Steve Jobs',
+          avatar: 'https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png',
         },
         {
-          name: 'More ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
+          id: 4,
+          name: 'Yassine Smith',
+          avatar:
+            'https://pickaface.net/gallery/avatar/unr_yassine_191124_2012_3gngr.png',
+        },
+        {
+          id: 5,
+          name: 'Senior Saez',
+          avatar:
+            'https://pickaface.net/gallery/avatar/elmedinilla541c03412955c.png',
         },
       ],
-      items2: [],
-      selected: [],
-      selectedList: 0,
+      newUsers: [
+        {
+          id: 6,
+          name: 'Steve Jobs',
+          avatar: 'https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png',
+        },
+        {
+          id: 7,
+          name: 'Yassine Smith',
+          avatar:
+            'https://pickaface.net/gallery/avatar/unr_yassine_191124_2012_3gngr.png',
+        },
+        {
+          id: 8,
+          name: 'Senior Saez',
+          avatar:
+            'https://pickaface.net/gallery/avatar/elmedinilla541c03412955c.png',
+        },
+        {
+          id: 9,
+          name: 'Adrian Schubert',
+          avatar:
+            'https://pickaface.net/gallery/avatar/unr_sample_161118_2054_ynlrg.png',
+        },
+        {
+          id: 10,
+          name: 'Violet Gates',
+          avatar: 'https://pickaface.net/gallery/avatar/freud51c8b3f65e7dc.png',
+        },
+      ],
     };
   },
   methods: {
-    selection(item) {
-      return this.selected.length > 0 ? this.selected : item;
+    onEdit(user) {
+      alert(`Editing ${user.name}`);
     },
-    onInsert(event, listName = 'items') {
-      if (event.data.length > 0) {
-        event.data.forEach((e, idx) => {
-          this[listName].splice(event.index + idx, 0, e);
-        });
-      } else {
-        this[listName].splice(event.index, 0, event.data);
-      }
-
-      this.selected = [];
-    },
-    remove(array, value) {
-      if (this.selected.length > 0) {
-        this.selected.forEach((e) => {
-          const index = array.indexOf(e);
-          array.splice(index, 1);
-        });
-      } else {
-        const index = array.indexOf(value);
-        array.splice(index, 1);
-      }
-    },
-    toggleSelected(listName, item) {
-      if (listName !== this.selectedList) {
-        this.selected = [];
-        this.selectedList = listName;
-      }
-
-      const index = this.selected.indexOf(item);
-      if (index > -1) {
-        this.selected.splice(index, 1);
-      } else {
-        this.selected.push(item);
-      }
+    onDelete(user) {
+      alert(`Deleting ${user.name}`);
     },
   },
 };
-
 </script>
 
-<style scoped>
+<style>
 
 </style>

@@ -37,7 +37,8 @@
     "core-js": "^3.8.3",
     "node-sass-magic-importer": "^5.3.2",
     "style-inject": "^0.3.0",
-    "vue-easy-dnd": "^1.22.0"
+    "vue-easy-dnd": "^1.22.0",
+    "vuedraggable": "^2.24.3"
   },
   "devDependencies": {
     "@babel/core": "^7.18.2",
