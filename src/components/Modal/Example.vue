@@ -1,7 +1,8 @@
 <template>
   <div>
-    <modal :is-open="true">
-      <p>Bonjour</p>
+    <button @click="openModal()">coucou</button>
+    <modal :is-open="isOpen">
+      <p>pd</p>
     </modal>
   </div>
 </template>
@@ -10,7 +11,17 @@
 import Modal from './Modal.vue';
 
 export default {
+  data() {
+    return {
+      isOpen: false,
+    };
+  },
   name: 'Example',
   components: { Modal },
+  methods: {
+    openModal() {
+      this.isOpen = true;
+    },
+  },
 };
 </script>

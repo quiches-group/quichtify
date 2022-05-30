@@ -1,10 +1,5 @@
 <template>
-  <div class="container">
-    <div class="interior">
-      <a class="btn" href="#open-modal">Modal ! :)</a>
-    </div>
-  </div>
-  <div id="open-modal" class="modal-window">
+  <div v-if="isOpen" id="open-modal" class="modal-window">
     <slot/>
   </div>
 </template>
