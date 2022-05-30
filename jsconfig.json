@@ -1,12 +1,22 @@
 {
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true
+  },
   "compilerOptions": {
-    "target": "es5",
-    "module": "esnext",
-    "baseUrl": "./",
+    "alwaysStrict": true,
+    "target": "esnext",
+    "module": "ES6",
     "moduleResolution": "node",
+    "checkJs": true,
+    "esModuleInterop": true, // force import
+    "allowSyntheticDefaultImports": true, // force import
+    "baseUrl": "./",
     "paths": {
       "@/*": [
-        "src/*"
+        "./src/*"
       ]
     },
     "lib": [
@@ -15,5 +25,12 @@
       "dom.iterable",
       "scripthost"
     ]
-  }
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

@@ -1,34 +1,53 @@
 {
-  "name": "quichtify",
-  "version": "1.0.6",
-  "private": false,
-  "main": "dist/index.js",
+  "name": "quichify",
+  "version": "0.1.0",
+  "main": "./dist/quichify-lib.umd.js",
+  "module": "./dist/quichify-lib.es.js",
+  "browser": "./dist/quichify-lib.cjs.js",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/quichify-lib.es.js",
+      "require": "./dist/quichify-lib.umd.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "npx bili src/index.js --plugin.vue --format cjs,umd --moduleName Quichtify",
-    "lint": "vue-cli-service lint"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 5050",
+    "test:unit": "vitest --environment jsdom",
+    "test:e2e": "start-server-and-test preview http://127.0.0.1:5050/ 'cypress open'",
+    "test:e2e:ci": "start-server-and-test preview http://127.0.0.1:5050/ 'cypress run'",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "lib:build": "vite build --config vite-lib.config.js",
+    "lib:publish": "npm run lib:build && echo '\n\nStart npm publishing\n' && npm publish --access public",
+    "lib:publish:patch": "npm version patch && npm run lib:publish",
+    "lib:publish:minor": "npm version minor && npm run lib:publish",
+    "lib:publish:major": "npm version major && npm run lib:publish"
   },
   "dependencies": {
-    "core-js": "^3.8.3",
-    "node-sass-magic-importer": "^5.3.2",
-    "style-inject": "^0.3.0",
-    "vue": "^3.2.13"
+    "vue": "^3.2.33"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.16",
-    "@babel/eslint-parser": "^7.12.16",
-    "@vue/cli-plugin-babel": "~5.0.0",
-    "@vue/cli-plugin-eslint": "~5.0.0",
-    "@vue/cli-service": "~5.0.0",
+    "@rushstack/eslint-patch": "^1.1.0",
+    "@vitejs/plugin-vue": "^2.3.1",
     "@vue/eslint-config-airbnb": "^6.0.0",
-    "bili": "^5.0.5",
-    "eslint": "^7.32.0",
-    "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-vue": "^8.0.3",
-    "eslint-plugin-vuejs-accessibility": "^1.1.0",
-    "rollup-plugin-vue": "^6.0.0",
-    "sass": "^1.32.7",
-    "sass-loader": "^12.0.0",
-    "vue-template-compiler": "^2.6.14"
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/test-utils": "^2.0.0-rc.20",
+    "autoprefixer": "^10.4.7",
+    "cypress": "^9.5.4",
+    "eslint": "^8.5.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-vue": "^8.2.0",
+    "jsdom": "^19.0.0",
+    "postcss": "^8.4.14",
+    "prettier": "^2.5.1",
+    "start-server-and-test": "^1.14.0",
+    "tailwindcss": "^3.0.24",
+    "vite": "^2.9.5",
+    "vitest": "^0.9.3"
   }
 }
