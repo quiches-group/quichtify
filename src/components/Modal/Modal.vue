@@ -1,0 +1,32 @@
+<template>
+  <div class="container">
+    <div class="interior">
+      <a class="btn" href="#open-modal">👋 Basic CSS-Only Modal</a>
+    </div>
+  </div>
+  <div id="open-modal" class="modal-window">
+    <div>
+      <a href="#" title="Close" class="modal-close">Close</a>
+      <h1>Voilà!</h1>
+      <div>A CSS-only modal based on the :target pseudo-class. Hope you find it helpful.</div>
+      <br>
+      <div><small>Check out 👇</small></div>
+      <a href="https://chrome.google.com/webstore/detail/chroma/pkgejkfioihnchalojepdkefnpejomgn?utm_campaign=chromapromo&utm_source=codepen.io" target="_blank">
+
+        Your new favorite eyedropper tool!</a>
+    </div>
+  </div>
+</template>
+
+<script>
+import './Modal.scss';
+
+export default {
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: 'Modal',
+};
+</script>
+
+<style scoped>
+
+</style>

@@ -1,7 +1,8 @@
-import HelloWorld from './components/HelloWorld/HelloWorld.vue';
+import Modal from './components/Modal/Modal.vue';
 
 export default {
   install(Vue) {
-    Vue.component('HelloWorld', HelloWorld);
+    // eslint-disable-next-line vue/multi-word-component-names
+    Vue.component('Modal', Modal);
   },
 };
