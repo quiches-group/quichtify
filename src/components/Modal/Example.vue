@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="openModal()">coucou</button>
-    <modal :is-open="isOpen">
+    <modal :is-open="isOpen" :show-close-button="true">
       <p>pd</p>
     </modal>
   </div>
