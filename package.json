@@ -13,7 +13,7 @@
     "node-sass-magic-importer": "^5.3.2",
     "style-inject": "^0.3.0",
     "vue": "^3.2.13",
-    "vueperslides": "^2.15.2"
+    "vueperslides": "^3.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
