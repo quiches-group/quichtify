@@ -4,6 +4,7 @@
 
 <script>
 import CarouselVue from './CarouselVue.vue';
+import './Carousel.scss';
 
 export default {
   data() {
@@ -11,15 +12,21 @@ export default {
       slides: [
         {
           id: 'slide-1',
-          title: 'Slide <b class="carouselTitle">#1</b>',
-          content: 'Slide title can be HTML.<br>And so does the slide content, <span class="carouselText">why not?</span>',
+          title: '<p class="carouselTitle"> Slide <strong>1</strong></p>',
+          content: '<span class="carouselText">Première slide !</span>',
           backgroundColor: '#ff5252',
         },
         {
           id: 'slide-2',
-          title: 'Slide <b class="carouselTitle">#2</b>',
-          content: 'Ok bro ? <span class="carouselText">why not?</span>',
+          title: '<p class="carouselTitle"> Slide <strong>2</strong></p>',
+          content: '<span class="carouselText">Deuxième slide !</span>',
           backgroundColor: '#42b983',
+        },
+        {
+          id: 'slide-3',
+          title: '<p class="carouselTitle"> Slide <strong>3</strong></p>',
+          content: '<span class="carouselText">Dernière slide !</span>',
+          backgroundColor: '#9197dd',
         },
       ],
     };
