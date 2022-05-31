@@ -13,7 +13,7 @@
           draggable="true"
           :key="item"
         >
-          {{item}}</li>
+          {{item.title}}</li>
       </transition-group>
     </div>
   </div>
@@ -26,9 +26,10 @@ export default {
   name: 'DragAndDrop',
   components: {},
   eel: '#app',
+  props: ['item'],
   data() {
     return {
-      items: ['one', 'two', 'three', 'four'],
+      items: this.item,
       over: {},
       startLoc: 0,
       dragging: false,
