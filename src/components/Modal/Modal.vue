@@ -1,10 +1,12 @@
 <template>
-  <div v-if="isOpen" id="open-modal" class="modal-window">
+  <div v-if="showModal" id="open-modal" class="modal-window">
     <div class="button-close">
-      <button v-if="showCloseButton" @click="closeModal()">Close</button>
+      <button v-if="showCloseButton" @click="hide">Close</button>
     </div>
-    <div class="text-modal">HELLO</div>
-    <slot/>
+      <p>Hello i am a modal
+      </p>
+      <button @click="hide">Close</button>
+    </div>
   </div>
 </template>
 
@@ -13,20 +15,17 @@ import './Modal.scss';
 
 export default {
   name: 'Modal',
-  props: {
-    isOpen: {
-      type: Boolean,
-      required: true,
-    },
-    showCloseButton: {
-      type: Boolean,
-      required: true,
-    },
+  data() {
+    return {
+      showModal: false,
+    };
   },
-  data() {},
   methods: {
-    closeModal() {
-      // TODO: finish to create prop to close modal
+    show() {
+      this.showModal = true;
+    },
+    hide() {
+      this.showModal = false;
     },
   },
 };
