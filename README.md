@@ -35,10 +35,13 @@ The dev serve will display the `src/App.vue` scafold.
 2. Create a new folder for your component in `src/components` like the example one `src/components/QHelloWorld` : One main component _(You can have multiple in one folder)_ and a unit testing folder ready to test you component. **Pay attention to name your component in PascalCase with a "`Q`" at the begining**
 3. Import your new component in `src/components/index.js` on top of `// TODO: 2`
 4. Declare your new component in `src/components/index.js` as `QHelloWorld` on top of `// TODO: 3`
-5. Run development server using `npm run dev`
-
-And voila ! :D
-Test your component in `src/App.vue` and you favorite browser at http://localhost:3000 _(usually)_
+5. Run development server using `npm run dev` and voila ! :D \
+   Test your component in `src/App.vue` and you favorite browser at http://localhost:3000 _(usually)_
+6. Update the example [story](https://storybook.js.org/docs/vue/writing-stories/introduction) copied with the `QHelloWorld` previously to be able to play with in [StorybookJs](https://storybook.js.org/). Follow `TODO` upper than 6.
+7. Test your story in Storybook UI using your browser and this command : `npm run storybook`
+8. **Remove all `TODO` from your new files**
+9. Increment version number using `npm version minor` for new component or `npm version patch` for a bug fix
+10. Create a pretty pull request to be accepted 😉
 
 ### Basic commands
 
@@ -79,6 +82,10 @@ npm run test:e2e # or `npm run test:e2e:ci` for headless testing
 npm run lint
 ```
 
+## Library documentation
+
+[Chromatic's StorybookJs](https://master--629673e43b21dd004ace66f2.chromatic.com)
+
 ## Related documentation
 
 - [VueJs](https://vuejs.org/)
@@ -89,3 +96,4 @@ npm run lint
 - [Postcss](https://postcss.org)
 - [Eslint](https://eslint.org)
 - [Prettier](https://prettier.io)
+- [StorybookJs - our components showcase](https://storybook.js.org/docs/vue/writing-stories/introduction)
