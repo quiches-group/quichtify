@@ -1,7 +1,7 @@
-import Carousel from './components/Carousel/Carousel.vue';
+import CarouselVue from './components/Carousel/CarouselVue.vue';
 
 export default {
   install(Vue) {
-    Vue.component('CarouselVue', Carousel);
+    Vue.component('CarouselVue', CarouselVue);
   },
 };

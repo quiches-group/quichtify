@@ -1,14 +1,10 @@
 <template>
-  <div>Hello!</div>
   <CarouselVue>
-    <div class="slide">Slide 1</div>
-    <div class="slide">Slide 2</div>
-    <div class="slide">Slide 3</div>
   </CarouselVue>
 </template>
 
 <script>
-import CarouselVue from './Carousel.vue';
+import CarouselVue from './CarouselVue.vue';
 
 export default {
   data() {
