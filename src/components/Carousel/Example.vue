@@ -1,6 +1,5 @@
 <template>
-  <CarouselVue>
-  </CarouselVue>
+  <CarouselVue/>
 </template>
 
 <script>

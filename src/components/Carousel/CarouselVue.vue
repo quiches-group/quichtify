@@ -14,6 +14,7 @@ import { VueperSlides, VueperSlide } from 'vueperslides';
 import 'vueperslides/dist/vueperslides.css';
 
 export default {
+  name: 'CarouselVue',
   components: { VueperSlides, VueperSlide },
   data: () => ({
     pauseOnHover: true,
