@@ -9,7 +9,7 @@ module.exports = {
     es2021: true,
     'vue/setup-compiler-macros': true,
   },
-  extends: ['plugin:vue/vue3-recommended', 'eslint:recommended', '@vue/eslint-config-prettier', '@vue/airbnb'],
+  extends: ['plugin:vue/vue3-recommended', 'eslint:recommended', '@vue/eslint-config-prettier', '@vue/airbnb', 'plugin:storybook/recommended'],
   overrides: [
     {
       files: ['cypress/integration/**.spec.{js,ts,jsx,tsx}'],
