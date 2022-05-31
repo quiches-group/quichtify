@@ -1,6 +1,9 @@
 <template>
   <div v-if="isOpen" id="open-modal" class="modal-window">
-    <button v-if="showCloseButton" @click="closeModal()">Close</button>
+    <div class="button-close">
+      <button v-if="showCloseButton" @click="closeModal()">Close</button>
+    </div>
+    <div class="text-modal">HELLO</div>
     <slot/>
   </div>
 </template>
