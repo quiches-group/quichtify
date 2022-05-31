@@ -43,7 +43,6 @@ export default {
       this.startLoc = e.clientY;
       this.dragging = true;
       this.dragFrom = item;
-      console.log(this.dragFrom);
     },
     finishDrag(item, pos) {
       this.items.splice(pos, 1);
