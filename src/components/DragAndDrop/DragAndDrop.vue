@@ -1,140 +1,58 @@
 <template>
-  <div
-    id="app"
-    class="min-h-screen
-    w-screen
-    bg-gray-200
-    flex
-    flex-col
-    pt-20
-    justify-center
-    items-center
-    md:items-start md:flex-row"
-  >
-    <div class="w-full max-w-md text-center px-3">
-      <p class="mb-2 text-gray-700 font-semibold font-sans tracking-wide">List 1</p>
-      <draggable
-        tag="ul"
-        group="all-users"
-        class="draggable-list"
-        ghost-class="moving-card"
-        filter=".action-button"
-        :list="users"
-        :animation="200"
-      >
-        <user-card
-          v-for="user in users"
-          :user="user"
-          :key="user.id"
-          @on-edit="onEdit"
-          @on-delete="onDelete"
-        ></user-card>
-      </draggable>
-    </div>
-
-    <div class="w-full max-w-md md:ml-6 text-center px-3">
-      <p class="mb-2 text-gray-700 font-semibold font-sans tracking-wide">List 2</p>
-      <draggable
-        tag="ul"
-        group="all-users"
-        class="draggable-list"
-        ghost-class="moving-card"
-        filter=".action-button"
-        :list="newUsers"
-        :animation="200"
-      >
-        <user-card
-          v-for="user in newUsers"
-          :user="user"
-          :key="user.id"
-          @on-edit="onEdit"
-          @on-delete="onDelete"
-        ></user-card>
-      </draggable>
+  <div id="app">
+    <div class="list">
+      <transition-group name="flip-list" tag="div">
+        <li
+          @dragover="(e) => onDragOver(item, i, e)"
+          @dragend="(e) => finishDrag(item, i, e)"
+          @dragstart="(e) => startDrag(item, i, e)"
+          v-for="(item, i) in items"
+          class="item"
+          :class="{over: (item === over.item && item !== dragFrom),
+          [over.dir]: (item === over.item && item !== dragFrom) }"
+          draggable="true"
+          :key="item"
+        >
+          {{item}}</li>
+      </transition-group>
     </div>
   </div>
 </template>
 
 <script>
-import Draggable from 'vuedraggable';
-import UserCard from './UserCard.vue';
+import './DragAndDrop.scss';
 
 export default {
   name: 'DragAndDrop',
-  components: {
-    Draggable,
-    UserCard,
-  },
+  components: {},
+  eel: '#app',
   data() {
     return {
-      users: [
-        {
-          id: 1,
-          name: 'Adrian Schubert',
-          avatar:
-            'https://pickaface.net/gallery/avatar/unr_sample_161118_2054_ynlrg.png',
-        },
-        {
-          id: 2,
-          name: 'Violet Gates',
-          avatar: 'https://pickaface.net/gallery/avatar/freud51c8b3f65e7dc.png',
-        },
-        {
-          id: 3,
-          name: 'Steve Jobs',
-          avatar: 'https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png',
-        },
-        {
-          id: 4,
-          name: 'Yassine Smith',
-          avatar:
-            'https://pickaface.net/gallery/avatar/unr_yassine_191124_2012_3gngr.png',
-        },
-        {
-          id: 5,
-          name: 'Senior Saez',
-          avatar:
-            'https://pickaface.net/gallery/avatar/elmedinilla541c03412955c.png',
-        },
-      ],
-      newUsers: [
-        {
-          id: 6,
-          name: 'Steve Jobs',
-          avatar: 'https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png',
-        },
-        {
-          id: 7,
-          name: 'Yassine Smith',
-          avatar:
-            'https://pickaface.net/gallery/avatar/unr_yassine_191124_2012_3gngr.png',
-        },
-        {
-          id: 8,
-          name: 'Senior Saez',
-          avatar:
-            'https://pickaface.net/gallery/avatar/elmedinilla541c03412955c.png',
-        },
-        {
-          id: 9,
-          name: 'Adrian Schubert',
-          avatar:
-            'https://pickaface.net/gallery/avatar/unr_sample_161118_2054_ynlrg.png',
-        },
-        {
-          id: 10,
-          name: 'Violet Gates',
-          avatar: 'https://pickaface.net/gallery/avatar/freud51c8b3f65e7dc.png',
-        },
-      ],
+      items: ['one', 'two', 'three', 'four'],
+      over: {},
+      startLoc: 0,
+      dragging: false,
+      dragFrom: {},
     };
   },
   methods: {
-    onEdit(user) {
-      alert(`Editing ${user.name}`);
+    startDrag(item, i, e) {
+      this.startLoc = e.clientY;
+      this.dragging = true;
+      this.dragFrom = item;
+      console.log(this.dragFrom);
     },
-    onDelete(user) {
-      alert(`Deleting ${user.name}`);
+    finishDrag(item, pos) {
+      this.items.splice(pos, 1);
+      this.items.splice(this.over.pos, 0, item);
+      this.over = {};
+    },
+
+    onDragOver(item, pos, e) {
+      const dir = (this.startLoc < e.clientY) ? 'down' : 'up';
+      setTimeout(() => {
+        this.over = { item, pos, dir };
+      }, 50);
     },
   },
 };

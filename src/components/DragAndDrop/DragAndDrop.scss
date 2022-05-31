@@ -1,9 +1,33 @@
-.draggable-list {
-  min-height: 100px;
+.list > div {
+  display: flex;
+  flex-direction: column;
 }
 
-.moving-card {
-  opacity: 0.5;
-  background: #F7FAFC;
-  border: 1px solid #4299e1;
+.item {
+  width: 200px;
+  padding: 10px;
+  margin: 10px auto 10px 10px;
+  background: tomato;
+  color: white;
+  font-family: sans-serif;
+  border-radius: 5px;
+  display: inline-block;
+  /*   transition: opacity .3s ease-in-out; */
+}
+
+.flip-list-move {
+  transition: transform .2s;
+}
+
+
+.over {
+  opacity: .6;
+}
+
+.down {
+  /*   transform: translateY(-20px); */
+}
+
+.up {
+  /*    transform: translateY(20px); */
 }
