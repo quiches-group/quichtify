@@ -1,12 +1,12 @@
 <template>
-  <vueper-slides fade :touchable="false">
-    <vueper-slide
+  <VueperSlides fade :touchable="false">
+    <VueperSlide
         v-for="(slide, i) in slides"
         :key="i"
         :image="slide.image"
         :title="slide.title"
         :content="slide.content" />
-  </vueper-slides>
+  </VueperSlides>
 </template>
 
 <script>
