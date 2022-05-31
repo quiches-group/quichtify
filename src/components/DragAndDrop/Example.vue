@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DragAndDrop :item="data"></DragAndDrop>
+    <DragAndDrop :item="data" color="lightseagreen"></DragAndDrop>
   </div>
 </template>
 
