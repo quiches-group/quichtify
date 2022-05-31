@@ -81,7 +81,11 @@ npm run lint
 
 ## Related documentation
 
-- [Vites](https://vitejs.dev/)
 - [VueJs](https://vuejs.org/)
+- [Tailwindcss](https://tailwindcss.com)
+- [Vites](https://vitejs.dev/)
 - [Cypress - e2e testing](https://www.cypress.io/)
 - [Vitest - unit testing](https://vitest.dev/)
+- [Postcss](https://postcss.org)
+- [Eslint](https://eslint.org)
+- [Prettier](https://prettier.io)
