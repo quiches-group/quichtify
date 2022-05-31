@@ -1,9 +1,14 @@
 <template>
+<!--  <div>-->
+<!--    <button @click="openModal()">coucou</button>-->
+<!--    <modal :is-open="isOpen" :show-close-button="true">-->
+<!--      <p>pd</p>-->
+<!--    </modal>-->
+<!--  </div>-->
+
   <div>
-    <button @click="openModal()">coucou</button>
-    <modal :is-open="isOpen" :show-close-button="true">
-      <p>pd</p>
-    </modal>
+    <modal ref="modal"></modal>
+    <button @click="openModal">Open Modal</button>
   </div>
 </template>
 
@@ -18,9 +23,14 @@ export default {
   },
   name: 'Example',
   components: { Modal },
+  // methods: {
+  //   openModal() {
+  //     this.isOpen = true;
+  //   },
+  // },
   methods: {
     openModal() {
-      this.isOpen = true;
+      this.$refs.modal.show();
     },
   },
 };
