@@ -1,8 +1,7 @@
 <template>
   <div>
-    <button @click="openModal()">coucou</button>
-    <modal :is-open="isOpen" :show-close-button="true">
-    </modal>
+    <modal ref="modal"></modal>
+    <button @click="openModal">Open Modal</button>
   </div>
 </template>
 
@@ -10,16 +9,11 @@
 import Modal from './Modal.vue';
 
 export default {
-  data() {
-    return {
-      isOpen: false,
-    };
-  },
   name: 'Example',
   components: { Modal },
   methods: {
     openModal() {
-      this.isOpen = true;
+      this.$refs.modal.show();
     },
   },
 };
