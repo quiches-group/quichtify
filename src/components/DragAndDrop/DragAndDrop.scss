@@ -4,30 +4,39 @@
 }
 
 .item {
-  width: 200px;
+  width: 180px;
   padding: 10px;
   margin: 10px auto 10px 10px;
-  background: tomato;
+  background: lightseagreen;
   color: white;
   font-family: sans-serif;
-  border-radius: 5px;
+  border-radius: 4px;
   display: inline-block;
-  /*   transition: opacity .3s ease-in-out; */
+  position: relative;
+  box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
+  cursor: grab;
+}
+
+.item:hover{
+  opacity: 0.7;
 }
 
 .flip-list-move {
   transition: transform .2s;
 }
 
-
 .over {
   opacity: .6;
 }
 
-.down {
-  /*   transform: translateY(-20px); */
+.close{
+  position: absolute;
+  right: 20px;
 }
-
-.up {
-  /*    transform: translateY(20px); */
-}
+//.down {
+//  transform: translateY(-20px);
+//}
+//
+//.up {
+//  transform: translateY(20px);
+//}

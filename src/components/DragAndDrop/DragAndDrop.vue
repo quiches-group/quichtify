@@ -13,7 +13,9 @@
           draggable="true"
           :key="item"
         >
-          {{item.title}}</li>
+          {{item.title}}
+          <span class="close">X</span>
+        </li>
       </transition-group>
     </div>
   </div>
@@ -48,7 +50,6 @@ export default {
       this.items.splice(this.over.pos, 0, item);
       this.over = {};
     },
-
     onDragOver(item, pos, e) {
       const dir = (this.startLoc < e.clientY) ? 'down' : 'up';
       setTimeout(() => {
