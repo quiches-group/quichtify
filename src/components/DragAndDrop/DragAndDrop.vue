@@ -12,9 +12,8 @@
           [over.dir]: (item === over.item && item !== dragFrom) }"
           draggable="true"
           :key="item"
-        >
-          {{item.title}}
-          <span class="close">X</span>
+          :style="{ backgroundColor: backgroundColor }"
+        >{{item.title}}
         </li>
       </transition-group>
     </div>
@@ -28,10 +27,11 @@ export default {
   name: 'DragAndDrop',
   components: {},
   eel: '#app',
-  props: ['item'],
+  props: ['item', 'color'],
   data() {
     return {
       items: this.item,
+      backgroundColor: this.color,
       over: {},
       startLoc: 0,
       dragging: false,
