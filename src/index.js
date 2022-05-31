@@ -1,7 +1,7 @@
-import HelloWorld from './components/HelloWorld/HelloWorld.vue';
+import Carousel from './components/Carousel/Carousel.vue';
 
 export default {
   install(Vue) {
-    Vue.component('HelloWorld', HelloWorld);
+    Vue.component('CarouselVue', Carousel);
   },
 };

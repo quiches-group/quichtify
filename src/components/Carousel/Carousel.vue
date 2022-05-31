@@ -5,16 +5,20 @@
     <slider ref="slider" :options="options">
       <!-- slideritem wrapped package with the components you need -->
       <slideritem v-for="(item,index) in someList" :key="index" :style="item.style">{{item.html}}/>
+      </slideritem>
       <!-- Customizable loading -->
       <div>loading...</div>
+
     </slider>
   </div>
 </template>
 <script>
 // import slider components
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { slider, slideritem } from 'vue-concise-slider';
 
 export default {
+  name: 'CarouselVue',
   el: '#app',
   data() {
     return {
