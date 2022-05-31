@@ -1,5 +1,6 @@
 module.exports = {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  safelist: ['text-left', 'text-center', 'text-right'],
   theme: {
     extend: {
       colors: {

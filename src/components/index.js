@@ -21,6 +21,7 @@ import QMenuItem from './QMenu/QMenuItem.vue';
 import QFormatNumber from './QFormatNumber/QFormatNumber.vue';
 import QButton from './QButton/QButton.vue';
 import QDragAndDrop from './QDragAndDrop/QDragAndDrop.vue';
+import QTable from '@/components/QTable/QTable.vue';
 // TODO: 2 - Import your main component here
 
 const components = [
@@ -47,6 +48,7 @@ const components = [
   QFormatNumber,
   QButton,
   QDragAndDrop
+  QTable
 ]
 
 export default {
