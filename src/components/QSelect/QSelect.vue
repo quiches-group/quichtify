@@ -1,65 +1,89 @@
 <template>
-  <Menu as="div" class="relative inline-block text-left">
+  <div class="relative inline-block text-left">
     <div>
-      <MenuButton class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
-        {{ selected }}
-        <ChevronDownIcon class="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
-      </MenuButton>
+      <button
+        class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+        :class="{ 'text-gray-400': state.selected === placeholder }"
+        type="button"
+        @click="toggleMenu"
+        @focusout="toggleMenu(false)"
+      >
+        {{ state.selected }}
+        <span id="dropdown-chevron" class="ml-3 self-center transition-transform ease-in-out duration-250" :class="{ 'rotate-180': state.menuIsOpen }" />
+      </button>
     </div>
 
-    <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
-      <MenuItems class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-        <div class="py-1">
-          <MenuItem v-for="option in options" v-slot="{ active }" v-bind="{ selected: option === selected }">
-            <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']" @click="selectOption(option)">{{ option }}</a>
-          </MenuItem>
-        </div>
-      </MenuItems>
-    </transition>
-  </Menu>
+    <div
+      class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none transition-opacity duration-100 ease-out"
+      :class="{ 'opacity-0': !state.menuIsOpen }"
+    >
+      <div class="py-1">
+        <a v-for="option in options" href="#" class="hover:bg-gray-100 text-gray-700 block px-4 py-2 text-sm" @click="selectOption(option)">{{ option }}</a>
+      </div>
+    </div>
+  </div>
 </template>
 
-<script>
-import {
-  Menu, MenuButton, MenuItem, MenuItems,
-} from '@headlessui/vue';
-import { ChevronDownIcon } from '@heroicons/vue/solid';
+<script setup>
+import { defineEmits, reactive } from 'vue';
 
-export default {
-  name: 'QSelect',
-  components: {
-    Menu,
-    MenuButton,
-    MenuItem,
-    MenuItems,
-    ChevronDownIcon,
+const emit = defineEmits(['select']);
+
+const props = defineProps({
+  placeholder: {
+    type: String,
+    default: '',
   },
-  props: {
-    placeholder: {
-      default: 'Select from the dropdown',
-      type: String,
-    },
-    options: {
-      default: () => [],
-      type: Array,
-    },
+  options: {
+    type: Array,
+    required: true,
   },
-  data() {
-    return {
-      selected: this.placeholder,
-    };
-  },
-  methods: {
-    selectOption(option) {
-      console.log(option);
-      this.selected = option;
-      // this.placeholder = option;
-      this.$emit('interface', this.selected);
-    },
-  },
+});
+
+const state = reactive({
+  selected: props.placeholder,
+  menuIsOpen: false,
+});
+
+const selectOption = (option) => {
+  state.selected = option;
+  emit('select', option);
+};
+
+const toggleMenu = (newValue) => {
+  state.menuIsOpen = typeof newValue === 'boolean' ? newValue : !state.menuIsOpen;
 };
 </script>
 
 <style scoped>
+#dropdown-chevron {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+#dropdown-chevron:after {
+  content: '';
+  display: block;
+  width: 2px;
+  height: 8px;
+  border-radius: 3px;
+  background-color: rgb(55, 65, 81);
+  transform-origin: 50% 100%;
+  transform: translateX(-1px) rotate(-45deg);
+}
+
+#dropdown-chevron:before {
+  content: '';
+  display: block;
+  width: 2px;
+  height: 8px;
+  border-radius: 3px;
+  background-color: rgb(55, 65, 81);
+  transform-origin: 50% 100%;
+  transform: rotate(45deg);
+}
 </style>

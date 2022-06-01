@@ -1,17 +1,13 @@
-@@ -1,7 +1,22 @@
 <template>
-  <q-select placerholder="hello" :options="randomEmojiArray" />
+  <main class="flex justify-center h-screen items-center">
+    <q-select placerholder="hello" :options="randomEmojiArray" @select="selectItem" />
+  </main>
 </template>
 
-<script>
-import QSelect from './QSelect.vue';
+<script setup>
+const randomEmojiArray = ['😀😎🙁🤯', '😀😡🥶🫡', '😀😶🫥🫣', '😀🥹😻', 'Ceci est un test !'];
 
-export default {
-  components: { QSelect },
-  data() {
-    return {
-      randomEmojiArray: ['😀😎🙁🤯', '😀😡🥶🫡', '😀😶🫥🫣', '😀🥹😻'],
-    };
-  },
+const selectItem = (item) => {
+  console.log(item);
 };
 </script>
