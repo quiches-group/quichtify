@@ -5,6 +5,11 @@ module.exports = {
       borderWidth: {
         16: '16px',
       },
+      colors: {
+        primary: '#40B883',
+        secondary: '#35485F',
+        text: '#2C3F50',
+      },
     },
   },
   plugins: [],

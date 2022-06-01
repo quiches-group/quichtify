@@ -1,26 +1,36 @@
 <template>
-  <div class="aligner">
-    <input class="q-input" type="text" :placeholder="placeholder" :value="value" />
+  <label class="q-input-label"
+    >{{ title }}
+    <input :value="modelValue" class="q-input" type="text" :placeholder="placeholder" @input="$emit('update:modelValue', $event.target.value)" />
     <p v-if="showError" class="q-input-error">{{ error }}</p>
-  </div>
+  </label>
 </template>
 
 <script>
 export default {
   props: {
+    title: {
+      type: String,
+      required: false,
+    },
+
     placeholder: {
       type: String,
       required: false,
     },
-    value: {
+
+    modelValue: {
       type: String,
-      required: false,
+      required: true,
     },
+
     error: {
       type: String,
       required: false,
     },
   },
+
+  emits: ['update:modelValue'],
 
   computed: {
     showError() {
@@ -31,18 +41,23 @@ export default {
 </script>
 
 <style>
-.aligner {
-  @apply content-start;
+.q-input-label {
+  @apply flex
+    flex-col
+    space-y-1
+    pb-5;
 }
 
 .q-input {
-  @apply rounded-md
-    border-4 border-transparent border-b-indigo-500
+  @apply border-4 border-transparent border-b-primary border-r-0 border-l-0
     focus:shadow-none focus:outline-none;
 }
 
 .q-input-error {
-  @apply text-red-700
-    text-xs;
+  @apply absolute bottom-0
+    max-w-prose
+    text-red-700
+    text-xs
+    content-start;
 }
 </style>
