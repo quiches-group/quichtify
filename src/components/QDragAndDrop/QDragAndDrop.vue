@@ -21,13 +21,15 @@
 </template>
 
 <script>
-import './DragAndDrop.scss';
 
 export default {
-  name: 'DragAndDrop',
+  name: 'QDragAndDrop',
   components: {},
   eel: '#app',
-  props: ['item', 'color'],
+  props: {
+    item: Array,
+    color: String
+  },
   data() {
     return {
       items: this.item,
@@ -60,5 +62,33 @@ export default {
 </script>
 
 <style>
+.list > div {
+  display: flex;
+  flex-direction: column;
+}
 
+.item {
+  width: 180px;
+  padding: 10px;
+  margin: 10px auto 10px 10px;
+  color: white;
+  font-family: sans-serif;
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+  box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
+  cursor: grab;
+}
+
+.item:hover{
+  opacity: 0.7;
+}
+
+.flip-list-move {
+  transition: transform .2s;
+}
+
+.over {
+  opacity: .6;
+}
 </style>
