@@ -1,133 +1,94 @@
 <template>
-  <div class="lists">
-    <div
-        class="columns"
-        v-for="(column) in columns"
-    >
-      <ul>
+  <div id="app">
+    <div class="list">
+      <transition-group name="flip-list" tag="div">
         <li
-            class="list-item"
-            draggable="true"
-            v-for="(item) in column.items"
-        >{{item.title}}</li>
-      </ul>
+          @dragover="(e) => onDragOver(item, i, e)"
+          @dragend="(e) => finishDrag(item, i, e)"
+          @dragstart="(e) => startDrag(item, i, e)"
+          v-for="(item, i) in items"
+          class="item"
+          :class="{over: (item === over.item && item !== dragFrom),
+          [over.dir]: (item === over.item && item !== dragFrom) }"
+          draggable="true"
+          :key="item"
+          :style="{ backgroundColor: backgroundColor }"
+        >{{item.title}}
+        </li>
+      </transition-group>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'QDragAndDrop',
   components: {},
   eel: '#app',
   props: {
-    column: Array,
+    item: Array,
     color: String
   },
   data() {
     return {
-      columns: this.column,
+      items: this.item,
+      backgroundColor: this.color,
+      over: {},
+      startLoc: 0,
+      dragging: false,
+      dragFrom: {},
     };
   },
-  mounted() {
-        this.dragAndDrop();
-  },
   methods: {
-    dragAndDrop(){
-      const listItems = document.getElementsByClassName("list-item");
-      const columns = document.getElementsByClassName("columns");
-
-      let draggedItem = null;
-      for (let item of listItems) {
-        item.addEventListener("dragstart", function () {
-          draggedItem = item;
-          setTimeout(() => {
-            item.style.display = "none";
-          }, 0);
-        });
-
-        item.addEventListener("dragend", function () {
-          setTimeout(() => {
-            draggedItem.style.display = "block";
-            draggedItem = null;
-          }, 0);
-        });
-
-        for (let column of columns) {
-          column.addEventListener("dragover", function (e) {
-            e.preventDefault();
-          });
-
-          column.addEventListener("dragenter", function (e) {
-            e.preventDefault();
-            this.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
-          });
-
-          column.addEventListener("dragleave", function (e) {
-            e.preventDefault();
-            this.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
-          });
-
-          column.addEventListener("drop", function (e) {
-            this.append(draggedItem);
-            this.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
-          });
-        }
-      }
+    startDrag(item, i, e) {
+      this.startLoc = e.clientY;
+      this.dragging = true;
+      this.dragFrom = item;
     },
-  }
+    finishDrag(item, pos) {
+      this.items.splice(pos, 1);
+      this.items.splice(this.over.pos, 0, item);
+      this.over = {};
+    },
+    onDragOver(item, pos, e) {
+      const dir = (this.startLoc < e.clientY) ? 'down' : 'up';
+      setTimeout(() => {
+        this.over = { item, pos, dir };
+      }, 50);
+    },
+  },
 };
 </script>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.app {
+.list > div {
   display: flex;
-  width: 100vw;
-  height: 100vw;
-  flex-flow: column;
+  flex-direction: column;
 }
 
-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
+.item {
+  width: 180px;
+  padding: 10px;
+  margin: 10px auto 10px 10px;
+  color: white;
+  font-family: sans-serif;
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+  box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
+  cursor: grab;
 }
 
-.lists {
-  display: flex;
-  flex: 1;
-  width: 100%;
-  /* overflow-x: scroll; */
+.item:hover{
+  opacity: 0.7;
 }
 
-.lists .columns {
-  display: flex;
-  flex-flow: column;
-  flex: 1;
-  width: 100%;
-  min-width: 250px;
-  max-width: 350px;
-  height: 100%;
-  min-height: 150px;
-  background-color: rgba(0, 0, 0, 0.1);
-  margin: 0 15px;
-  padding: 8px;
-  transition: all 0.2s linear;
+.flip-list-move {
+  transition: transform .2s;
 }
 
-.lists .columns .list-item {
-  background-color: #f3f3f3;
-  border-radius: 8px;
-  padding: 15px 20px;
-  text-align: center;
-  margin: 4px 0;
+.over {
+  opacity: .6;
 }
-
 </style>
