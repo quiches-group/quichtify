@@ -2,7 +2,7 @@ import QHelloWorld from './QHelloWorld/QHelloWorld.vue';
 import QTabs from './QTabs/QTabs.vue';
 import QTab from './QTabs/QTab.vue';
 import QLoader from './QLoader/QLoader.vue';
-import QSelect from '@/components/QSelect/QSelect.vue';
+import QSelect from './QSelect/QSelect.vue';
 // TODO: 2 - Import your main component here
 
 export default {
