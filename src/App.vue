@@ -1,7 +1,7 @@
 <template>
-  <q-hello-world-example />
+  <example />
 </template>
 
 <script setup>
-import QHelloWorldExample from './components/QHelloWorld/Example.vue';
+import Example from './components/QHelloWorld/Example.vue';
 </script>
