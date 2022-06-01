@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, defineEmits, defineProps } from 'vue';
+import { ref, onMounted, defineEmits, defineProps, reactive } from 'vue';
 
 const emit = defineEmits(['selectIndex']);
 const root = ref();
@@ -33,15 +33,15 @@ const props = defineProps({
   },
 });
 
-const style = {
+const style = reactive({
   color: props.textColor,
   backgroundColor: props.backgroundColor,
-};
+});
 
 const resetTabs = () => {
   const children = Array.from(root.value.children);
 
-  childrens.forEach((element) => {
+  children.forEach((element) => {
     element.classList.remove('q-tab--active');
     element.style.removeProperty('background-color');
     element.style.removeProperty('color');
