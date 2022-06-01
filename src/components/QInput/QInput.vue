@@ -1,7 +1,7 @@
 <template>
   <div class="aligner">
-    <input class="q-input" type="text" v-bind:placeholder="placeholder" v-bind:value="value">
-    <p class="q-input-error" v-if="showError">{{ error }}</p>
+    <input class="q-input" type="text" :placeholder="placeholder" :value="value" />
+    <p v-if="showError" class="q-input-error">{{ error }}</p>
   </div>
 </template>
 
@@ -10,42 +10,39 @@ export default {
   props: {
     placeholder: {
       type: String,
-      required: false
+      required: false,
     },
     value: {
       type: String,
-      required: false
+      required: false,
     },
     error: {
       type: String,
-      required: false
-    }
+      required: false,
+    },
   },
 
   computed: {
-    showError: function () {
-      return this.error !== "";
-    }
-  }
-}
+    showError() {
+      return this.error !== '';
+    },
+  },
+};
 </script>
 
 <style>
 .aligner {
-  @apply
-    content-start
+  @apply content-start;
 }
 
 .q-input {
-  @apply
-    rounded-md
+  @apply rounded-md
     border-4 border-transparent border-b-indigo-500
     focus:shadow-none focus:outline-none;
 }
 
 .q-input-error {
-  @apply
-    text-red-700
-    text-xs
+  @apply text-red-700
+    text-xs;
 }
 </style>
