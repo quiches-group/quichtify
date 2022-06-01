@@ -1,11 +1,17 @@
-import QHelloWorld from '@/components/QHelloWorld/QHelloWorld.vue';
-import QLoader from '@/components/QLoader/QLoader.vue';
+import QHelloWorld from './QHelloWorld/QHelloWorld.vue';
+import QTabs from './QTabs/QTabs.vue';
+import QTab from './QTabs/QTab.vue';
+import QLoader from './QLoader/QLoader.vue';
 // TODO: 2 - Import your main component here
 
 export default {
   install: (app) => {
     app.component('QHelloWorld', QHelloWorld);
+    app.component('QTabs', QTabs);
+    app.component('QTab', QTab);
     app.component('QLoader', QLoader);
     // TODO: 3 - Declare your component here
   },
 };
+
+export { QHelloWorld, QTabs, QTab, QLoader };
