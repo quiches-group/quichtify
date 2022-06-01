@@ -13,20 +13,6 @@
           <MenuItem v-for="option in options" v-slot="{ active }" v-bind="{ selected: option === selected }">
             <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']" @click="selectOption(option)">{{ option }}</a>
           </MenuItem>
-
-<!--          <MenuItem v-slot="{ active }">-->
-<!--            <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Support</a>-->
-<!--          </MenuItem>-->
-<!--          <MenuItem v-slot="{ active }">-->
-<!--            <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">License</a>-->
-<!--          </MenuItem>-->
-
-
-<!--          <form method="POST" action="#">-->
-<!--            <MenuItem v-slot="{ active }">-->
-<!--              <button type="submit" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block w-full text-left px-4 py-2 text-sm']">Sign out</button>-->
-<!--            </MenuItem>-->
-<!--          </form>-->
         </div>
       </MenuItems>
     </transition>
@@ -61,7 +47,6 @@ export default {
   data() {
     return {
       selected: this.placeholder,
-      showDropdown: false,
     };
   },
   methods: {
