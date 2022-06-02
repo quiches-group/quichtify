@@ -7,6 +7,8 @@ import QCard from './QCard/QCard.vue';
 import QCardTitle from './QCard/QCardTitle.vue';
 import QCardContent from './QCard/QCardContent.vue';
 import QDropdown from './QDropdown/QDropdown.vue';
+import QRow from './QGrid/QRow.vue';
+import QCol from './QGrid/QCol.vue';
 // TODO: 2 - Import your main component here
 
 export default {
@@ -20,8 +22,10 @@ export default {
     app.component('QLoader', QLoader);
     app.component('QInput', QInput);
     app.component('QDropdown', QDropdown);
+    app.component('QRow', QRow);
+    app.component('QCol', QCol);
     // TODO: 3 - Declare your component here
   },
 };
 
-export { QHelloWorld, QTabs, QTab, QCard, QCardTitle, QCardContent, QLoader, QDropdown };
+export { QHelloWorld, QTabs, QTab, QCard, QCardTitle, QCardContent, QLoader, QDropdown, QRow, QCol };
