@@ -4,7 +4,7 @@
       <button class="button w-auto text-xs font-bold bg-black justify-center border-none pt-2 pb-2 text-white rounded mt-10 mb-5 mr-5 inset-y-0 left-0 w-16 h-10" @click="selectItemFromIndex(state.selectedIndex - 1)">Left</button>
       <button class="button w-auto text-xs font-bold bg-black justify-center border-none pt-2 pb-2 text-white rounded mt-10 mb-5 inset-y-0 right-0 w-16 h-10" @click="selectItemFromIndex(state.selectedIndex + 1)">Right</button>
       <div ref="root" class="flex w-60 h-60 bg-black text-white overflow-hidden relative justify-center">
-      <slot> </slot>
+      <slot/>
     </div>
    </div>
   </div>
