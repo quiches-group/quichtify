@@ -1,17 +1,18 @@
 <template>
   <div class="lists">
-    <div class="list">
+    <div
+        class="columns"
+        v-for="(column) in columns"
+    >
       <ul>
         <li
             class="list-item"
             draggable="true"
             v-for="(item) in items"
+            v-if="item.state === column.title"
         >{{item.title}}</li>
       </ul>
     </div>
-
-    <div class="list"></div>
-    <div class="list"></div>
   </div>
 </template>
 
@@ -22,11 +23,13 @@ export default {
   eel: '#app',
   props: {
     item: Array,
+    column: Array,
     color: String
   },
   data() {
     return {
       items: this.item,
+      columns: this.column,
     };
   },
   mounted() {
@@ -35,7 +38,7 @@ export default {
   methods: {
     dragAndDrop(){
       const listItems = document.getElementsByClassName("list-item");
-      const columns = document.getElementsByClassName("list");
+      const columns = document.getElementsByClassName("columns");
 
       let draggedItem = null;
       for (let item of listItems) {
@@ -107,7 +110,7 @@ header {
   /* overflow-x: scroll; */
 }
 
-.lists .list {
+.lists .columns {
   display: flex;
   flex-flow: column;
   flex: 1;
@@ -122,7 +125,7 @@ header {
   transition: all 0.2s linear;
 }
 
-.lists .list .list-item {
+.lists .columns .list-item {
   background-color: #f3f3f3;
   border-radius: 8px;
   padding: 15px 20px;
