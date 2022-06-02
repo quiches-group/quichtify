@@ -13,17 +13,14 @@ export default {
       type: String,
       required: false,
     },
-
     placeholder: {
       type: String,
       required: false,
     },
-
     modelValue: {
       type: String,
       required: true,
     },
-
     error: {
       type: String,
       required: false,
@@ -42,7 +39,8 @@ export default {
 
 <style>
 .q-input-label {
-  @apply flex
+  @apply relative
+    flex
     flex-col
     space-y-1
     pb-5;
