@@ -1,5 +1,6 @@
 <template>
-  <div :class="separatorClasses" :style="separatorStyles" />
+  <hr v-if="!vertical" :class="separatorClasses" :style="separatorStyles" />
+  <span v-else :class="separatorClasses" :style="separatorStyles" />
 </template>
 
 <script setup>
