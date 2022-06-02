@@ -17,5 +17,3 @@
 import QRow from './QRow.vue';
 import QCol from './QCol.vue';
 </script>
-
-<style scoped></style>

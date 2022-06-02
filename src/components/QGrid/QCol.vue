@@ -39,6 +39,6 @@ const columnClasses = computed(() => {
   if (props.lg) classes.push(parseInt(props.lg, 10) === 12 ? 'lg:w-full' : `lg:w-${props.lg}/12`);
   if (props.xl) classes.push(parseInt(props.xl, 10) === 12 ? 'xl:w-full' : `xl:w-${props.xl}/12`);
 
-  return classes.join(' ');
+  return classes;
 });
 </script>

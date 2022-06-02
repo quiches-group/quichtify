@@ -1,5 +1,5 @@
 <template>
-  <div ref="root" class="flex flex-wrap row m-6" :class="rowClasses">
+  <div ref="root" class="w-full flex flex-wrap row m-6" :class="rowClasses">
     <slot />
   </div>
 </template>
@@ -19,17 +19,9 @@ const props = defineProps({
 });
 
 const rowClasses = computed(() => {
-  const classes = [];
-
-  classes.push(`justify-${props.justify}`);
-  classes.push(`items-${props.align}`);
-
-  return classes.join(' ');
+  return [
+    `justify-${props.justify}`,
+    `items-${props.align}`
+  ];
 });
 </script>
-
-<style>
-.row {
-  width: 100%;
-}
-</style>
