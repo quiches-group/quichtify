@@ -33,6 +33,6 @@ const separatorStyles = computed(() => {
     styles.push(`height: ${props.size}`);
   }
 
-  return styles.join('; ');
+  return styles;
 });
 </script>
