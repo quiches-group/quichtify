@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { defineEmits, reactive, watch } from 'vue';
+import { reactive, watch } from 'vue';
 
 const emit = defineEmits(['select']);
 

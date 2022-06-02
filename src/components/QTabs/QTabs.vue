@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, defineEmits, defineProps, reactive } from 'vue';
+import { ref, onMounted, reactive } from 'vue';
 
 const emit = defineEmits(['selectIndex']);
 const root = ref();
