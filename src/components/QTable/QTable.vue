@@ -2,7 +2,7 @@
   <table>
     <thead>
       <tr>
-        <th v-for="header in headers" :key="header.value" :class="`text-${header.align}`" class="cursor-pointer" @click="sort(header.value)">
+        <th v-for="header in headers" :key="header.value" :class="`text-${header.align}; ${header.sortable ? `cursor-pointer` : null}`" @click="header.sortable ? sort(header.value) : null">
           {{ header.text }}
         </th>
       </tr>
@@ -75,13 +75,12 @@ const props = defineProps({
   },
 });
 
-const sortedHeader = ref(props.headers ? props.headers[0].value : null);
+const sortedHeader = ref(props.headers[0].value);
 const sortAsc = ref(true);
 const rowsPerPageMutable = ref(props.rowsPerPage);
 const currentPageMutable = ref(props.currentPage);
 
 const sort = (header) => {
-  if (!props.headers) return;
   if (header === sortedHeader.value) {
     sortAsc.value = !sortAsc.value;
   } else {
@@ -98,6 +97,7 @@ const sortItems = (items) => {
     return 0;
   });
   if (rowsPerPageMutable.value > sortedItems.length) rowsPerPageMutable.value = items.length;
+  if (rowsPerPageMutable.value * (currentPageMutable.value - 1) + 1 > sortedItems.length) currentPageMutable.value -= 1;
   return sortedItems;
 };
 
