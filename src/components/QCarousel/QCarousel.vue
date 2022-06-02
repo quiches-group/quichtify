@@ -22,10 +22,8 @@ const selectItemFromIndex = (index) => {
   const children = Array.from(root.value.children);
   let item = children.find(el => Number(el.attributes['data-carousel-index'].value) === index);
 
-  console.log(index);
   if (index < 0) {
     index = children.length - 1
-    //item = children.find(el => Number(el.attributes['data-carousel-index'].value) === children.length);
   } else if (index > children.length - 1) {
     index = 0
   }
@@ -55,13 +53,11 @@ const setItemsClasses = () => {
 }
 
 const keyPress = (e) => {
-  if (e.key == "ArrowLeft"){
+  if (e.key === "ArrowLeft"){
     selectItemFromIndex(state.selectedIndex - 1)
-  }
-  else if (e.key == "ArrowRight") {
+  } else if (e.key === "ArrowRight") {
     selectItemFromIndex(state.selectedIndex + 1)
   }
-  console.log(e.key);
 }
 
 onMounted(() => {
