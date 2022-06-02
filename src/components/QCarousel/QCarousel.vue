@@ -55,6 +55,12 @@ const setItemsClasses = () => {
 }
 
 const keyPress = (e) => {
+  if (e.key == "ArrowLeft"){
+    selectItemFromIndex(state.selectedIndex - 1)
+  }
+  else if (e.key == "ArrowRight") {
+    selectItemFromIndex(state.selectedIndex + 1)
+  }
   console.log(e.key);
 }
 
