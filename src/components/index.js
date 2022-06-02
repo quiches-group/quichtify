@@ -19,6 +19,7 @@ import QNavbarContent from './QNavbar/QNavbarContent.vue';
 import QMenu from './QMenu/QMenu.vue';
 import QMenuItem from './QMenu/QMenuItem.vue';
 import QFormatNumber from './QFormatNumber/QFormatNumber.vue';
+import QButton from './QButton/QButton.vue';
 // TODO: 2 - Import your main component here
 
 const components = [
@@ -42,7 +43,8 @@ const components = [
   QNavbarContent,
   QMenu,
   QMenuItem,
-  QFormatNumber
+  QFormatNumber,
+  QButon
 ]
 
 export default {
