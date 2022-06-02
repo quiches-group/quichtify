@@ -3,12 +3,3 @@
       <slot></slot>
     </div>
 </template>
-
-<script setup>
-defineProps({
-  imageLink: {
-    type: String,
-    default: null,
-  }
-})
-</script>
