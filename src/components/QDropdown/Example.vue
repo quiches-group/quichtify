@@ -1,6 +1,6 @@
 <template>
   <main class="flex justify-center h-screen items-center">
-    <q-select placerholder="hello" :options="randomEmojiArray" @select="selectItem" />
+    <q-dropdown placerholder="hello" :options="randomEmojiArray" @select="selectItem" />
   </main>
 </template>
 
