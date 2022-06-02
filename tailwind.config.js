@@ -26,5 +26,9 @@ module.exports = {
       pattern: /w-full/,
       variants: ['sm', 'md', 'lg', 'xl'],
     },
+    {
+      pattern: /([wh])-0\.5/,
+      variants: ['sm', 'md', 'lg', 'xl'],
+    },
   ],
 };
