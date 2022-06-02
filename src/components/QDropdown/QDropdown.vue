@@ -46,6 +46,7 @@ const state = reactive({
 });
 
 const selectOption = (option) => {
+  if (state.menuIsOpen) { toggleMenu() }
   state.selected = option;
 };
 
