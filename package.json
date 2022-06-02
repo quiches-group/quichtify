@@ -1,6 +1,6 @@
 {
   "name": "quichify",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "main": "./dist/quichify-lib.umd.js",
   "module": "./dist/quichify-lib.es.js",
   "browser": "./dist/quichify-lib.cjs.js",
