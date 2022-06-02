@@ -1,6 +1,6 @@
 <template>
   <header
-      class="q-navbar w-screen h-screen fixed top-0 left-0 w-full h-full md:static"
+      class="q-navbar w-screen h-screen fixed top-0 left-0 w-full h-full md:static md:pointer-events-auto"
       :class="{ 'pointer-events-none': !isOpen }"
       @click="close"
   >

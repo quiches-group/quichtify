@@ -1,24 +1,31 @@
 <template>
   <div>
     <q-navbar :is-open="state.navbarIsOpen" @is-open="changeNavbarState">
-      <div class="site-logo">
-        <a href="acceuil.html">Acceuil</a>
-        <img class="logo" src="images/Logo_Laroche.svg" alt="" />
-      </div>
+      <q-navbar-content class="bg-red-500">
+        <q-menu>
+          <q-menu-item>Swap</q-menu-item>
+          <q-menu-item>Stacking</q-menu-item>
+          <q-menu-item>Farm</q-menu-item>
+          <q-menu-item>Wallet</q-menu-item>
+        </q-menu>
+      </q-navbar-content>
+<!--      <div class="site-logo">-->
+<!--        <a href="acceuil.html">Acceuil</a>-->
+<!--        <img class="logo" src="images/Logo_Laroche.svg" alt="" />-->
+<!--      </div>-->
 
-      <ul>
-        <li>
-          <a href="proute">ça fouette</a>
-        </li>
-        <li>
-          <a href="proute">ça fouette</a>
-        </li>
-        <li>
-          <a href="proute">ça fouette</a>
-        </li>
-      </ul>
+<!--      <ul>-->
+<!--        <li>-->
+<!--          <a href="proute">ça fouette</a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          <a href="proute">ça fouette</a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          <a href="proute">ça fouette</a>-->
+<!--        </li>-->
+<!--      </ul>-->
     </q-navbar>
-
     <button @click="changeNavbarState()">Open navbar</button>
   </div>
 </template>
@@ -27,7 +34,7 @@
 import { reactive } from 'vue';
 
 const state = reactive({
-  navbarIsOpen: false
+  navbarIsOpen: true
 })
 
 const changeNavbarState = (newValue = null) => {

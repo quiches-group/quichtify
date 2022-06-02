@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, reactive } from 'vue';
+import { ref, onMounted, computed, watch } from 'vue';
 
 const emit = defineEmits(['selectIndex']);
 const root = ref();
@@ -33,10 +33,10 @@ const props = defineProps({
   },
 });
 
-const style = reactive({
+const style = computed(() => ({
   color: props.textColor,
   backgroundColor: props.backgroundColor,
-});
+}));
 
 const resetTabs = () => {
   const children = Array.from(root.value.children);
@@ -49,21 +49,21 @@ const resetTabs = () => {
 };
 
 const selectItem = (element) => {
-  const tabIndex = element.attributes['data-tab-index'].value;
+  const index = element.attributes['data-tab-index'].value;
 
-  resetTabs();
-  element.classList.add('q-tab--active');
-  element.style.setProperty('background-color', props.activeBackgroundColor);
-  element.style.setProperty('color', props.activeTextColor);
-
-  emit('selectIndex', tabIndex);
+  emit('selectIndex', index);
 };
 
-const selectItemFromIndex = (index) => {
+const setTabsClasses = (index) => {
   const children = Array.from(root.value.children);
   const item = children.find((el) => el.attributes['data-tab-index'].value === index);
-  selectItem(item);
-};
+
+  resetTabs();
+
+  item.classList.add('q-tab--active');
+  item.style.setProperty('background-color', props.activeBackgroundColor);
+  item.style.setProperty('color', props.activeTextColor);
+}
 
 onMounted(() => {
   const children = Array.from(root.value.children);
@@ -71,7 +71,7 @@ onMounted(() => {
   if (!props.selectedIndex) {
     selectItem(children[0]);
   } else {
-    selectItemFromIndex(props.selectedIndex);
+    setTabsClasses(props.selectedIndex)
   }
 
   children.forEach((item, index) => {
@@ -84,4 +84,8 @@ onMounted(() => {
     });
   });
 });
+
+watch(() => props.selectedIndex, (newIndex) => {
+  setTabsClasses(newIndex)
+})
 </script>
