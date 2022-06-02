@@ -1,9 +1,9 @@
 <template>
   <div
-      v-if="isOpen"
-      class="flex justify-center items-center fixed top-0 bottom-0 left-0 right-0 opacity-0 pointer-events-none"
-      :class="{ 'animate-fadeIn': isOpen, 'animate-fadeOut': isOpen === false, 'opacity-background': isOpen}"
-      @click="close"
+    v-if="isOpen"
+    class="flex justify-center items-center fixed top-0 bottom-0 left-0 right-0 opacity-0 pointer-events-none"
+    :class="{ 'q-animate-fadeIn': isOpen, 'q-animate-fadeOut': isOpen === false, 'opacity-background': isOpen }"
+    @click="close"
   >
     <div
         class="q-modal flex flex-col modal-window rounded-lg min-w-64 min-l-52 text-left max-h-screen max-w-screen shadow-2xl"
@@ -11,7 +11,7 @@
         @click="stopPropagation"
     >
       <h1 class="py-3.5 pl-6 text-lg font-semibold border-b-2 border-darkgray">{{ modalTitle }}</h1>
-      <slot/>
+      <slot />
     </div>
   </div>
 </template>
@@ -52,7 +52,6 @@ const stopPropagation = (e) => {
 const style = reactive({
   backgroundColor: props.backgroundColor,
 });
-
 </script>
 
 <style>

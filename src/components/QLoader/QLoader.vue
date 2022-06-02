@@ -13,6 +13,6 @@ defineProps({
 .spinner {
   @apply w-32 h-32
     border-16 rounded-full border-stone-100 border-t-sky-400
-    animate-spin;
+    q-animate-spin;
 }
 </style>

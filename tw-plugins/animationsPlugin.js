@@ -38,7 +38,13 @@ module.exports = plugin(({ addBase, variants }) => {
       duration: '8s',
       iteration: 'infinite',
       timingFunction: 'linear',
-      delay: 'var(--animate-delay, 0s)',
+      delay: 'var(--q-animate-delay, 0s)',
+    },
+    {
+      name: 'spinning',
+      duration: '1s',
+      iteration: 'infinite',
+      timingFunction: 'linear',
     },
   ];
 
@@ -265,6 +271,15 @@ module.exports = plugin(({ addBase, variants }) => {
         transform: 'rotate(0)',
       },
     },
+    spinning: {
+      '0%': { transform: 'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(0deg) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))' },
+      '50%': {
+        transform: 'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(180deg) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+      },
+      '100%': {
+        transform: 'translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(360deg) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+      },
+    },
   };
 
   const animationDurations = ['100ms', '200ms', '300ms', '400ms', '500ms', '700ms', { ref: '1000', value: '1s' }];
@@ -301,7 +316,7 @@ module.exports = plugin(({ addBase, variants }) => {
 
     addBase(
       {
-        [`.animate-${animationName}`]: {
+        [`.q-animate-${animationName}`]: {
           animation: `${animationDuration} ${animationTimingFunction} ${animationDelay} ${animationIteration} ${animationDirection} ${animationFillMode} ${animationState} ${animationName}`,
         },
       },
@@ -313,20 +328,20 @@ module.exports = plugin(({ addBase, variants }) => {
     const index = animationDuration.ref || animationDuration.replace('ms', '').replace('s', '');
     const value = animationDuration.value || animationDuration;
     addBase({
-      [`.animate-duration-${index}`]: {
+      [`.q-animate-duration-${index}`]: {
         'animation-duration': value,
       },
     });
   });
 
   addBase({
-    '.animate-none': {
+    '.q-animate-none': {
       animation: 'none',
     },
   });
 
   addBase({
-    '.sky-transition-all': {
+    '.q-transition-all': {
       transition: 'all 650ms cubic-bezier(0.65, 0.05, 0.36, 1)',
     },
   });

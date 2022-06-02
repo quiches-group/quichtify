@@ -12,7 +12,7 @@ module.exports = {
       },
     },
   },
-  plugins: [require('./tw-plugins/animationsPlugin.js')],
+  plugins: [require('./tw-plugins/animationsPlugin.js'), require('./tw-plugins/formPlugin.js'), require('./tw-plugins/pseudoElPlugin'), require('./tw-plugins/textPlugin')],
   safelist: [
     {
       pattern: /w-(1|2|3|4|5|6|7|8|9|10|11)\/12/,
