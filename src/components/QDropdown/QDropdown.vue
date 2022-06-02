@@ -1,5 +1,5 @@
 <template>
-  <div class="relative inline-block text-left">
+  <div class="q-dropdown relative inline-block text-left">
     <div>
       <button
         class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
@@ -15,7 +15,7 @@
 
     <div
       class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none transition-opacity duration-100 ease-out"
-      :class="{ 'opacity-0': !state.menuIsOpen }"
+      :class="{ 'opacity-0': !state.menuIsOpen, 'pointer-events-none': !state.menuIsOpen }"
     >
       <div class="py-1">
         <a v-for="option in options" href="#" class="hover:bg-gray-100 text-gray-700 block px-4 py-2 text-sm" @click="selectOption(option)">{{ option }}</a>
