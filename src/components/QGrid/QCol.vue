@@ -42,5 +42,3 @@ const columnClasses = computed(() => {
   return classes.join(' ');
 });
 </script>
-
-<style lang="scss"></style>
