@@ -12,6 +12,8 @@ import QCol from './QGrid/QCol.vue';
 import QSeparator from './QSeparator/QSeparator.vue';
 import QModal from './QModal/QModal.vue';
 import QModalContent from './QModal/QModalContent.vue';
+import QCarousel from './QCarousel/QCarousel.vue';
+import QCarouselItem from './QCarousel/QCarouselItem.vue';
 // TODO: 2 - Import your main component here
 
 export default {
@@ -30,8 +32,10 @@ export default {
     app.component('QSeparator', QSeparator);
     app.component('QModal', QModal);
     app.component('QModalContent', QModalContent);
+    app.component('QCarousel', QCarousel);
+    app.component('QCarouselItem', QCarouselItem);
     // TODO: 3 - Declare your component here
   },
 };
 
-export { QHelloWorld, QTabs, QTab, QCard, QCardTitle, QCardContent, QLoader, QDropdown, QRow, QCol, QSeparator, QModal, QModalContent };
+export { QHelloWorld, QTabs, QTab, QCard, QCardTitle, QCardContent, QLoader, QDropdown, QRow, QCol, QSeparator, QModal, QModalContent, QCarousel, QCarouselItem };
