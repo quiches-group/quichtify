@@ -1,37 +1,45 @@
 <template>
-  <table>
+  <table class="shadow-lg bg-white border-collapse">
     <thead>
       <tr>
-        <th v-for="header in headers" :key="header.value" :class="`text-${header.align}; ${header.sortable ? `cursor-pointer` : null}`" @click="header.sortable ? sort(header.value) : null">
-          {{ header.text }}
+        <th
+          v-for="header in headers"
+          :key="header.value"
+          :class="`text-${header.align}; ${header.sortable ? `cursor-pointer` : ''}`"
+          class="bg-gray-100 border text-left px-8 py-4"
+          @click="header.sortable ? sort(header.value) : null"
+        >
+          {{ header.text }} {{ sortIcons(header) }}
         </th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="(item, itemKey) in createPages(sortItems(filterItems()))" :key="itemKey">
-        <td v-for="header in headers" :key="header.value" :class="`text-${header.align}`">
+        <td v-for="header in headers" :key="header.value" :class="`text-${header.align}`" class="border px-8 py-4">
           {{ item[header.value] }}
         </td>
       </tr>
     </tbody>
     <tfoot v-if="!disablePagination">
       <tr>
-        <td :colspan="headers.length">
-          <div class="text-right">
-            <label for="page"
-              >Rows per page
-              <input v-model="rowsPerPageMutable" :max="sortItems(filterItems()).length" min="1" name="page" type="number" />
-            </label>
-            <label for="page"
-              >{{ rowsPerPageMutable * (currentPageMutable - 1) + 1 }}-{{
-                sortItems(filterItems()).length > rowsPerPageMutable * currentPageMutable ? rowsPerPageMutable * currentPageMutable : sortItems(filterItems()).length
-              }}
-              of
-              {{ sortItems(filterItems()).length }}
-              <button @click="previousPage">&lt;</button>
-              <button @click="nextPage">&gt;</button>
-              <!--              <input :max="Math.floor(items.length / rowsPerPage)" :value="currentPage" min="1" name="page" type="number" @input="createPages(items)" />-->
-            </label>
+        <td :colspan="headers.length" class="border px-4 py-4 text-lg">
+          <div class="flex flex-row justify-end">
+            <div class="h-100%">
+              <label for="page"
+                >Rows per page
+                <input v-model="rowsPerPageMutable" :max="sortItems(filterItems()).length" min="1" name="page" type="number" />
+              </label>
+            </div>
+            <div class="h-100%">
+              <span>
+                {{ rowsPerPageMutable * (currentPageMutable - 1) + 1 }}-{{
+                  sortItems(filterItems()).length > rowsPerPageMutable * currentPageMutable ? rowsPerPageMutable * currentPageMutable : sortItems(filterItems()).length
+                }}
+                of {{ sortItems(filterItems()).length }}
+              </span>
+              <button class="px-2 text-2xl align-top" @click="previousPage">&lt;</button>
+              <button class="text-2xl align-top" @click="nextPage">&gt;</button>
+            </div>
           </div>
         </td>
       </tr>
@@ -75,11 +83,10 @@ const props = defineProps({
   },
 });
 
-const sortedHeader = ref(props.headers[0].value);
+const sortedHeader = ref(() => (props.headers.find((header) => header.sortable).value ? props.headers.find((header) => header.sortable).value : props.headers[0].value));
 const sortAsc = ref(true);
 const rowsPerPageMutable = ref(props.rowsPerPage);
 const currentPageMutable = ref(props.currentPage);
-
 const sort = (header) => {
   if (header === sortedHeader.value) {
     sortAsc.value = !sortAsc.value;
@@ -99,6 +106,10 @@ const sortItems = (items) => {
   if (rowsPerPageMutable.value > sortedItems.length) rowsPerPageMutable.value = items.length;
   if (rowsPerPageMutable.value * (currentPageMutable.value - 1) + 1 > sortedItems.length) currentPageMutable.value -= 1;
   return sortedItems;
+};
+const sortIcons = (header) => {
+  if (sortedHeader.value !== header.value) return '';
+  return sortAsc.value ? '▼' : '▲';
 };
 
 const filterItems = () => {
