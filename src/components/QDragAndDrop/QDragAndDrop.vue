@@ -8,8 +8,7 @@
         <li
             class="list-item"
             draggable="true"
-            v-for="(item) in items"
-            v-if="item.state === column.title"
+            v-for="(item) in column.items"
         >{{item.title}}</li>
       </ul>
     </div>
@@ -22,13 +21,11 @@ export default {
   components: {},
   eel: '#app',
   props: {
-    item: Array,
     column: Array,
     color: String
   },
   data() {
     return {
-      items: this.item,
       columns: this.column,
     };
   },
