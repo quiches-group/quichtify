@@ -1,5 +1,5 @@
 <template>
-  <div ref="root" class="flex rounded-lg w-full p-1 space-x-1" :style="style">
+  <div ref="root" class="q-tabs flex rounded-lg w-full p-1 space-x-1" :style="style">
     <slot />
   </div>
 </template>

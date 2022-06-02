@@ -1,5 +1,5 @@
 <template>
-  <span class="spinner" :style="`border-top-color: ${borderTopColor}`" />
+  <span class="q-loader spinner" :style="`border-top-color: ${borderTopColor}`" />
 </template>
 
 <script setup>
