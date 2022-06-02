@@ -1,10 +1,12 @@
 import QHelloWorld from './QHelloWorld/QHelloWorld.vue';
-import QTabs from './QTabs/QTabs.vue';
+import QLoader from './QLoader/QLoader.vue';
 import QTab from './QTabs/QTab.vue';
+import QTabs from './QTabs/QTabs.vue';
+import QInput from './QInput/QInput.vue';
 import QCard from './QCard/QCard.vue';
 import QCardTitle from './QCard/QCardTitle.vue';
 import QCardContent from './QCard/QCardContent.vue';
-import QLoader from './QLoader/QLoader.vue';
+
 // TODO: 2 - Import your main component here
 
 export default {
@@ -16,6 +18,7 @@ export default {
     app.component('QCardTitle', QCardTitle);
     app.component('QCardContent', QCardContent);
     app.component('QLoader', QLoader);
+    app.component('QInput', QInput);
     // TODO: 3 - Declare your component here
   },
 };
