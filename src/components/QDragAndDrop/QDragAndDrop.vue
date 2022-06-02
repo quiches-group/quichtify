@@ -4,11 +4,13 @@
         class="columns"
         v-for="(column) in columns"
     >
+      <p class="column_title">{{column.title}}</p>
       <ul>
         <li
             class="list-item"
             draggable="true"
             v-for="(item) in column.items"
+            :style="{ backgroundColor: color }"
         >{{item.title}}</li>
       </ul>
     </div>
@@ -17,20 +19,39 @@
 
 <script>
 export default {
-  name: 'QDragAndDrop',
-  components: {},
-  eel: '#app',
   props: {
-    column: Array,
-    color: String
+    columnsOfItems: {
+      type: Array,
+      required: true,
+      default: [
+        { id: 1, title: 'TODO', items: [
+            {id: 1, title: 'Titre 1'},
+            {id: 2, title: 'Titre 2'},
+          ]
+        },
+        { id: 2, title: 'IN PROGRESS', items: [
+            {id: 3, title: 'Titre 3'},
+          ]
+        },
+        { id: 3, title: 'DONE', items: [
+            {id: 4, title: 'Titre 4'},
+          ]
+        },
+      ],
+    },
+    color: {
+      type: String,
+      required: false,
+      default: '#fff'
+    }
   },
   data() {
     return {
-      columns: this.column,
+      columns: this.columnsOfItems,
     };
   },
   mounted() {
-        this.dragAndDrop();
+    this.dragAndDrop();
   },
   methods: {
     dragAndDrop(){
@@ -80,31 +101,14 @@ export default {
 </script>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.app {
-  display: flex;
-  width: 100vw;
-  height: 100vw;
-  flex-flow: column;
-}
-
-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
+.column_title{
+  padding: 1em;
 }
 
 .lists {
   display: flex;
   flex: 1;
   width: 100%;
-  /* overflow-x: scroll; */
 }
 
 .lists .columns {
@@ -120,14 +124,14 @@ header {
   margin: 0 15px;
   padding: 8px;
   transition: all 0.2s linear;
+  border-radius: 4px;
 }
 
 .lists .columns .list-item {
-  background-color: #f3f3f3;
-  border-radius: 8px;
+  background-color: #fff;
+  border-radius: 4px;
   padding: 15px 20px;
   text-align: center;
   margin: 4px 0;
 }
-
 </style>
