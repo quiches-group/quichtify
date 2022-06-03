@@ -14,7 +14,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, './src/main.lib.js'),
-      name: 'quichify',
+      name: 'quichtify',
       formats: ['es', 'cjs', 'umd'],
     },
   },

@@ -1,6 +1,6 @@
-# quichify
+# quichtify
 
-Quichify is a Vue 3 Library handcrafted components using latest technologies.
+quichtify is a Vue 3 Library handcrafted components using latest technologies.
 
 ## Using it
 
@@ -10,7 +10,7 @@ Quichify is a Vue 3 Library handcrafted components using latest technologies.
 ```js
 import { createApp } from 'vue';
 import App from './App.vue';
-import quichify from 'quichtify';
+import quichtify from 'quichtify';
 import 'quichtify/dist/style.css';
 
 const app = createApp(App);

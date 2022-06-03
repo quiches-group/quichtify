@@ -5,8 +5,8 @@ import QHelloWorld from './QHelloWorld.vue';
 
 // More on default export: https://storybook.js.org/docs/vue/writing-stories/introduction#default-export
 export default {
-  // TODO: 7 - Update title and component to match your component name (keep 'Quichify/')
-  title: 'Quichify/QHelloWorld',
+  // TODO: 7 - Update title and component to match your component name (keep 'quichtify/')
+  title: 'quichtify/QHelloWorld',
   component: QHelloWorld,
   // More on argTypes: https://storybook.js.org/docs/vue/api/argtypes
   argTypes: {},

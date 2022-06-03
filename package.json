@@ -1,9 +1,9 @@
 {
   "name": "quichtify",
-  "version": "1.10.1",
-  "main": "./dist/quichify-lib.umd.js",
-  "module": "./dist/quichify-lib.es.js",
-  "browser": "./dist/quichify-lib.cjs.js",
+  "version": "1.10.2",
+  "main": "./dist/quichtify.umd.js",
+  "module": "./dist/quichtify.es.js",
+  "browser": "./dist/quichtify.cjs.js",
   "files": [
     "dist/*.css",
     "dist/*.js",
@@ -11,8 +11,8 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/quichify-lib.es.js",
-      "require": "./dist/quichify-lib.umd.js"
+      "import": "./dist/quichtify.es.js",
+      "require": "./dist/quichtify.umd.js"
     },
     "./dist/style.css": "./dist/style.css"
   },
