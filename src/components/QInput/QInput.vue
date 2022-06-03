@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  name: 'QInput',
   props: {
     title: {
       type: String,

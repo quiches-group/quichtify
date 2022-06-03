@@ -44,7 +44,7 @@ const components = [
   QMenu,
   QMenuItem,
   QFormatNumber,
-  QButon
+  QButton
 ]
 
 export default {
