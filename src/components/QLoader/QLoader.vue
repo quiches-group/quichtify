@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <span class="q-loader spinner" :style="`border-color: ${bgColor}; border-top-color: ${accentColor}; height: ${size}px; width: ${size}px; border-width: ${borderWidth}px`" />
+  <span class="q-loader" :style="`border-color: ${bgColor}; border-top-color: ${accentColor}; height: ${size}px; width: ${size}px; border-width: ${borderWidth}px`" />
 </template>
 
 <script setup>
@@ -31,7 +31,7 @@ const borderWidth = computed(() => {
 </script>
 
 <style scoped>
-.spinner {
+.q-loader {
   @apply rounded-full q-animate-spinning;
 }
 </style>
