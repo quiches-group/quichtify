@@ -46,7 +46,7 @@ export default {
       type: String,
       default: () => 'default',
       validator(value) {
-        const validValues = ['reduce', 'none'];
+        const validValues = ['default', 'reduce', 'none'];
         return validValues.includes(value);
       },
     },
