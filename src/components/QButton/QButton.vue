@@ -9,6 +9,7 @@
 
 <script>
 export default {
+  name: 'QButton',
   props: {
     defaultStyle: {
       type: Boolean,
