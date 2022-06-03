@@ -15,7 +15,7 @@
 
     <div
       class="q-dropdown-menu origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition-shadow focus:outline-none opacity-0 pointer-events-none"
-      :class="{ 'animate-fadeIn': state.menuIsOpen, 'animate-fadeOut': state.menuIsOpen === false }"
+      :class="{ 'q-animate-fadeIn': state.menuIsOpen, 'q-animate-fadeOut': state.menuIsOpen === false }"
     >
       <div class="py-1">
         <span
