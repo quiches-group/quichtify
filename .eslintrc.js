@@ -4,8 +4,10 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    'plugin:vue/essential',
+    'plugin:vue/vue3-recommended',
     'airbnb-base',
+    'plugin:storybook/recommended',
+    'prettier',
   ],
   parserOptions: {
     ecmaVersion: 'latest',
@@ -16,5 +18,6 @@ module.exports = {
   ],
   rules: {
     'vue/no-multiple-template-root': 'off',
+    'vue/require-default-prop': 'off',
   },
 };

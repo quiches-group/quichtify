@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
     <q-menu :selected-index="state.selectedIndex" @select-index="setSelectedIndex">
       <q-menu-item item-index="tab1">Swap</q-menu-item>
@@ -11,7 +12,7 @@ import { reactive } from 'vue';
 
 const state = reactive({
   selectedIndex: null,
-})
+});
 const setSelectedIndex = (index) => {
   state.selectedIndex = index;
 };

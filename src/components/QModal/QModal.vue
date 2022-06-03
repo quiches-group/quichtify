@@ -7,8 +7,8 @@
   >
     <div
         class="q-modal flex flex-col modal-window rounded-lg min-w-64 min-l-52 text-left max-h-screen max-w-screen shadow-2xl"
-        @click="stopPropagation"
         :style="style"
+        @click="stopPropagation"
     >
       <h1 class="py-3.5 pl-6 text-lg font-semibold border-b-2 border-darkgray">{{ modalTitle }}</h1>
       <slot/>
@@ -17,9 +17,9 @@
 </template>
 
 <script setup>
-import {reactive} from "vue";
+import { reactive } from 'vue';
 
-const emit = defineEmits(['modalStateChange'])
+const emit = defineEmits(['modalStateChange']);
 
 const props = defineProps({
   isOpen: {
@@ -42,12 +42,12 @@ const props = defineProps({
 });
 
 const close = () => {
-  emit('modalStateChange', false)
-}
+  emit('modalStateChange', false);
+};
 
 const stopPropagation = (e) => {
   e.stopPropagation();
-}
+};
 
 const style = reactive({
   backgroundColor: props.backgroundColor,

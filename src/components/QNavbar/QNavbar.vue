@@ -15,22 +15,20 @@
 </template>
 
 <script setup>
-import { defineEmits } from 'vue';
-
-const emit = defineEmits(['isOpen'])
+const emit = defineEmits(['isOpen']);
 
 defineProps({
   isOpen: {
     type: Boolean,
     required: true,
-  }
-})
+  },
+});
 
 const close = () => {
-  emit('isOpen', false)
-}
+  emit('isOpen', false);
+};
 
 const stopPropagation = (e) => {
-  e.stopPropagation()
-}
+  e.stopPropagation();
+};
 </script>
