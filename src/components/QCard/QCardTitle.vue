@@ -4,4 +4,6 @@
   </h1>
 </template>
 
-<script setup></script>
+<script setup>
+import 'vue';
+</script>
