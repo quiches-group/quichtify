@@ -70,12 +70,6 @@ const setTabsClasses = (index) => {
 onMounted(() => {
   const children = Array.from(root.value.children);
 
-  if (!props.selectedIndex) {
-    selectItem(children[0]);
-  } else {
-    setTabsClasses(props.selectedIndex);
-  }
-
   children.forEach((item, index) => {
     if (!item.attributes['data-tab-index']) {
       item.setAttribute('data-tab-index', index);
@@ -85,6 +79,12 @@ onMounted(() => {
       selectItem(item);
     });
   });
+
+  if (!props.selectedIndex) {
+    selectItem(children[0]);
+  } else {
+    setTabsClasses(props.selectedIndex);
+  }
 });
 
 watch(() => props.selectedIndex, (newIndex) => {
