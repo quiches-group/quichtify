@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <q-input v-model="value" placeholder="Placeholder" error="Voici l'erreur"></q-input>
 </template>

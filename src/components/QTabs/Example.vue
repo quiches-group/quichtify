@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <q-tabs :selected-index="state.selectedIndex" @select-index="setSelectedIndex">
     <q-tab tab-index="tab1">Tab 1</q-tab>

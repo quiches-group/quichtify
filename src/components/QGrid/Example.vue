@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <q-row justify="start">
     <q-col class="bg-red-600" :cols="12" :sm="6" :md="4" :lg="3" :xl="2">test</q-col>

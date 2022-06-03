@@ -18,10 +18,8 @@ const props = defineProps({
   },
 });
 
-const rowClasses = computed(() => {
-  return [
-    `justify-${props.justify}`,
-    `items-${props.align}`
-  ];
-});
+const rowClasses = computed(() => [
+  `justify-${props.justify}`,
+  `items-${props.align}`,
+]);
 </script>

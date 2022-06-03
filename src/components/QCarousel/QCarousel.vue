@@ -11,26 +11,12 @@
 </template>
 
 <script setup>
-import {onMounted, reactive, ref} from "vue";
+import { onMounted, reactive, ref } from 'vue';
 
 const root = ref();
 const state = reactive({
-  selectedIndex: 0
-})
-
-const selectItemFromIndex = (index) => {
-  const children = Array.from(root.value.children);
-  let item = children.find(el => Number(el.attributes['data-carousel-index'].value) === index);
-
-  if (index < 0) {
-    index = children.length - 1
-  } else if (index > children.length - 1) {
-    index = 0
-  }
-
-  state.selectedIndex = Number(index)
-  setItemsClasses()
-};
+  selectedIndex: 0,
+});
 
 const setItemsClasses = () => {
   const children = Array.from(root.value.children);
@@ -40,25 +26,39 @@ const setItemsClasses = () => {
     el.classList.remove('q-carousel-item--right');
     el.classList.remove('q-carousel-item--active');
 
-    const index = Number(el.attributes['data-carousel-index'].value)
+    const index = Number(el.attributes['data-carousel-index'].value);
 
     if (index === state.selectedIndex) {
-      el.classList.add('q-carousel-item--active')
+      el.classList.add('q-carousel-item--active');
     } else if (index > state.selectedIndex) {
-      el.classList.add('q-carousel-item--right')
+      el.classList.add('q-carousel-item--right');
     } else if (index < state.selectedIndex) {
-      el.classList.add('q-carousel-item--left')
+      el.classList.add('q-carousel-item--left');
     }
-  })
-}
+  });
+};
+
+const selectItemFromIndex = (index) => {
+  const children = Array.from(root.value.children);
+  let itemIndex = index;
+
+  if (itemIndex < 0) {
+    itemIndex = children.length - 1;
+  } else if (itemIndex > children.length - 1) {
+    itemIndex = 0;
+  }
+
+  state.selectedIndex = Number(itemIndex);
+  setItemsClasses();
+};
 
 const keyPress = (e) => {
-  if (e.key === "ArrowLeft"){
-    selectItemFromIndex(state.selectedIndex - 1)
-  } else if (e.key === "ArrowRight") {
-    selectItemFromIndex(state.selectedIndex + 1)
+  if (e.key === 'ArrowLeft') {
+    selectItemFromIndex(state.selectedIndex - 1);
+  } else if (e.key === 'ArrowRight') {
+    selectItemFromIndex(state.selectedIndex + 1);
   }
-}
+};
 
 onMounted(() => {
   const children = Array.from(root.value.children);
@@ -67,7 +67,7 @@ onMounted(() => {
     item.setAttribute('data-carousel-index', index);
   });
 
-  setItemsClasses()
+  setItemsClasses();
 });
 
 </script>

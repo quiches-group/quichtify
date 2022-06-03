@@ -1,8 +1,8 @@
-import components from '@/components';
-import '@/index.css';
+import components from './components';
+import './index.css';
 
 export default {
-  install(app, option) {
+  install(app) {
     app.use(components);
   },
 };

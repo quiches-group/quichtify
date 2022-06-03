@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <main class="flex justify-center h-screen items-center">
     <q-dropdown placeholder="Placeholder" :options="randomEmojiArray" @select="selectItem" />
@@ -8,6 +9,7 @@
 const randomEmojiArray = ['😀😎🙁🤯', '😀😡🥶🫡', '😀😶🫥🫣', '😀🥹😻', 'Ceci est un test !'];
 
 const selectItem = (item) => {
+  /* eslint-disable no-console */
   console.log(item);
 };
 </script>
