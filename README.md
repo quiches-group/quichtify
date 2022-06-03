@@ -4,18 +4,18 @@ Quichify is a Vue 3 Library handcrafted components using latest technologies.
 
 ## Using it
 
-1. Add it to your `package.json` : `npm i quichify`
+1. Add it to your `package.json` : `npm i quichtify`
 2. Declare it to your vue app vy refactoring your `main.js` like this :
 
 ```js
 import { createApp } from 'vue';
 import App from './App.vue';
-import quichify from 'quichify';
-import 'quichify/dist/style.css';
+import quichify from 'quichtify';
+import 'quichtify/dist/style.css';
 
 const app = createApp(App);
 
-app.use(quichify);
+app.use(quichtify);
 app.mount('#app');
 ```
 
