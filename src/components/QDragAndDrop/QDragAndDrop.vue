@@ -1,15 +1,17 @@
 <template>
-  <div class="lists">
+  <div class="flex w-full min-w-250 max-w-350 h-full p-8 rounded lists">
     <div
-        class="columns"
-        v-for="(column) in columns"
+        v-for="(column, c) in columns"
+        :key="c"
+        class="columns flex w-full min-w-250 max-w-350 h-full min-h-150 p-8 rounded"
     >
-      <p class="column_title">{{column.title}}</p>
+      <p class="p-4 m-0 box-border">{{column.title}}</p>
       <ul>
         <li
-            class="list-item"
+            v-for="(item, i) in column.items"
+            :key="i"
+            class="list-item my-2 bg-white px-4 py-5 text-center"
             draggable="true"
-            v-for="(item) in column.items"
             :style="{ backgroundColor: color }"
         >{{item.title}}</li>
       </ul>
@@ -23,7 +25,7 @@ export default {
     columnsOfItems: {
       type: Array,
       required: true,
-      default: [
+      default: () => ([
         { id: 1, title: 'TODO', items: [
             {id: 1, title: 'Titre 1'},
             {id: 2, title: 'Titre 2'},
@@ -37,7 +39,7 @@ export default {
             {id: 4, title: 'Titre 4'},
           ]
         },
-      ],
+      ]),
     },
     color: {
       type: String,
@@ -54,28 +56,28 @@ export default {
     this.dragAndDrop();
   },
   methods: {
-    dragAndDrop(){
+    dragAndDrop () {
       const listItems = document.getElementsByClassName("list-item");
       const columns = document.getElementsByClassName("columns");
 
       let draggedItem = null;
-      for (let item of listItems) {
-        item.addEventListener("dragstart", function () {
+      for (const item of listItems) {
+        item.addEventListener("dragstart", () => {
           draggedItem = item;
           setTimeout(() => {
             item.style.display = "none";
           }, 0);
         });
 
-        item.addEventListener("dragend", function () {
+        item.addEventListener("dragend", () => {
           setTimeout(() => {
             draggedItem.style.display = "block";
             draggedItem = null;
           }, 0);
         });
 
-        for (let column of columns) {
-          column.addEventListener("dragover", function (e) {
+        for (const column of columns) {
+          column.addEventListener("dragover", (e) => {
             e.preventDefault();
           });
 
@@ -89,7 +91,7 @@ export default {
             this.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
           });
 
-          column.addEventListener("drop", function (e) {
+          column.addEventListener("drop", function () {
             this.append(draggedItem);
             this.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
           });
@@ -100,38 +102,12 @@ export default {
 };
 </script>
 
-<style>
-.column_title{
-  padding: 1em;
-}
-
-.lists {
-  display: flex;
-  flex: 1;
-  width: 100%;
-}
+<style scoped>
 
 .lists .columns {
-  display: flex;
   flex-flow: column;
-  flex: 1;
-  width: 100%;
-  min-width: 250px;
-  max-width: 350px;
-  height: 100%;
-  min-height: 150px;
   background-color: rgba(0, 0, 0, 0.1);
-  margin: 0 15px;
-  padding: 8px;
   transition: all 0.2s linear;
-  border-radius: 4px;
-}
-
-.lists .columns .list-item {
-  background-color: #fff;
-  border-radius: 4px;
-  padding: 15px 20px;
-  text-align: center;
-  margin: 4px 0;
+  margin: 10px 15px;
 }
 </style>
