@@ -1,63 +1,52 @@
+<!-- eslint-disable no-unused-vars -->
 <template>
-  <table class="shadow-lg bg-white border-collapse">
+  <table class="bg-white shadow-lg border-collapse">
     <thead>
-    <tr>
-      <th
+      <tr>
+        <th
           v-for="header in headers"
           :key="header.value"
+          class="px-8 py-4 text-left bg-gray-100 border"
           :class="`text-${header.align}; ${header.sortable ? `cursor-pointer` : ''}`"
-          class="bg-gray-100 border text-left px-8 py-4"
-          @click="header.sortable ? sort(header.value) : null"
-      >
-        {{ header.text }} {{ sortIcons(header) }}
-      </th>
-    </tr>
+          @click="sortLines(header)"
+        >
+          {{ header.text }} {{ getSortIcons(header) }}
+        </th>
+      </tr>
     </thead>
     <tbody>
-    <tr v-for="(item, itemKey) in createPages(sortItems(filterItems()))" :key="itemKey">
-      <td v-for="header in headers" :key="header.value" :class="`text-${header.align}`" class="border px-8 py-4">
-        {{ item[header.value] }}
-      </td>
-    </tr>
+      <tr v-for="(item, itemKey) in pages" :key="itemKey">
+        <td v-for="header in headers" :key="header.value" class="px-8 py-4 border" :class="`text-${header.align}`">
+          {{ item[header.value] }}
+        </td>
+      </tr>
     </tbody>
     <tfoot v-if="!disablePagination">
-    <tr>
-      <td :colspan="headers.length" class="border px-4 py-4 text-lg">
-        <div class="flex flex-row justify-end">
-          <div class="h-100%">
-            <label for="page"
-            >Rows per page
-              <input
-                  v-model="rowsPerPageMutable" :max="sortItems(filterItems()).length" min="1" name="page"
-                  type="number"/>
+      <tr>
+        <td :colspan="headers.length" class="px-4 py-4 text-lg border">
+          <div class="flex flex-row justify-end">
+            <label for="page">
+              Rows per page
+              <input v-model="nbOfLinesToDisplay" name="page" type="number" min="1" :max="lines.length" />
             </label>
-          </div>
-          <div class="h-100%">
-              <span>
-                {{
-                  sortItems(filterItems()).length > 0 && rowsPerPageMutable > 0 ? rowsPerPageMutable * (currentPage - 1) + 1 : 0
-                }}-{{
-                  sortItems(filterItems()).length > rowsPerPageMutable * currentPage ? rowsPerPageMutable * currentPage : sortItems(filterItems()).length
-                }}
-                of {{ sortItems(filterItems()).length }}
-              </span>
+            <span> {{ firstDisplayedLine }}-{{ lastDisplayedLine }} of {{ lines.length }} </span>
             <button class="px-2 text-2xl align-top" @click="previousPage">&lt;</button>
             <button class="text-2xl align-top" @click="nextPage">&gt;</button>
           </div>
-        </div>
-      </td>
-    </tr>
+        </td>
+      </tr>
     </tfoot>
   </table>
 </template>
 
 <script setup>
-import {ref} from 'vue';
+import { computed, onMounted, reactive, toRefs } from 'vue';
 
+// State
 const props = defineProps({
   filter: {
     type: String,
-    default: '',
+    default: () => '',
   },
   headers: {
     type: Array,
@@ -69,74 +58,151 @@ const props = defineProps({
   },
   disablePagination: {
     type: Boolean,
-    default: false,
+    default: () => false,
   },
   rowsPerPage: {
     type: Number,
-    default: 5,
+    default: () => 5,
     validator(value) {
       return value >= 1;
     },
   },
 });
 
-const sortedHeader = ref(() => (props.headers.find((header) => header.sortable).value ? props.headers.find((header) => header.sortable).value : props.headers[0].value));
-const sortAsc = ref(true);
-const rowsPerPageMutable = ref(props.rowsPerPage);
-const currentPage = ref(1);
+const state = reactive({
+  sortAsc: true,
+  currentPage: 1,
+  nbOfLinesToDisplay: props.rowsPerPage,
+  currentSortedHeader: undefined,
+});
 
-const sort = (header) => {
-  if (header === sortedHeader.value) {
-    sortAsc.value = !sortAsc.value;
-  } else {
-    sortAsc.value = true;
-    sortedHeader.value = header;
+function sortItems(items) {
+  if (!props.headers || !state.currentSortedHeader) {
+    return items;
   }
-};
 
-const sortItems = (items) => {
-  if (!props.headers) return items;
-  if (!sortedHeader.value) return items;
   const sortedItems = items.sort((a, b) => {
-    if (sortAsc.value) return a[sortedHeader.value] < b[sortedHeader.value] ? -1 : 1;
-    if (!sortAsc.value) return a[sortedHeader.value] > b[sortedHeader.value] ? -1 : 1;
+    if (state.sortAsc) {
+      return a[state.currentSortedHeader] < b[state.currentSortedHeader] ? -1 : 1;
+    }
+
+    if (!state.sortAsc) {
+      return a[state.currentSortedHeader] > b[state.currentSortedHeader] ? -1 : 1;
+    }
+
     return 0;
   });
-  if (rowsPerPageMutable.value > sortedItems.length) rowsPerPageMutable.value = items.length;
-  if (rowsPerPageMutable.value * (currentPage.value - 1) + 1 > sortedItems.length && currentPage.value > 1) currentPage.value -= 1;
-  if (items.length > 0 && rowsPerPageMutable.value < 1) rowsPerPageMutable.value = 1;
+
+  if (state.nbOfLinesToDisplay > sortedItems.length) {
+    state.nbOfLinesToDisplay = items.length;
+  }
+
+  if (state.nbOfLinesToDisplay * (state.currentPage - 1) + 1 > sortedItems.length && state.currentPage > 1) {
+    state.currentPage -= 1;
+  }
+
+  if (items.length > 0 && state.nbOfLinesToDisplay < 1) {
+    state.nbOfLinesToDisplay = 1;
+  }
 
   return sortedItems;
-};
+}
 
-const sortIcons = (header) => {
-  if (sortedHeader.value !== header.value) return '';
-  return sortAsc.value ? '▼' : '▲';
-};
+const lines = computed(() => {
+  if (!props.filter || props.filter === '') {
+    return sortItems(props.items);
+  }
 
-const filterItems = () => {
-  if (!props.filter || props.filter === '') return props.items;
-  return props.items.filter((item) => Object.values(item).join().toLowerCase().includes(props.filter.toLowerCase()));
-};
+  const filteredItems = props.items.filter((item) => Object.values(item).join().toLowerCase().includes(props.filter.toLowerCase()));
 
-const createPages = (items) => {
-  if (props.disablePagination) return items;
-  return items.filter((item, key) => {
-    const start = rowsPerPageMutable.value * (currentPage.value - 1);
-    const end = rowsPerPageMutable.value * currentPage.value;
+  return sortItems(filteredItems);
+});
+
+const pages = computed(() => {
+  if (props.disablePagination) {
+    return lines.value;
+  }
+
+  return lines.value.filter((item, key) => {
+    const start = state.nbOfLinesToDisplay * (state.currentPage - 1);
+    const end = state.nbOfLinesToDisplay * state.currentPage;
     return key >= start && key < end;
   });
-};
+});
 
-const nextPage = () => {
-  if (currentPage.value <= Math.floor(sortItems(filterItems()).length / rowsPerPageMutable.value)) {
-    currentPage.value += 1;
-  }
-};
+const firstDisplayedLine = computed(() => {
+  const nbOfLines = lines.value.length;
+  const { nbOfLinesToDisplay, currentPage } = state;
 
-const previousPage = () => {
-  if (currentPage.value > 1) {
-    currentPage.value -= 1;
+  if (nbOfLines > 0 && nbOfLinesToDisplay > 0) {
+    return `${nbOfLinesToDisplay * (currentPage - 1) + 1}`;
   }
-};
+
+  return '0';
+});
+
+const lastDisplayedLine = computed(() => {
+  const nbOfLines = lines.value.length;
+  const { nbOfLinesToDisplay, currentPage } = state;
+
+  if (nbOfLines > nbOfLinesToDisplay * currentPage) {
+    return nbOfLinesToDisplay * currentPage;
+  }
+
+  return nbOfLines;
+});
+
+// Life cycle
+function setDefaultSortableHeader() {
+  const sortableHeaderValue = props.headers.find((header) => header.sortable).value;
+
+  if (sortableHeaderValue) {
+    state.currentSortedHeader = sortableHeaderValue;
+  }
+
+  state.currentSortedHeader = props.headers[0].value;
+}
+
+onMounted(() => {
+  setDefaultSortableHeader();
+});
+
+// Template methods
+function sortLines(header) {
+  if (!header.sortable) {
+    return;
+  }
+
+  if (header.value === state.currentSortedHeader) {
+    state.sortAsc = !state.sortAsc;
+    return;
+  }
+
+  state.sortAsc = true;
+  state.currentSortedHeader = header.value;
+}
+
+function getSortIcons(header) {
+  if (state.currentSortedHeader !== header.value) return '';
+  return state.sortAsc ? '▼' : '▲';
+}
+
+function nextPage() {
+  if (state.currentPage > Math.floor(lines.value.length / state.nbOfLinesToDisplay)) {
+    return;
+  }
+
+  state.currentPage += 1;
+}
+
+function previousPage() {
+  if (state.currentPage < 1) {
+    return;
+  }
+
+  state.currentPage -= 1;
+}
+
+// Reactive variables used in <template>
+const { nbOfLinesToDisplay } = toRefs(state);
 </script>

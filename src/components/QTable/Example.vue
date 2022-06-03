@@ -3,9 +3,9 @@
   <div class="flex flex-col items-center m-10">
     <label class="mb-5" for="search">
       Search
-      <input class="rounded border border-gray-500" id="search" v-model="search" name="search" type="search" />
+      <input id="search" v-model="search" class="rounded border border-gray-500" name="search" type="search" />
     </label>
-    <q-table :disable-pagination="false" :filter="search" :headers="headers" :items="items" :rows-per-page="5"></q-table>
+    <q-table :filter="search" :headers="headers" :items="items" :rows-per-page="5"></q-table>
   </div>
 </template>
 
