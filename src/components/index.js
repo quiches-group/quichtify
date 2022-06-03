@@ -46,4 +46,24 @@ export default {
   },
 };
 
-export { QHelloWorld, QTabs, QTab, QCard, QCardTitle, QCardContent, QLoader, QDropdown, QRow, QCol, QSeparator, QModal, QModalContent, QCarousel, QCarouselItem, QNavbar, QNavbarContent, QMenu, QMenuItem };
+export {
+  QHelloWorld,
+  QTabs,
+  QTab,
+  QCard,
+  QCardTitle,
+  QCardContent,
+  QLoader,
+  QDropdown,
+  QRow,
+  QCol,
+  QSeparator,
+  QModal,
+  QModalContent,
+  QCarousel,
+  QCarouselItem,
+  QNavbar,
+  QNavbarContent,
+  QMenu,
+  QMenuItem,
+};

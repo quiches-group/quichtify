@@ -18,7 +18,14 @@
       :class="{ 'animate-fadeIn': state.menuIsOpen, 'animate-fadeOut': state.menuIsOpen === false }"
     >
       <div class="py-1">
-        <span v-for="option in options" class="hover:bg-gray-100 text-gray-700 block px-4 py-2 text-sm cursor-pointer" @click="selectOption(option)">{{ option }}</span>
+        <span
+            v-for="option in options"
+            :key="option"
+            class="hover:bg-gray-100 text-gray-700 block px-4 py-2 text-sm cursor-pointer"
+            @click="selectOption(option)"
+        >
+          {{ option }}
+        </span>
       </div>
     </div>
   </div>
@@ -45,13 +52,16 @@ const state = reactive({
   menuIsOpen: null,
 });
 
-const selectOption = (option) => {
-  if (state.menuIsOpen) { toggleMenu() }
-  state.selected = option;
-};
-
 const toggleMenu = (newValue) => {
   state.menuIsOpen = typeof newValue === 'boolean' ? newValue : !state.menuIsOpen;
+};
+
+const selectOption = (option) => {
+  if (state.menuIsOpen) {
+    toggleMenu();
+  }
+
+  state.selected = option;
 };
 
 watch(

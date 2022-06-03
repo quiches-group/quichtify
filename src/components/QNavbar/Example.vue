@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
     <q-navbar :is-open="state.navbarIsOpen" @is-open="changeNavbarState">
@@ -14,11 +15,9 @@ import { reactive } from 'vue';
 const state = reactive({
   navbarIsOpen: true,
   selectedIndex: null,
-})
-const setSelectedIndex = (index) => {
-  state.selectedIndex = index;
-};
+});
+
 const changeNavbarState = (newValue = null) => {
-  state.navbarIsOpen = newValue ?? !state.navbarIsOpen
-}
+  state.navbarIsOpen = newValue ?? !state.navbarIsOpen;
+};
 </script>

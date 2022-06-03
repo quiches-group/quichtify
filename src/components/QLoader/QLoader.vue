@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <span class="q-loader spinner" :style="`border-top-color: ${borderTopColor}`" />
 </template>

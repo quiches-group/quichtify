@@ -5,7 +5,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, watch } from 'vue';
+import {
+  ref, onMounted, computed, watch,
+} from 'vue';
 
 const emit = defineEmits(['selectIndex']);
 const root = ref();
@@ -62,7 +64,7 @@ const setItemsClasses = (index) => {
   item.classList.add('q-menu-item--active');
   item.style.setProperty('background-color', props.activeBackgroundColor);
   item.style.setProperty('color', props.activeTextColor);
-}
+};
 
 onMounted(() => {
   const children = Array.from(root.value.children);
@@ -70,7 +72,7 @@ onMounted(() => {
   if (!props.selectedIndex) {
     selectItem(children[0]);
   } else {
-    setItemsClasses(props.selectedIndex)
+    setItemsClasses(props.selectedIndex);
   }
 
   children.forEach((item, index) => {
@@ -84,7 +86,6 @@ onMounted(() => {
 });
 
 watch(() => props.selectedIndex, (newIndex) => {
-  setItemsClasses(newIndex)
-})
+  setItemsClasses(newIndex);
+});
 </script>
-

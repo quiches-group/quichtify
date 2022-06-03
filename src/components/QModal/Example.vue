@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
     <q-modal :is-open="state.showModal" button-text="I accept" modal-title="Test modal" background-color="white" @modal-state-change="buttonAction">
