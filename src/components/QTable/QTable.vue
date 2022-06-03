@@ -87,6 +87,7 @@ const sortedHeader = ref(() => (props.headers.find((header) => header.sortable).
 const sortAsc = ref(true);
 const rowsPerPageMutable = ref(props.rowsPerPage);
 const currentPageMutable = ref(props.currentPage);
+
 const sort = (header) => {
   if (header === sortedHeader.value) {
     sortAsc.value = !sortAsc.value;
@@ -95,6 +96,7 @@ const sort = (header) => {
     sortedHeader.value = header;
   }
 };
+
 const sortItems = (items) => {
   if (!props.headers) return items;
   if (!sortedHeader.value) return items;
@@ -109,6 +111,7 @@ const sortItems = (items) => {
 
   return sortedItems;
 };
+
 const sortIcons = (header) => {
   if (sortedHeader.value !== header.value) return '';
   return sortAsc.value ? '▼' : '▲';
@@ -127,11 +130,13 @@ const createPages = (items) => {
     return key >= start && key < end;
   });
 };
+
 const nextPage = () => {
-  if (currentPageMutable.value < Math.fround(sortItems(filterItems()).length / rowsPerPageMutable.value)) {
+  if (currentPageMutable.value < Math.round(sortItems(filterItems()).length / rowsPerPageMutable.value)) {
     currentPageMutable.value += 1;
   }
 };
+
 const previousPage = () => {
   if (currentPageMutable.value > 1) {
     currentPageMutable.value -= 1;
