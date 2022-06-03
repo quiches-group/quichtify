@@ -32,7 +32,7 @@
             </div>
             <div class="h-100%">
               <span>
-                {{ rowsPerPageMutable * (currentPageMutable - 1) + 1 }}-{{
+                {{ sortItems(filterItems()).length > 0 && rowsPerPageMutable > 0 ? rowsPerPageMutable * (currentPageMutable - 1) + 1 : 0 }}-{{
                   sortItems(filterItems()).length > rowsPerPageMutable * currentPageMutable ? rowsPerPageMutable * currentPageMutable : sortItems(filterItems()).length
                 }}
                 of {{ sortItems(filterItems()).length }}
@@ -104,7 +104,9 @@ const sortItems = (items) => {
     return 0;
   });
   if (rowsPerPageMutable.value > sortedItems.length) rowsPerPageMutable.value = items.length;
-  if (rowsPerPageMutable.value * (currentPageMutable.value - 1) + 1 > sortedItems.length) currentPageMutable.value -= 1;
+  if (rowsPerPageMutable.value * (currentPageMutable.value - 1) + 1 > sortedItems.length && currentPageMutable.value > 1) currentPageMutable.value -= 1;
+  if (items.length > 0 && rowsPerPageMutable.value < 1) rowsPerPageMutable.value = 1;
+
   return sortedItems;
 };
 const sortIcons = (header) => {
@@ -136,4 +138,3 @@ const previousPage = () => {
   }
 };
 </script>
-}
