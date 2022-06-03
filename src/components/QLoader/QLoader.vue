@@ -32,6 +32,6 @@ const borderWidth = computed(() => {
 
 <style scoped>
 .q-loader {
-  @apply rounded-full q-animate-spinning;
+  @apply flex rounded-full q-animate-spinning;
 }
 </style>
