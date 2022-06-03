@@ -2,7 +2,7 @@
 <template>
   <main class="bg-black h-screen">
     <q-card>
-      <img src="https://cryptoast.fr/wp-content/uploads/2021/01/analyse-elrond-egld.jpg" alt="banner" />
+      <img src="https://cryptoast.fr/wp-content/uploads/2021/01/analyse-elrond-egld.jpg" alt="banner">
 
       <q-card-content>
         <q-card-title>Je suis le titre</q-card-title>
