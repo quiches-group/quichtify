@@ -21,41 +21,15 @@ import QMenuItem from './QMenu/QMenuItem.vue';
 import QFormatNumber from './QFormatNumber/QFormatNumber.vue';
 // TODO: 2 - Import your main component here
 
-export default {
-  install: (app) => {
-    app.component('QHelloWorld', QHelloWorld);
-    app.component('QTabs', QTabs);
-    app.component('QTab', QTab);
-    app.component('QCard', QCard);
-    app.component('QCardTitle', QCardTitle);
-    app.component('QCardContent', QCardContent);
-    app.component('QLoader', QLoader);
-    app.component('QInput', QInput);
-    app.component('QDropdown', QDropdown);
-    app.component('QRow', QRow);
-    app.component('QCol', QCol);
-    app.component('QSeparator', QSeparator);
-    app.component('QModal', QModal);
-    app.component('QModalContent', QModalContent);
-    app.component('QCarousel', QCarousel);
-    app.component('QCarouselItem', QCarouselItem);
-    app.component('QNavbar', QNavbar);
-    app.component('QNavbarContent', QNavbarContent);
-    app.component('QMenu', QMenu);
-    app.component('QMenuItem', QMenuItem);
-    app.component('QFormatNumber', QFormatNumber);
-    // TODO: 3 - Declare your component here
-  },
-};
-
-export {
+const components = [
   QHelloWorld,
+  QLoader,
   QTabs,
   QTab,
+  QInput,
   QCard,
   QCardTitle,
   QCardContent,
-  QLoader,
   QDropdown,
   QRow,
   QCol,
@@ -68,5 +42,13 @@ export {
   QNavbarContent,
   QMenu,
   QMenuItem,
-  QFormatNumber,
+  QFormatNumber
+]
+
+export default {
+  install (Vue) {
+    components.forEach(component => {
+      Vue.component(component.name, component)
+    })
+  }
 };
