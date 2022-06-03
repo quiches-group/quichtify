@@ -69,12 +69,6 @@ const setItemsClasses = (index) => {
 onMounted(() => {
   const children = Array.from(root.value.children);
 
-  if (!props.selectedIndex) {
-    selectItem(children[0]);
-  } else {
-    setItemsClasses(props.selectedIndex);
-  }
-
   children.forEach((item, index) => {
     if (!item.attributes['data-item-index']) {
       item.setAttribute('data-item-index', index);
@@ -83,6 +77,12 @@ onMounted(() => {
       selectItem(item);
     });
   });
+
+  if (!props.selectedIndex) {
+    selectItem(children[0]);
+  } else {
+    setItemsClasses(props.selectedIndex);
+  }
 });
 
 watch(() => props.selectedIndex, (newIndex) => {

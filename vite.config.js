@@ -10,14 +10,5 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
-    preserveSymlinks: false
-  },
-  rollupOptions: {
-    external: ['vue'],
-    output: {
-      globals: {
-        vue: 'Vue',
-      },
-    },
   },
 });
