@@ -7,7 +7,7 @@
   >
     <div
         class="q-modal flex flex-col modal-window rounded-lg min-w-64 min-l-52 text-left max-h-screen max-w-screen shadow-2xl"
-        @click="modalClick"
+        @click="stopPropagation"
         :style="style"
     >
       <h1 class="py-3.5 pl-6 text-lg font-semibold border-b-2 border-darkgray">{{ modalTitle }}</h1>
@@ -41,11 +41,11 @@ const props = defineProps({
   },
 });
 
-const close = (e) => {
+const close = () => {
   emit('modalStateChange', false)
 }
 
-const modalClick = (e) => {
+const stopPropagation = (e) => {
   e.stopPropagation();
 }
 

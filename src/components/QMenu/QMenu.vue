@@ -1,7 +1,7 @@
 <template>
-  <div ref="root" class="q-tabs flex rounded-lg w-full p-1 space-x-1" :style="style">
-    <slot />
-  </div>
+  <ul ref="root" class="q-menu flex flex-col md:flex-row" :style="style">
+    <slot/>
+  </ul>
 </template>
 
 <script setup>
@@ -38,29 +38,28 @@ const style = computed(() => ({
   backgroundColor: props.backgroundColor,
 }));
 
-const resetTabs = () => {
+const resetItems = () => {
   const children = Array.from(root.value.children);
 
   children.forEach((element) => {
-    element.classList.remove('q-tab--active');
+    element.classList.remove('q-menu-item--active');
     element.style.removeProperty('background-color');
     element.style.removeProperty('color');
   });
 };
 
 const selectItem = (element) => {
-  const index = element.attributes['data-tab-index'].value;
-
+  const index = element.attributes['data-item-index'].value;
   emit('selectIndex', index);
 };
 
-const setTabsClasses = (index) => {
+const setItemsClasses = (index) => {
   const children = Array.from(root.value.children);
-  const item = children.find((el) => el.attributes['data-tab-index'].value === index);
+  const item = children.find((el) => el.attributes['data-item-index'].value === index);
 
-  resetTabs();
+  resetItems();
 
-  item.classList.add('q-tab--active');
+  item.classList.add('q-menu-item--active');
   item.style.setProperty('background-color', props.activeBackgroundColor);
   item.style.setProperty('color', props.activeTextColor);
 }
@@ -71,14 +70,13 @@ onMounted(() => {
   if (!props.selectedIndex) {
     selectItem(children[0]);
   } else {
-    setTabsClasses(props.selectedIndex)
+    setItemsClasses(props.selectedIndex)
   }
 
   children.forEach((item, index) => {
-    if (!item.attributes['data-tab-index']) {
-      item.setAttribute('data-tab-index', index);
+    if (!item.attributes['data-item-index']) {
+      item.setAttribute('data-item-index', index);
     }
-
     item.addEventListener('click', () => {
       selectItem(item);
     });
@@ -86,6 +84,7 @@ onMounted(() => {
 });
 
 watch(() => props.selectedIndex, (newIndex) => {
-  setTabsClasses(newIndex)
+  setItemsClasses(newIndex)
 })
 </script>
+

@@ -14,6 +14,10 @@ import QModal from './QModal/QModal.vue';
 import QModalContent from './QModal/QModalContent.vue';
 import QCarousel from './QCarousel/QCarousel.vue';
 import QCarouselItem from './QCarousel/QCarouselItem.vue';
+import QNavbar from './QNavbar/QNavbar.vue';
+import QNavbarContent from './QNavbar/QNavbarContent.vue';
+import QMenu from './QMenu/QMenu.vue';
+import QMenuItem from './QMenu/QMenuItem.vue';
 // TODO: 2 - Import your main component here
 
 export default {
@@ -34,8 +38,12 @@ export default {
     app.component('QModalContent', QModalContent);
     app.component('QCarousel', QCarousel);
     app.component('QCarouselItem', QCarouselItem);
+    app.component('QNavbar', QNavbar);
+    app.component('QNavbarContent', QNavbarContent);
+    app.component('QMenu', QMenu);
+    app.component('QMenuItem', QMenuItem);
     // TODO: 3 - Declare your component here
   },
 };
 
-export { QHelloWorld, QTabs, QTab, QCard, QCardTitle, QCardContent, QLoader, QDropdown, QRow, QCol, QSeparator, QModal, QModalContent, QCarousel, QCarouselItem };
+export { QHelloWorld, QTabs, QTab, QCard, QCardTitle, QCardContent, QLoader, QDropdown, QRow, QCol, QSeparator, QModal, QModalContent, QCarousel, QCarouselItem, QNavbar, QNavbarContent, QMenu, QMenuItem };
