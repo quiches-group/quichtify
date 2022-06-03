@@ -1,9 +1,9 @@
 <template>
   <label for="search"
     >Search
-    <input id="" v-model="search" name="search" type="search" />
+    <input id="search" v-model="search" name="search" type="search" />
   </label>
-  <q-table :headers="headers" :items="items"></q-table>
+  <q-table :disable-pagination="false" :filter="search" :headers="headers" :items="items" :rows-per-page="5"></q-table>
 </template>
 
 <script setup>

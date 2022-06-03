@@ -32,8 +32,8 @@
             </div>
             <div class="h-100%">
               <span>
-                {{ sortItems(filterItems()).length > 0 && rowsPerPageMutable > 0 ? rowsPerPageMutable * (currentPageMutable - 1) + 1 : 0 }}-{{
-                  sortItems(filterItems()).length > rowsPerPageMutable * currentPageMutable ? rowsPerPageMutable * currentPageMutable : sortItems(filterItems()).length
+                {{ sortItems(filterItems()).length > 0 && rowsPerPageMutable > 0 ? rowsPerPageMutable * (currentPage - 1) + 1 : 0 }}-{{
+                  sortItems(filterItems()).length > rowsPerPageMutable * currentPage ? rowsPerPageMutable * currentPage : sortItems(filterItems()).length
                 }}
                 of {{ sortItems(filterItems()).length }}
               </span>
@@ -74,19 +74,12 @@ const props = defineProps({
       return value >= 1;
     },
   },
-  currentPage: {
-    type: Number,
-    default: 1,
-    validator(value) {
-      return value >= 1;
-    },
-  },
 });
 
 const sortedHeader = ref(() => (props.headers.find((header) => header.sortable).value ? props.headers.find((header) => header.sortable).value : props.headers[0].value));
 const sortAsc = ref(true);
 const rowsPerPageMutable = ref(props.rowsPerPage);
-const currentPageMutable = ref(props.currentPage);
+const currentPage = ref(1);
 
 const sort = (header) => {
   if (header === sortedHeader.value) {
@@ -106,7 +99,7 @@ const sortItems = (items) => {
     return 0;
   });
   if (rowsPerPageMutable.value > sortedItems.length) rowsPerPageMutable.value = items.length;
-  if (rowsPerPageMutable.value * (currentPageMutable.value - 1) + 1 > sortedItems.length && currentPageMutable.value > 1) currentPageMutable.value -= 1;
+  if (rowsPerPageMutable.value * (currentPage.value - 1) + 1 > sortedItems.length && currentPage.value > 1) currentPage.value -= 1;
   if (items.length > 0 && rowsPerPageMutable.value < 1) rowsPerPageMutable.value = 1;
 
   return sortedItems;
@@ -125,21 +118,21 @@ const filterItems = () => {
 const createPages = (items) => {
   if (props.disablePagination) return items;
   return items.filter((item, key) => {
-    const start = rowsPerPageMutable.value * (currentPageMutable.value - 1);
-    const end = rowsPerPageMutable.value * currentPageMutable.value;
+    const start = rowsPerPageMutable.value * (currentPage.value - 1);
+    const end = rowsPerPageMutable.value * currentPage.value;
     return key >= start && key < end;
   });
 };
 
 const nextPage = () => {
-  if (currentPageMutable.value < Math.round(sortItems(filterItems()).length / rowsPerPageMutable.value)) {
-    currentPageMutable.value += 1;
+  if (currentPage.value < Math.round(sortItems(filterItems()).length / rowsPerPageMutable.value)) {
+    currentPage.value += 1;
   }
 };
 
 const previousPage = () => {
-  if (currentPageMutable.value > 1) {
-    currentPageMutable.value -= 1;
+  if (currentPage.value > 1) {
+    currentPage.value -= 1;
   }
 };
 </script>
