@@ -1,19 +1,16 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div>
-    <label for="search"
-    >Search
-      <input id="search" v-model="search" name="search" type="search"/>
+  <div class="flex flex-col items-center m-10">
+    <label class="mb-5" for="search">
+      Search
+      <input class="rounded border border-gray-500" id="search" v-model="search" name="search" type="search" />
     </label>
-    <q-table
-        :disable-pagination="false" :filter="search" :headers="headers" :items="items"
-        :rows-per-page="5"></q-table>
+    <q-table :disable-pagination="false" :filter="search" :headers="headers" :items="items" :rows-per-page="5"></q-table>
   </div>
 </template>
 
 <script setup>
-import {ref} from 'vue';
-import QTable from './QTable.vue';
+import { ref } from 'vue';
 
 const search = ref('');
 
@@ -24,11 +21,11 @@ const headers = [
     sortable: true,
     value: 'name',
   },
-  {text: 'Calories', value: 'calories'},
-  {text: 'Fat (g)', value: 'fat'},
-  {text: 'Carbs (g)', value: 'carbs'},
-  {text: 'Protein (g)', value: 'protein'},
-  {text: 'Iron (%)', value: 'iron'},
+  { text: 'Calories', value: 'calories' },
+  { text: 'Fat (g)', value: 'fat' },
+  { text: 'Carbs (g)', value: 'carbs' },
+  { text: 'Protein (g)', value: 'protein' },
+  { text: 'Iron (%)', value: 'iron' },
 ];
 const items = [
   {
@@ -113,5 +110,3 @@ const items = [
   },
 ];
 </script>
-
-<style scoped></style>
