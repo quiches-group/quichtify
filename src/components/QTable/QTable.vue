@@ -1,54 +1,58 @@
 <template>
   <table class="shadow-lg bg-white border-collapse">
     <thead>
-      <tr>
-        <th
+    <tr>
+      <th
           v-for="header in headers"
           :key="header.value"
           :class="`text-${header.align}; ${header.sortable ? `cursor-pointer` : ''}`"
           class="bg-gray-100 border text-left px-8 py-4"
           @click="header.sortable ? sort(header.value) : null"
-        >
-          {{ header.text }} {{ sortIcons(header) }}
-        </th>
-      </tr>
+      >
+        {{ header.text }} {{ sortIcons(header) }}
+      </th>
+    </tr>
     </thead>
     <tbody>
-      <tr v-for="(item, itemKey) in createPages(sortItems(filterItems()))" :key="itemKey">
-        <td v-for="header in headers" :key="header.value" :class="`text-${header.align}`" class="border px-8 py-4">
-          {{ item[header.value] }}
-        </td>
-      </tr>
+    <tr v-for="(item, itemKey) in createPages(sortItems(filterItems()))" :key="itemKey">
+      <td v-for="header in headers" :key="header.value" :class="`text-${header.align}`" class="border px-8 py-4">
+        {{ item[header.value] }}
+      </td>
+    </tr>
     </tbody>
     <tfoot v-if="!disablePagination">
-      <tr>
-        <td :colspan="headers.length" class="border px-4 py-4 text-lg">
-          <div class="flex flex-row justify-end">
-            <div class="h-100%">
-              <label for="page"
-                >Rows per page
-                <input v-model="rowsPerPageMutable" :max="sortItems(filterItems()).length" min="1" name="page" type="number" />
-              </label>
-            </div>
-            <div class="h-100%">
+    <tr>
+      <td :colspan="headers.length" class="border px-4 py-4 text-lg">
+        <div class="flex flex-row justify-end">
+          <div class="h-100%">
+            <label for="page"
+            >Rows per page
+              <input
+                  v-model="rowsPerPageMutable" :max="sortItems(filterItems()).length" min="1" name="page"
+                  type="number"/>
+            </label>
+          </div>
+          <div class="h-100%">
               <span>
-                {{ sortItems(filterItems()).length > 0 && rowsPerPageMutable > 0 ? rowsPerPageMutable * (currentPage - 1) + 1 : 0 }}-{{
+                {{
+                  sortItems(filterItems()).length > 0 && rowsPerPageMutable > 0 ? rowsPerPageMutable * (currentPage - 1) + 1 : 0
+                }}-{{
                   sortItems(filterItems()).length > rowsPerPageMutable * currentPage ? rowsPerPageMutable * currentPage : sortItems(filterItems()).length
                 }}
                 of {{ sortItems(filterItems()).length }}
               </span>
-              <button class="px-2 text-2xl align-top" @click="previousPage">&lt;</button>
-              <button class="text-2xl align-top" @click="nextPage">&gt;</button>
-            </div>
+            <button class="px-2 text-2xl align-top" @click="previousPage">&lt;</button>
+            <button class="text-2xl align-top" @click="nextPage">&gt;</button>
           </div>
-        </td>
-      </tr>
+        </div>
+      </td>
+    </tr>
     </tfoot>
   </table>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import {ref} from 'vue';
 
 const props = defineProps({
   filter: {
@@ -125,7 +129,7 @@ const createPages = (items) => {
 };
 
 const nextPage = () => {
-  if (currentPage.value < Math.round(sortItems(filterItems()).length / rowsPerPageMutable.value)) {
+  if (currentPage.value <= Math.floor(sortItems(filterItems()).length / rowsPerPageMutable.value)) {
     currentPage.value += 1;
   }
 };
