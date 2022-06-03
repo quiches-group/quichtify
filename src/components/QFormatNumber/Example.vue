@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
     <q-format-number :value="1456347349.435345" :max-fraction-digits="4" locale="fr-FR" />
@@ -6,12 +7,3 @@
     <q-format-number :value="4456347349.435345" />
   </div>
 </template>
-
-<script>
-import QFormatNumber from '@/components/FormatNumber/FormatNumber.vue';
-
-export default {
-  name: 'QFormatNumberExample',
-  components: { QFormatNumber },
-};
-</script>
