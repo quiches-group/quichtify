@@ -18,6 +18,7 @@ import QNavbar from './QNavbar/QNavbar.vue';
 import QNavbarContent from './QNavbar/QNavbarContent.vue';
 import QMenu from './QMenu/QMenu.vue';
 import QMenuItem from './QMenu/QMenuItem.vue';
+import QFormatNumber from './QFormatNumber/QFormatNumber.vue';
 // TODO: 2 - Import your main component here
 
 export default {
@@ -42,6 +43,7 @@ export default {
     app.component('QNavbarContent', QNavbarContent);
     app.component('QMenu', QMenu);
     app.component('QMenuItem', QMenuItem);
+    app.component('QFormatNumber', QFormatNumber);
     // TODO: 3 - Declare your component here
   },
 };
@@ -66,4 +68,5 @@ export {
   QNavbarContent,
   QMenu,
   QMenuItem,
+  QFormatNumber,
 };
