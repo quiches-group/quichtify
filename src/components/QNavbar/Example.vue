@@ -2,29 +2,13 @@
   <div>
     <q-navbar :is-open="state.navbarIsOpen" @is-open="changeNavbarState">
       <q-navbar-content class="bg-red-500">
-        <q-menu>
-          <q-menu-item>Swap</q-menu-item>
-          <q-menu-item>Stacking</q-menu-item>
-          <q-menu-item>Farm</q-menu-item>
-          <q-menu-item>Wallet</q-menu-item>
+        <q-menu :selected-index="state.selectedIndex" @select-index="setSelectedIndex">
+          <q-menu-item item-index="tab1">Swap</q-menu-item>
+          <q-menu-item item-index="tab2">Stacking</q-menu-item>
+          <q-menu-item item-index="tab3">Farm</q-menu-item>
+          <q-menu-item item-index="tab4">Wallet</q-menu-item>
         </q-menu>
       </q-navbar-content>
-<!--      <div class="site-logo">-->
-<!--        <a href="acceuil.html">Acceuil</a>-->
-<!--        <img class="logo" src="images/Logo_Laroche.svg" alt="" />-->
-<!--      </div>-->
-
-<!--      <ul>-->
-<!--        <li>-->
-<!--          <a href="proute">ça fouette</a>-->
-<!--        </li>-->
-<!--        <li>-->
-<!--          <a href="proute">ça fouette</a>-->
-<!--        </li>-->
-<!--        <li>-->
-<!--          <a href="proute">ça fouette</a>-->
-<!--        </li>-->
-<!--      </ul>-->
     </q-navbar>
     <button @click="changeNavbarState()">Open navbar</button>
   </div>
@@ -34,11 +18,13 @@
 import { reactive } from 'vue';
 
 const state = reactive({
-  navbarIsOpen: true
+  navbarIsOpen: true,
+  selectedIndex: null,
 })
-
+const setSelectedIndex = (index) => {
+  state.selectedIndex = index;
+};
 const changeNavbarState = (newValue = null) => {
-  console.log(newValue);
   state.navbarIsOpen = newValue ?? !state.navbarIsOpen
 }
 </script>
