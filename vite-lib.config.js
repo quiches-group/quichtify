@@ -17,12 +17,12 @@ export default defineConfig({
       name: 'quichtify',
       formats: ['es', 'cjs', 'umd'],
     },
-  },
-  rollupOptions: {
-    external: ['vue'],
-    output: {
-      globals: {
-        vue: 'Vue',
+    rollupOptions: {
+      external: ['vue'],
+      output: {
+        globals: {
+          vue: 'Vue',
+        },
       },
     },
   },
