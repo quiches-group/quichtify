@@ -270,18 +270,18 @@ export default {
     /* ANIMATIONS */
     @apply transform;
 
-    &:hover:not(.q-btn--no-anim-on-active),
-    &:focus:not(.q-btn--no-anim-on-active),
+    &:hover,
+    &:focus,
     &.active:not(.q-btn--no-anim-on-active),
     &.js-active:not(.q-btn--no-anim-on-active) {
       @apply scale-105 shadow-lg;
     }
 
-    &:active:not(.q-btn--no-anim-on-active):not(.q-btn--loading) {
+    &:active:not(.q-btn--loading) {
       @apply scale-95 shadow-md;
     }
 
-    @include prefers-reduced-motion('&.q-btn--reduce-anim, &.q-btn--no-anim-on-active') {
+    @include prefers-reduced-motion('&.q-btn--reduce-anim') {
       @apply transform-none;
 
       &:active:not(.q-btn--loading) {
@@ -366,18 +366,18 @@ export default {
     /* ANIMATIONS */
     @apply transform;
 
-    &:hover:not(.q-btn--no-anim-on-active),
-    &:focus:not(.q-btn--no-anim-on-active),
+    &:hover,
+    &:focus,
     &.active:not(.q-btn--no-anim-on-active),
     &.js-active:not(.q-btn--no-anim-on-active) {
       @apply scale-105 shadow-lg;
     }
 
-    &:active:not(.q-btn--no-anim-on-active):not(.q-btn--loading) {
+    &:active:not(.q-btn--loading) {
       @apply scale-95 shadow-md;
     }
 
-    @include prefers-reduced-motion('&.q-btn--reduce-anim, &.q-btn--no-anim-on-active') {
+    @include prefers-reduced-motion('&.q-btn--reduce-anim') {
       @apply transform-none;
 
       &:active:not(.q-btn--no-anim-on-active):not(.q-btn--loading) {
@@ -458,14 +458,14 @@ export default {
     /* ANIMATIONS */
     @apply transform;
 
-    &:hover:not(.q-btn--no-anim-on-active),
-    &:focus:not(.q-btn--no-anim-on-active),
+    &:hover,
+    &:focus,
     &.active:not(.q-btn--no-anim-on-active),
     &.js-active:not(.q-btn--no-anim-on-active) {
       @apply scale-105 shadow-lg;
     }
 
-    &:active:not(.q-btn--no-anim-on-active):not(.q-btn--loading) {
+    &:active:not(.q-btn--loading) {
       @apply scale-95 shadow-md;
     }
 
@@ -577,14 +577,14 @@ export default {
       }
     }
 
-    &:hover:not(.q-btn--no-anim-on-active) .q-btn__slot-container:after,
-    &:focus:not(.q-btn--no-anim-on-active) .q-btn__slot-container:after,
+    &:hover .q-btn__slot-container:after,
+    &:focus .q-btn__slot-container:after,
     &.active:not(.q-btn--no-anim-on-active) .q-btn__slot-container:after,
     &.js-active:not(.q-btn--no-anim-on-active) .q-btn__slot-container:after {
       @apply scale-x-100 origin-left;
     }
 
-    @include prefers-reduced-motion('&.q-btn--reduce-anim, &.q-btn--no-anim-on-active') {
+    @include prefers-reduced-motion('&.q-btn--reduce-anim') {
       .q-btn__slot-container:after,
       .q-btn__slot-container:after {
         @apply transition-none;
@@ -700,14 +700,14 @@ export default {
       }
     }
 
-    &:hover:not(.q-btn--no-anim-on-active) .q-btn__slot-container:after,
-    &:focus:not(.q-btn--no-anim-on-active) .q-btn__slot-container:after,
+    &:hover .q-btn__slot-container:after,
+    &:focus .q-btn__slot-container:after,
     &.active:not(.q-btn--no-anim-on-active) .q-btn__slot-container:after,
     &.js-active:not(.q-btn--no-anim-on-active) .q-btn__slot-container:after {
       @apply q-animate-scaleXLeftToRightAndRestore;
     }
 
-    @include prefers-reduced-motion('&.q-btn--reduce-anim, &.q-btn--no-anim-on-active') {
+    @include prefers-reduced-motion('&.q-btn--reduce-anim') {
       .q-btn__slot-container:after,
       .q-btn__slot-container:after {
         @apply transition-none q-animate-none;
@@ -802,18 +802,18 @@ export default {
     /* ANIMATIONS */
     @apply transform;
 
-    &:hover:not(.q-btn--no-anim-on-active),
-    &:focus:not(.q-btn--no-anim-on-active),
+    &:hover,
+    &:focus,
     &.active:not(.q-btn--no-anim-on-active),
     &.js-active:not(.q-btn--no-anim-on-active) {
       @apply scale-105 shadow-lg;
     }
 
-    &:active:not(.q-btn--no-anim-on-active):not(.q-btn--loading) {
+    &:active:not(.q-btn--loading) {
       @apply scale-95 shadow-md;
     }
 
-    @include prefers-reduced-motion('&.q-btn--reduce-anim, &.q-btn--no-anim-on-active') {
+    @include prefers-reduced-motion('&.q-btn--reduce-anim') {
       @apply transform-none;
 
       &:active:not(.q-btn--no-anim-on-active):not(.q-btn--loading) {
