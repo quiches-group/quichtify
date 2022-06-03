@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="flex flex-col items-center mt-20">
     <div class="flex flex-col gap-y-5 items-center p-4 mt-5 rounded-lg border border-gray-300">
@@ -7,7 +8,7 @@
 
     <div class="flex flex-col gap-y-5 items-center p-4 mt-5 rounded-lg border border-gray-300">
       <p class="mb-2 text-center">Without default style and default positionning</p>
-      <q-button @click="addEvent" :defaultStyle="false" :defaultPositionning="false">Click Me</q-button>
+      <q-button :default-style="false" :default-positionning="false" @click="addEvent">Click Me</q-button>
     </div>
 
     <div class="flex flex-col gap-y-5 items-center p-4 mt-5 rounded-lg border border-gray-300">
@@ -15,9 +16,9 @@
         Sizes
         <pre><code>small</code> | <code>medium (default)</code> | <code>large</code></pre>
       </h2>
-      <q-button @click="addEvent" size="small">Click Me</q-button>
-      <q-button @click="addEvent" size="medium">Click Me</q-button>
-      <q-button @click="addEvent" size="large">Click Me</q-button>
+      <q-button size="small" @click="addEvent">Click Me</q-button>
+      <q-button size="medium" @click="addEvent">Click Me</q-button>
+      <q-button size="large" @click="addEvent">Click Me</q-button>
     </div>
 
     <div class="flex flex-col gap-y-5 items-center p-4 mt-5 rounded-lg border border-gray-300">
@@ -25,12 +26,12 @@
         Variants
         <pre><code>plain</code> | <code>plain-rounded (default)</code> | <code>plain-rounded-full</code> | <code>link</code> | <code>link-underlined</code> | <code>outline</code></pre>
       </h2>
-      <q-button @click="addEvent" variant="plain">Click Me</q-button>
-      <q-button @click="addEvent" variant="plain-rounded">Click Me</q-button>
-      <q-button @click="addEvent" variant="plain-rounded-full">Click Me</q-button>
-      <q-button @click="addEvent" variant="link">Click Me</q-button>
-      <q-button @click="addEvent" variant="link-underlined">Click Me</q-button>
-      <q-button @click="addEvent" variant="outline">Click Me</q-button>
+      <q-button variant="plain" @click="addEvent">Click Me</q-button>
+      <q-button variant="plain-rounded" @click="addEvent">Click Me</q-button>
+      <q-button variant="plain-rounded-full" @click="addEvent">Click Me</q-button>
+      <q-button variant="link" @click="addEvent">Click Me</q-button>
+      <q-button variant="link-underlined" @click="addEvent">Click Me</q-button>
+      <q-button variant="outline" @click="addEvent">Click Me</q-button>
     </div>
 
     <div class="flex flex-col gap-y-5 items-center p-4 mt-5 rounded-lg border border-gray-300">
@@ -38,9 +39,9 @@
         Colors
         <pre><code>primary (default)</code> | <code>secondary</code> | <code>white</code></pre>
       </h2>
-      <q-button @click="addEvent" color="primary">Click Me</q-button>
-      <q-button @click="addEvent" color="secondary">Click Me</q-button>
-      <q-button @click="addEvent" color="white">Click Me</q-button>
+      <q-button color="primary" @click="addEvent">Click Me</q-button>
+      <q-button color="secondary" @click="addEvent">Click Me</q-button>
+      <q-button color="white" @click="addEvent">Click Me</q-button>
     </div>
 
     <div class="flex flex-col gap-y-5 items-center p-4 mt-5 rounded-lg border border-gray-300">
@@ -53,21 +54,21 @@
         <code>default</code>
         <code>reduce</code>
         <code>none</code>
-        <q-button @click="addEvent" variant="plain-rounded">Click Me</q-button>
-        <q-button @click="addEvent" variant="plain-rounded" animation="reduce">Click Me</q-button>
-        <q-button @click="addEvent" variant="plain-rounded" animation="none">Click Me</q-button>
-        <q-button @click="addEvent" variant="plain-rounded-full">Click Me</q-button>
-        <q-button @click="addEvent" variant="plain-rounded-full" animation="reduce">Click Me</q-button>
-        <q-button @click="addEvent" variant="plain-rounded-full" animation="none">Click Me</q-button>
-        <q-button @click="addEvent" variant="link">Click Me</q-button>
-        <q-button @click="addEvent" variant="link" animation="reduce">Click Me</q-button>
-        <q-button @click="addEvent" variant="link" animation="none">Click Me</q-button>
-        <q-button @click="addEvent" variant="link-underlined">Click Me</q-button>
-        <q-button @click="addEvent" variant="link-underlined" animation="reduce">Click Me</q-button>
-        <q-button @click="addEvent" variant="link-underlined" animation="none">Click Me</q-button>
-        <q-button @click="addEvent" variant="outline">Click Me</q-button>
-        <q-button @click="addEvent" variant="outline" animation="reduce">Click Me</q-button>
-        <q-button @click="addEvent" variant="outline" animation="none">Click Me</q-button>
+        <q-button variant="plain-rounded" @click="addEvent">Click Me</q-button>
+        <q-button variant="plain-rounded" animation="reduce" @click="addEvent">Click Me</q-button>
+        <q-button variant="plain-rounded" animation="none" @click="addEvent">Click Me</q-button>
+        <q-button variant="plain-rounded-full" @click="addEvent">Click Me</q-button>
+        <q-button variant="plain-rounded-full" animation="reduce" @click="addEvent">Click Me</q-button>
+        <q-button variant="plain-rounded-full" animation="none" @click="addEvent">Click Me</q-button>
+        <q-button variant="link" @click="addEvent">Click Me</q-button>
+        <q-button variant="link" animation="reduce" @click="addEvent">Click Me</q-button>
+        <q-button variant="link" animation="none" @click="addEvent">Click Me</q-button>
+        <q-button variant="link-underlined" @click="addEvent">Click Me</q-button>
+        <q-button variant="link-underlined" animation="reduce" @click="addEvent">Click Me</q-button>
+        <q-button variant="link-underlined" animation="none" @click="addEvent">Click Me</q-button>
+        <q-button variant="outline" @click="addEvent">Click Me</q-button>
+        <q-button variant="outline" animation="reduce" @click="addEvent">Click Me</q-button>
+        <q-button variant="outline" animation="none" @click="addEvent">Click Me</q-button>
       </div>
     </div>
 
@@ -76,8 +77,8 @@
         Keep hover & focus animations if has an "active" class
         <pre><code>false (default)</code> | <code>true</code></pre>
       </h2>
-      <q-button @click="addEvent" class="js-active">Click Me</q-button>
-      <q-button @click="addEvent" :animateOnActive="true" class="js-active">Click Me</q-button>
+      <q-button class="js-active" @click="addEvent">Click Me</q-button>
+      <q-button :animate-on-active="true" class="js-active" @click="addEvent">Click Me</q-button>
     </div>
 
     <div class="flex flex-col gap-y-5 items-center p-4 mt-5 rounded-lg border border-gray-300">
@@ -92,20 +93,20 @@
         <code>link-underlined</code>
         <code>outline</code>
 
-        <q-button @click="addEvent" :loading="true">Click Me</q-button>
-        <q-button @click="addEvent" :loading="true">Click Me</q-button>
-        <q-button @click="addEvent" :loading="true">Click Me</q-button>
-        <q-button @click="addEvent" :loading="true">Click Me</q-button>
+        <q-button :loading="true" @click="addEvent">Click Me</q-button>
+        <q-button :loading="true" @click="addEvent">Click Me</q-button>
+        <q-button :loading="true" @click="addEvent">Click Me</q-button>
+        <q-button :loading="true" @click="addEvent">Click Me</q-button>
 
-        <q-button @click="addEvent" :loading="true" color="secondary">Click Me</q-button>
-        <q-button @click="addEvent" variant="link" color="secondary" :loading="true">Click Me</q-button>
-        <q-button @click="addEvent" variant="link-underlined" color="secondary" :loading="true">Click Me</q-button>
-        <q-button @click="addEvent" variant="outline" color="secondary" :loading="true">Click Me</q-button>
+        <q-button :loading="true" color="secondary" @click="addEvent">Click Me</q-button>
+        <q-button variant="link" color="secondary" :loading="true" @click="addEvent">Click Me</q-button>
+        <q-button variant="link-underlined" color="secondary" :loading="true" @click="addEvent">Click Me</q-button>
+        <q-button variant="outline" color="secondary" :loading="true" @click="addEvent">Click Me</q-button>
 
-        <q-button @click="addEvent" :loading="true" color="white">Click Me</q-button>
-        <q-button @click="addEvent" variant="link" color="white" :loading="true">Click Me</q-button>
-        <q-button @click="addEvent" variant="link-underlined" color="white" :loading="true">Click Me</q-button>
-        <q-button @click="addEvent" variant="outline" color="white" :loading="true">Click Me</q-button>
+        <q-button :loading="true" color="white" @click="addEvent">Click Me</q-button>
+        <q-button variant="link" color="white" :loading="true" @click="addEvent">Click Me</q-button>
+        <q-button variant="link-underlined" color="white" :loading="true" @click="addEvent">Click Me</q-button>
+        <q-button variant="outline" color="white" :loading="true" @click="addEvent">Click Me</q-button>
       </div>
     </div>
 
@@ -115,7 +116,7 @@
         <pre><code>false (default)</code> | <code>true</code></pre>
       </h2>
       <q-button @click="addEvent">Click Me</q-button>
-      <q-button @click="addEvent" :animateOnActive="true" class="js-active">Click Me</q-button>
+      <q-button :animate-on-active="true" class="js-active" @click="addEvent">Click Me</q-button>
     </div>
 
     <hr />
@@ -134,7 +135,6 @@ const state = reactive({
 });
 
 function addEvent() {
-  console.log('NEW');
   state.events += 1;
 }
 </script>

@@ -1,6 +1,6 @@
 const plugin = require('tailwindcss/plugin')
 
-module.exports = plugin(function ({ addUtilities, theme }) {
+module.exports = plugin(({ addUtilities, theme }) => {
   addUtilities({
     '.text-container': {
       'margin-right': 'auto',

@@ -1,6 +1,6 @@
 const plugin = require('tailwindcss/plugin')
 
-module.exports = plugin(function ({ addUtilities, variants }) {
+module.exports = plugin(({ addUtilities, variants }) => {
   addUtilities({
     '.content': {
       content: '\'\''
