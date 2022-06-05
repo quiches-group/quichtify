@@ -1,3 +1,6 @@
+<!-- eslint-disable no-restricted-syntax -->
+<!-- eslint-disable no-loop-func -->
+<!-- eslint-disable func-names -->
 <template>
   <div class="flex p-8 w-full h-full rounded min-w-250 max-w-350 lists">
     <div v-for="(column, c) in columns" :key="c" class="flex p-8 w-full h-full rounded columns min-w-250 max-w-350 min-h-150">

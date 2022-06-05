@@ -6,7 +6,7 @@ import QLoader from '../QLoader/QLoader.vue';
 export default {
   title: 'Quichtify/QButton',
   component: QButton,
-  subcomponents: { QButton, QLoader },
+  subcomponents: { QLoader },
   // More on argTypes: https://storybook.js.org/docs/vue/api/argtypes
   argTypes: {
     defaultStyle: {
@@ -72,7 +72,7 @@ const Template = (args) => ({
     return { args };
   },
   // And then the `args` are bound to your component with `v-bind="args"`
-  template: '<q-button v-bind="args">Cick Me</q-button>',
+  template: `<q-button v-bind="args">Cick Me</q-button>`,
 });
 
 export const Default = Template.bind({});
