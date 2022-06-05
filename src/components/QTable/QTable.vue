@@ -2,45 +2,45 @@
 <template>
   <table class="bg-white shadow-lg border-collapse">
     <thead>
-      <tr>
-        <th
+    <tr>
+      <th
           v-for="header in headers"
           :key="header.value"
-          class="px-8 py-4 text-left bg-gray-100 border"
           :class="`text-${header.align}; ${header.sortable ? `cursor-pointer` : ''}`"
+          class="px-8 py-4 text-left bg-gray-100 border"
           @click="sortLines(header)"
-        >
-          {{ header.text }} {{ getSortIcons(header) }}
-        </th>
-      </tr>
+      >
+        {{ header.text }} {{ getSortIcons(header) }}
+      </th>
+    </tr>
     </thead>
     <tbody>
-      <tr v-for="(item, itemKey) in pages" :key="itemKey">
-        <td v-for="header in headers" :key="header.value" class="px-8 py-4 border" :class="`text-${header.align}`">
-          {{ item[header.value] }}
-        </td>
-      </tr>
+    <tr v-for="(item, itemKey) in pages" :key="itemKey">
+      <td v-for="header in headers" :key="header.value" :class="`text-${header.align}`" class="px-8 py-4 border">
+        {{ item[header.value] }}
+      </td>
+    </tr>
     </tbody>
     <tfoot v-if="!disablePagination">
-      <tr>
-        <td :colspan="headers.length" class="px-4 py-4 text-lg border">
-          <div class="flex flex-row justify-end">
-            <label for="page">
-              Rows per page
-              <input v-model="nbOfLinesToDisplay" name="page" type="number" min="1" :max="lines.length" />
-            </label>
-            <span> {{ firstDisplayedLine }}-{{ lastDisplayedLine }} of {{ lines.length }} </span>
-            <button class="px-2 text-2xl align-top" @click="previousPage">&lt;</button>
-            <button class="text-2xl align-top" @click="nextPage">&gt;</button>
-          </div>
-        </td>
-      </tr>
+    <tr>
+      <td :colspan="headers.length" class="px-4 py-4 text-lg border">
+        <div class="flex flex-row justify-end">
+          <label for="page">
+            Rows per page
+            <input v-model="nbOfLinesToDisplay" :max="lines.length" min="1" name="page" type="number"/>
+          </label>
+          <span> {{ firstDisplayedLine }}-{{ lastDisplayedLine }} of {{ lines.length }} </span>
+          <button class="px-2 text-2xl align-top" @click="previousPage">&lt;</button>
+          <button class="text-2xl align-top" @click="nextPage">&gt;</button>
+        </div>
+      </td>
+    </tr>
     </tfoot>
   </table>
 </template>
 
 <script setup>
-import { computed, onMounted, reactive, toRefs } from 'vue';
+import {computed, onMounted, reactive, toRefs} from 'vue';
 
 // State
 const props = defineProps({
@@ -81,13 +81,13 @@ function sortItems(items) {
     return items;
   }
 
-  const sortedItems = items.sort((a, b) => {
+  const sortedItems = items.sort((currentItem, nextItem) => {
     if (state.sortAsc) {
-      return a[state.currentSortedHeader] < b[state.currentSortedHeader] ? -1 : 1;
+      return currentItem[state.currentSortedHeader] < nextItem[state.currentSortedHeader] ? -1 : 1;
     }
 
     if (!state.sortAsc) {
-      return a[state.currentSortedHeader] > b[state.currentSortedHeader] ? -1 : 1;
+      return currentItem[state.currentSortedHeader] > nextItem[state.currentSortedHeader] ? -1 : 1;
     }
 
     return 0;
@@ -132,7 +132,7 @@ const pages = computed(() => {
 
 const firstDisplayedLine = computed(() => {
   const nbOfLines = lines.value.length;
-  const { nbOfLinesToDisplay, currentPage } = state;
+  const {nbOfLinesToDisplay, currentPage} = state;
 
   if (nbOfLines > 0 && nbOfLinesToDisplay > 0) {
     return `${nbOfLinesToDisplay * (currentPage - 1) + 1}`;
@@ -143,7 +143,7 @@ const firstDisplayedLine = computed(() => {
 
 const lastDisplayedLine = computed(() => {
   const nbOfLines = lines.value.length;
-  const { nbOfLinesToDisplay, currentPage } = state;
+  const {nbOfLinesToDisplay, currentPage} = state;
 
   if (nbOfLines > nbOfLinesToDisplay * currentPage) {
     return nbOfLinesToDisplay * currentPage;
@@ -204,5 +204,5 @@ function previousPage() {
 }
 
 // Reactive variables used in <template>
-const { nbOfLinesToDisplay } = toRefs(state);
+const {nbOfLinesToDisplay} = toRefs(state);
 </script>
