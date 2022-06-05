@@ -123,10 +123,10 @@ const pages = computed(() => {
     return lines.value;
   }
 
-  return lines.value.filter((item, key) => {
-    const start = state.nbOfLinesToDisplay * (state.currentPage - 1);
-    const end = state.nbOfLinesToDisplay * state.currentPage;
-    return key >= start && key < end;
+  return lines.value.filter((_, key) => {
+    const startLineNb = state.nbOfLinesToDisplay * (state.currentPage - 1);
+    const endLineNb = state.nbOfLinesToDisplay * state.currentPage;
+    return key >= startLineNb && key < endLineNb;
   });
 });
 
