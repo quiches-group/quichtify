@@ -196,7 +196,7 @@ function nextPage() {
 }
 
 function previousPage() {
-  if (state.currentPage < 1) {
+  if (state.currentPage <= 1) {
     return;
   }
 
