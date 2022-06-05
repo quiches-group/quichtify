@@ -73,6 +73,7 @@ const state = reactive({
   sortAsc: true,
   currentPage: 1,
   nbOfLinesToDisplay: props.rowsPerPage,
+  nbOfLinesToDisplaySaved: props.rowsPerPage,
   currentSortedHeader: undefined,
 });
 
@@ -102,7 +103,7 @@ function sortItems(items) {
   }
 
   if (items.length > 0 && state.nbOfLinesToDisplay < 1) {
-    state.nbOfLinesToDisplay = 1;
+    state.nbOfLinesToDisplay = items.length < state.nbOfLinesToDisplaySaved ? items.length : state.nbOfLinesToDisplaySaved;
   }
 
   return sortedItems;
