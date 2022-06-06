@@ -19,6 +19,15 @@ app.use(quichtify);
 app.mount('#app');
 ```
 
+## Library documentation
+
+You can watch and interact with almost all of our components using our [Chromatic's StorybookJs](https://master--629673e43b21dd004ace66f2.chromatic.com).
+Due to some complexity of our component and a lack of experience with Storybook, some functionnality will not work properly.
+
+We recommand you to check the `Example.vue` file of the component you need.
+
+To preview and play with the demo of a component, simply change the path to the example component in `src/App.vue` line 6. Replace `QDragAndDrop` with the name of your component and run `npm run dev`.
+
 ## Contribute
 
 This library is has 2 builds configurations. One for developement with a full Vue app and another for building.
@@ -81,10 +90,6 @@ npm run test:e2e # or `npm run test:e2e:ci` for headless testing
 ```sh
 npm run lint
 ```
-
-## Library documentation
-
-[Chromatic's StorybookJs](https://master--629673e43b21dd004ace66f2.chromatic.com)
 
 ## Related documentation
 
