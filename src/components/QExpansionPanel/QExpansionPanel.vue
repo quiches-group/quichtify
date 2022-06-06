@@ -82,14 +82,6 @@ const leave = (el) => {
 </script>
 
 <style lang="scss" scoped>
-@mixin prefers-reduced-motion($classToApply: null) {
-  @if ($classToApply) {
-    #{$classToApply} {
-      @content;
-    }
-  }
-}
-
 .slide {
   &.slide-leave-active, &.slide-enter-active {
     @apply transition-all duration-300 ease-in-out overflow-hidden
