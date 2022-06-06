@@ -1,14 +1,18 @@
 <template>
     <div class="rounded-lg q-panel border bg-white border-gray-200 shadow-lg shadow-black-500/50"  :class="{ 'mb-2': state.panelIsOpen }" :data-panel-index="panelIndex" >
       <h2 class="accordion-header mb-0">
-        <button class="relative flex items-center w-full py-4 px-5 text-base text-gray-800 text-left border-0" type="button" @click="togglePanel">
+        <button class="relative flex items-center w-full py-4 px-5 text-base text-gray-800 text-left border-0" type="button" @click="togglePanel" >
           <slot name="header"/>
           <span id="dropdown-chevron" class="ml-auto self-center transition-transform ease-in-out duration-250" :class="{ 'rotate-180': state.panelIsOpen }" />
         </button>
       </h2>
-      <transition>
-        <div v-if="state.panelIsOpen">
-          <div class="accordion-body py-4 px-5 transition-transform">
+      <transition
+          :class="panelClasses"
+          @enter="enter"
+          @after-enter="afterEnter"
+          @leave="leave">
+        <div v-show="state.panelIsOpen">
+          <div class="slide__slot-container transition py-4 px-5" >
             <slot name="content"/>
           </div>
         </div>
@@ -17,25 +21,81 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue';
+import { reactive, computed } from 'vue';
+
+const props = defineProps({
+  animated: {
+    type: Boolean,
+    default: false
+  },
+  panelIndex: {
+    type: String,
+    default: null,
+  }
+});
 
 const state = reactive({
-  panelIsOpen: null,
+  panelIsOpen: false,
+});
+
+const panelClasses = computed(() => {
+  const classes = [];
+  classes.push('slide');
+  if (props.animated === true) {
+    classes.push('slide-enter-active')
+    classes.push('slide-leave-active')
+  }
+  return classes;
 });
 
 const togglePanel = () => {
   state.panelIsOpen = !state.panelIsOpen
 };
 
-defineProps({
-  panelIndex: {
-    type: String,
-    default: null,
-  }
-});
+// Animation methods
+const enter = (el) => {
+  // eslint-disable-next-line no-param-reassign
+  el.style.height = 'auto';
+  const {height} = getComputedStyle(el);
+  // eslint-disable-next-line no-param-reassign
+  el.style.height = 0;
+  getComputedStyle(el);
+  setTimeout(() => {
+    // eslint-disable-next-line no-param-reassign
+    el.style.height = height;
+  });
+};
+const afterEnter = (el) => {
+  // eslint-disable-next-line no-param-reassign
+  el.style.height = 'auto';
+};
+const leave = (el) => {
+  // eslint-disable-next-line no-param-reassign
+  el.style.height = getComputedStyle(el).height;
+
+  getComputedStyle(el);
+  setTimeout(() => {
+    // eslint-disable-next-line no-param-reassign
+    el.style.height = 0;
+  });
+};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin prefers-reduced-motion($classToApply: null) {
+  @if ($classToApply) {
+    #{$classToApply} {
+      @content;
+    }
+  }
+}
+
+.slide {
+  &.slide-leave-active, &.slide-enter-active {
+    @apply transition-all duration-300 ease-in-out overflow-hidden
+  }
+}
+
 #dropdown-chevron {
   position: relative;
   width: 12px;

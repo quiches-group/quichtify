@@ -2,7 +2,7 @@
 <template>
   <main class=" justify-center h-screen items-center">
     <q-expansion-panels>
-      <q-expansion-panel panel-index="panel1">
+      <q-expansion-panel animated panel-index="panel1">
         <template #header>
           <h3>Header du panneau</h3>
         </template>
@@ -16,7 +16,7 @@
           enim vel, vehicula ex.
         </template>
       </q-expansion-panel>
-      <q-expansion-panel panel-index="panel2" >
+      <q-expansion-panel animated panel-index="panel2" >
         <template #header>
           <h3>Header du panneau</h3>
         </template>
