@@ -1,8 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <main class=" justify-center h-screen items-center">
-    <q-expansion-panels :selected-index="state.selectedIndex" @select-index="setSelectedIndex">
-      <q-expansion-panel panel-index="tab1">
+    <q-expansion-panels>
+      <q-expansion-panel panel-index="panel1">
         <template #header>
           <h3>Header du panneau</h3>
         </template>
@@ -16,7 +16,7 @@
           enim vel, vehicula ex.
         </template>
       </q-expansion-panel>
-      <q-expansion-panel panel-index="tab2" >
+      <q-expansion-panel panel-index="panel2" >
         <template #header>
           <h3>Header du panneau</h3>
         </template>
@@ -30,7 +30,7 @@
           enim vel, vehicula ex.
         </template>
       </q-expansion-panel>
-      <q-expansion-panel panel-index="tab3" >
+      <q-expansion-panel panel-index="panel3" >
         <template #header>
           <h3>Header du panneau</h3>
         </template>
@@ -49,16 +49,6 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue';
 import QExpansionPanel from './QExpansionPanel.vue';
 import QExpansionPanels from './QExpansionPanels.vue';
-
-const state = reactive({
-  selectedIndex: 'tab2',
-});
-
-const setSelectedIndex = (index) => {
-  state.selectedIndex = index;
-};
-
 </script>
