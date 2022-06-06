@@ -25,6 +25,7 @@ import QTable from './QTable/QTable.vue';
 import QGraph from './QGraph/QGraph.vue';
 import QExpansionPanel from './QExpansionPanel/QExpansionPanel.vue';
 import QChevron from './QChevron/QChevron.vue';
+import QSnackbar from './QSnackbar/QSnackbar.vue';
 // TODO: 2 - Import your main component here
 
 const components = [
@@ -55,6 +56,7 @@ const components = [
   QTable,
   QExpansionPanel,
   QChevron,
+  QSnackbar,
 ]
 
 export default {
