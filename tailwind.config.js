@@ -1,3 +1,5 @@
+/* eslint-disable import/extensions */
+/* eslint-disable global-require */
 module.exports = {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
@@ -53,14 +55,9 @@ module.exports = {
       spacing: {
         3.75: '0.938rem',
       },
-      colors: {
-        primary: '#40B883',
-        secondary: '#35485F',
-        text: '#2C3F50',
-      },
     },
   },
-  plugins: [require('./tw-plugins/animationsPlugin.js'), require('./tw-plugins/formPlugin.js'), require('./tw-plugins/pseudoElPlugin'), require('./tw-plugins/textPlugin')],
+  plugins: [require('./tw-plugins/animationsPlugin.js'), require('./tw-plugins/formPlugin.js'), require('./tw-plugins/pseudoElPlugin.js'), require('./tw-plugins/textPlugin.js')],
   safelist: [
     {
       pattern: /w-(1|2|3|4|5|6|7|8|9|10|11)\/12/,
@@ -77,6 +74,9 @@ module.exports = {
     {
       pattern: /([wh])-0\.5/,
       variants: ['sm', 'md', 'lg', 'xl'],
+    },
+    {
+      pattern: /text-(left|center|right|justify)/,
     },
   ],
 };
