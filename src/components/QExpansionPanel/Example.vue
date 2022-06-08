@@ -49,6 +49,4 @@
 </template>
 
 <script setup>
-import QExpansionPanel from './QExpansionPanel.vue';
-import QExpansionPanels from './QExpansionPanels.vue';
 </script>
