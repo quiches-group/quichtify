@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <main class=" justify-center h-screen items-center">
+  <main class="justify-center h-screen items-center">
     <q-expansion-panels>
       <q-expansion-panel animated panel-index="panel1">
         <template #header>
@@ -16,7 +16,7 @@
           enim vel, vehicula ex.
         </template>
       </q-expansion-panel>
-      <q-expansion-panel animated panel-index="panel2" >
+      <q-expansion-panel animated panel-index="panel2">
         <template #header>
           <h3>Header du panneau</h3>
         </template>
@@ -30,7 +30,7 @@
           enim vel, vehicula ex.
         </template>
       </q-expansion-panel>
-      <q-expansion-panel panel-index="panel3" >
+      <q-expansion-panel panel-index="panel3">
         <template #header>
           <h3>Header du panneau</h3>
         </template>
@@ -47,6 +47,3 @@
     </q-expansion-panels>
   </main>
 </template>
-
-<script setup>
-</script>
