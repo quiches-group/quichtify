@@ -1,13 +1,18 @@
 <template>
-  <div class="h-32 w-32">
-    <div v-if="isOpen" class="z-50 border px-4 py-3 rounded" :class="classes" :style="`background-color: ${color}`">
-      <slot/>
+  <div v-if="isOpen" class="z-50 border px-4 py-3 rounded" :class="classes" :style="`background-color: ${color}`">
+    <slot/>
+    <div class="absolute top-0 right-0 px-4 py-3 cursor-pointer">
+      <slot name="close-btn">
+        <button @click="$emit('update:isOpen', false)">Close</button>
+      </slot>
     </div>
   </div>
 </template>
 
 <script setup>
 import {computed} from "vue";
+
+defineEmits(['update:isOpen']);
 
 const props = defineProps({
   isOpen: {
