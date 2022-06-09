@@ -45,7 +45,7 @@ export default {
       type: String,
       default: 'primary',
       validator(value) {
-        const validColorSnackbar = ['primary', 'error', 'success'];
+        const validColorSnackbar = ['primary', 'error', 'success', 'secondary', 'warning'];
         return validColorSnackbar.includes(value);
       },
     },
