@@ -31,7 +31,3 @@ const state = reactive({
   showSnackbarCustomCloseBtn: false
 });
 </script>
-
-<style scoped>
-
-</style>
