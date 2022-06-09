@@ -18,30 +18,29 @@ const props = defineProps({
     type: String,
     default: 'medium',
     validator(value) {
-      const validValues = ['small', 'medium', 'large'];
-      return validValues.includes(value);
+      return ['small', 'medium', 'large'].includes(value);
     },
   },
   position: {
     type: String,
     default: 'bottom',
     validator(value) {
-      const validValues = ['bottom', 'bottom-left', 'bottom-right', 'top', 'top-left', 'top-right'];
-      return validValues.includes(value);
+      return ['bottom', 'bottom-left', 'bottom-right', 'top', 'top-left', 'top-right', 'left', 'right'].includes(value);
     },
-  },color: {
+  },
+  color: {
     type: String,
     default: 'rgba(0, 0, 0, 0.1)',
   },
 });
-console.log(props.isOpen)
+
 const classes = computed(() => {
   const styles = [];
 
   if (props.isOpen) {
     styles.push('q-animate-fadeIn');
   }
- // Size
+  // Size
   if (props.size === 'small') {
     styles.push('q-snkb--small');
   }
@@ -75,6 +74,12 @@ const classes = computed(() => {
   if (props.position === 'top-right') {
     styles.push('q-snkb--top-right')
   }
+  if (props.position === 'left') {
+    styles.push('q-snkb--left')
+  }
+  if (props.position === 'right') {
+    styles.push('q-snkb--right')
+  }
   return styles;
 })
 </script>
@@ -85,9 +90,12 @@ const classes = computed(() => {
 .q-snkb--small {
   @apply w-3/12
 }
+
 .q-snkb--medium {
   @apply w-6/12
-}.q-snkb--large {
+}
+
+.q-snkb--large {
   @apply w-9/12
 }
 
@@ -95,19 +103,32 @@ const classes = computed(() => {
 .q-snkb--bottom {
   @apply absolute left-1/2 -translate-x-1/2 bottom-2
 }
+
 .q-snkb--bottom-left {
   @apply absolute left-2 bottom-2
 }
+
 .q-snkb--bottom-right {
   @apply absolute right-2 bottom-2
 }
+
 .q-snkb--top {
   @apply absolute left-1/2 -translate-x-1/2 top-2
 }
+
 .q-snkb--top-right {
   @apply absolute right-2 top-2
 }
+
 .q-snkb--top-left {
   @apply absolute left-2 top-2
+}
+
+.q-snkb--left {
+  @apply absolute left-2 top-1/2 -translate-y-1/2
+}
+
+.q-snkb--right {
+  @apply absolute right-2 top-1/2 -translate-y-1/2
 }
 </style>
