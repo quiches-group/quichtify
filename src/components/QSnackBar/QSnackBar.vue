@@ -41,7 +41,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    color: {
+    colorBackground: {
       type: String,
       default: 'primary',
       validator(value) {
@@ -89,20 +89,19 @@ export default {
         allClasses.push('snackbar--outline');
       }
 
-      // COLORS
-      if (this.color === 'primary') {
+      if (this.colorBackground === 'primary') {
         allClasses.push('snackbar--primary');
       }
-      if (this.color === 'success') {
+      if (this.colorBackground === 'success') {
         allClasses.push('snackbar--success');
       }
-      if (this.color === 'error') {
+      if (this.colorBackground === 'error') {
         allClasses.push('snackbar--error');
       }
-      if (this.color === 'warning') {
+      if (this.colorBackground === 'warning') {
         allClasses.push('snackbar--warning');
       }
-      if (this.color === 'secondary') {
+      if (this.colorBackground === 'secondary') {
         allClasses.push('snackbar--secondary');
       }
 
