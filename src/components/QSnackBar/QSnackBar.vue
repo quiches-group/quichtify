@@ -1,13 +1,16 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div :class="{ 'q-animate-fadeIn': isOpen, 'q-animate-fadeOut': !isOpen}">
-    <div v-if="isOpen" :class="allClasses" class="max-w-md mx-auto mb-8 absolute inset-x-0 bottom-0">
+    <div v-if="isOpen" :class="allClasses">
       <q-row>
         <q-col :md="10">
           <p class="text-snackbar" :class="colorTextClass">{{ message }}</p>
         </q-col>
         <q-col :md="2">
-          <q-button class="button-snackbar" variant="plain-rounded-full" :color="colorButton" size="small" @click="Close">X</q-button>
+          <q-button
+              class="button-snackbar" variant="plain-rounded-full" :color="colorButton" size="small"
+              @click="Close">X
+          </q-button>
         </q-col>
       </q-row>
     </div>
@@ -25,6 +28,13 @@ export default {
       validator(value) {
         const validVariant = ['tile', 'rounded', 'shaped', 'outline'];
         return validVariant.includes(value);
+      },
+    },
+    position: {
+      type: String,
+      validator(value) {
+        const validPosition = ['top-center', 'bottom-center', 'top-right', 'top-left', 'bottom-left', 'bottom-right'];
+        return validPosition.includes(value);
       },
     },
     open: {
@@ -83,14 +93,38 @@ export default {
       if (this.color === 'primary') {
         allClasses.push('snackbar--primary');
       }
-
       if (this.color === 'success') {
         allClasses.push('snackbar--success');
       }
-
       if (this.color === 'error') {
         allClasses.push('snackbar--error');
       }
+      if (this.color === 'warning') {
+        allClasses.push('snackbar--warning');
+      }
+      if (this.color === 'secondary') {
+        allClasses.push('snackbar--secondary');
+      }
+
+      if (this.position === 'top-center') {
+        allClasses.push('snackbar--top-center');
+      }
+      if (this.position === 'top-right') {
+        allClasses.push('snackbar--top-right');
+      }
+      if (this.position === 'top-left') {
+        allClasses.push('snackbar--top-left');
+      }
+      if (this.position === 'bottom-center') {
+        allClasses.push('snackbar--bottom-center');
+      }
+      if (this.position === 'bottom-right') {
+        allClasses.push('snackbar--bottom-right');
+      }
+      if (this.position === 'bottom-left') {
+        allClasses.push('snackbar--bottom-left');
+      }
+
       return allClasses;
     },
     colorTextClass() {
@@ -112,6 +146,8 @@ export default {
 <style lang="scss" scoped>
 
 .snackbar {
+  @apply max-w-md mx-16 my-8 absolute;
+  min-width: 400px;
 
   &--tile {
     border-radius: 5px;
@@ -141,6 +177,40 @@ export default {
 
   &--error {
     background-color: #ff5252;
+  }
+
+  &--warning {
+    background-color: #f69530;
+  }
+
+  &--secondary {
+    background-color: #607d8b;
+  }
+
+  &--top-center {
+    @apply inset-x-0 top-0;
+    margin: 32px auto;
+  }
+
+  &--top-right {
+    @apply top-0 right-0;
+  }
+
+  &--top-left {
+    @apply left-0 top-0;
+  }
+
+  &--bottom-center {
+    @apply bottom-0 inset-x-0;
+    margin: 32px auto;
+  }
+
+  &--bottom-right {
+    @apply bottom-0 right-0;
+  }
+
+  &--bottom-left {
+    @apply bottom-0 left-0;
   }
 }
 
