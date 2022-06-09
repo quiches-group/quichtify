@@ -1,7 +1,7 @@
 <template>
   <label class="q-input-label"
     >{{ title }}
-    <input :value="modelValue" class="q-input" type="text" :placeholder="placeholder" @input="$emit('update:modelValue', $event.target.value)" />
+    <input :value="modelValue" class="q-input" :type="inputType" :placeholder="placeholder" @input="$emit('update:modelValue', $event.target.value)" />
     <p v-if="showError" class="q-input-error">{{ error }}</p>
   </label>
 </template>
@@ -19,6 +19,10 @@ export default {
       required: false,
     },
     modelValue: {
+      type: String,
+      required: true,
+    },
+    inputType: {
       type: String,
       required: true,
     },
