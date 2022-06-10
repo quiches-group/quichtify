@@ -7,7 +7,11 @@ export default {
   component: QDropdown,
   subcomponents: {},
   // More on argTypes: https://storybook.js.org/docs/vue/api/argtypes
-  argTypes: {},
+  argTypes: {
+    accentColor: {
+      control: 'color',
+    },
+  },
   // More on Story layout: https://storybook.js.org/docs/vue/configure/story-layout
   parameters: {},
 };
@@ -21,7 +25,7 @@ const Template = (args) => ({
     return { args };
   },
   // And then the `args` are bound to your component with `v-bind="args"`
-  template: '<q-dropdown placeholder="Placeholder" :options="args.options" />',
+  template: '<q-dropdown :accent-color="args.accentColor" placeholder="Placeholder" :options="args.options" />',
 });
 
 export const Example = Template.bind({});
