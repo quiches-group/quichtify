@@ -1,23 +1,14 @@
 <template>
-    <div class="q-panel rounded-lg border bg-white border-gray-200 shadow-lg shadow-black-500/50" :class="{ 'mb-2': state.panelIsOpen }">
-      <h2 class="accordion-header mb-0">
-        <button :disabled="props.disabled" class="q-expansion-panel-button relative flex items-center w-full py-4 px-5 text-base text-gray-800 text-left border-0 disabled:opacity-30" type="button" @click="togglePanel">
-          <slot name="header"/>
-          <q-chevron :accent-color="props.accentColor" :state="state.panelIsOpen" class="ml-auto"/>
-        </button>
-      </h2>
-      <transition
-          :class="panelClasses"
-          @enter="enter"
-          @after-enter="afterEnter"
-          @leave="leave"
-      >
-        <div v-show="state.panelIsOpen">
-          <div class="slide__slot-container transition py-4 px-5">
-            <slot name="content"/>
-          </div>
+    <div class="q-panel shadow-black-500/50" :class="panelClasses">
+      <button :disabled="props.disabled" class="q-panel__button" type="button" @click="togglePanel">
+        <slot name="header"/>
+        <q-chevron :accent-color="props.accentColor" :state="state.panelIsOpen" class="ml-auto"/>
+      </button>
+      <div class="q-panel__content-container">
+        <div>
+          <slot name="content"/>
         </div>
-      </transition>
+      </div>
     </div>
 </template>
 
@@ -45,51 +36,50 @@ const state = reactive({
 });
 
 const panelClasses = computed(() => {
-  const classes = ['slide'];
-  if (!props.disableAnimation) {
-    classes.push('slide-enter-active')
-    classes.push('slide-leave-active')
+  const classes = [];
+
+  if (state.panelIsOpen) {
+    classes.push('q-panel--opened')
   }
+
+  if (!props.disableAnimation) {
+    classes.push('q-panel--animated');
+  }
+
   return classes;
 });
 
 const togglePanel = () => {
   state.panelIsOpen = !state.panelIsOpen
 };
-
-// Animation methods
-const enter = (el) => {
-  // eslint-disable-next-line no-param-reassign
-  el.style.height = 'auto';
-  const {height} = getComputedStyle(el);
-  // eslint-disable-next-line no-param-reassign
-  el.style.height = 0;
-  getComputedStyle(el);
-  setTimeout(() => {
-    // eslint-disable-next-line no-param-reassign
-    el.style.height = height;
-  });
-};
-const afterEnter = (el) => {
-  // eslint-disable-next-line no-param-reassign
-  el.style.height = 'auto';
-};
-const leave = (el) => {
-  // eslint-disable-next-line no-param-reassign
-  el.style.height = getComputedStyle(el).height;
-
-  getComputedStyle(el);
-  setTimeout(() => {
-    // eslint-disable-next-line no-param-reassign
-    el.style.height = 0;
-  });
-};
 </script>
 
-<style lang="scss" scoped>
-.slide {
-  &.slide-leave-active, &.slide-enter-active {
-    @apply transition-all duration-300 ease-in-out overflow-hidden
+<style lang="scss">
+.q-panel {
+  @apply rounded-lg border bg-white border-gray-200 shadow-lg overflow-hidden;
+
+  &--animated {
+    .q-panel__content-container {
+      @apply transition-all duration-300 ease-in-out;
+    }
+  }
+
+  &__button {
+    @apply relative flex items-center w-full py-4 px-5 text-base text-gray-800 text-left border-0 disabled:opacity-30 mb-0;
+  }
+
+  &__content-container {
+    @apply max-h-0;
+
+    & > div {
+      @apply py-4 px-5
+    }
+  }
+
+  &--opened {
+    .q-panel__content-container {
+      @apply max-h-screen mb-2;
+    }
   }
 }
 </style>
