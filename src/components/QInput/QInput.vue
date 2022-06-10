@@ -1,63 +1,97 @@
 <template>
-  <label class="q-input-label"
-    >{{ title }}
-    <input :value="modelValue" class="q-input" :type="inputType" :placeholder="placeholder" @input="$emit('update:modelValue', $event.target.value)" />
-    <p v-if="showError" class="q-input-error">{{ error }}</p>
-  </label>
+  <div class="q-input">
+    <input
+      :value="modelValue"
+      type="text"
+      :disabled="disabled"
+      :class="classes"
+      :placeholder="placeholder"
+      :style="style"
+      @input="emit('update:modelValue', $event.target.value)"
+    />
+    <p v-if="showError" class="q-input--error">{{ error }}</p>
+  </div>
 </template>
 
-<script>
-export default {
-  name: 'QInput',
-  props: {
-    title: {
-      type: String,
-      required: false,
-    },
-    placeholder: {
-      type: String,
-      required: false,
-    },
-    modelValue: {
-      type: String,
-      required: true,
-    },
-    inputType: {
-      type: String,
-      required: true,
-    },
-    error: {
-      type: String,
-      required: false,
-    },
-  },
+<script setup>
+import { computed, defineEmits } from "vue";
 
-  emits: ['update:modelValue'],
+const emit = defineEmits(["update:modelValue"]);
 
-  computed: {
-    showError() {
-      return this.error !== '';
-    },
+const props = defineProps({
+  modelValue: {
+    type: String,
+    required: true,
   },
-};
+  placeholder: {
+    type: String,
+    required: true,
+  },
+  error: {
+    type: String,
+    required: false,
+    default: null,
+  },
+  outline: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  backgroundColor: {
+    type: String,
+    required: false,
+    default: null,
+  },
+})
+
+const style = computed(() => ({
+  backgroundColor: props.backgroundColor,
+}));
+
+const showError = computed(() => !!props.error);
+
+const classes = computed(() => {
+  const classesArray = [];
+
+  if (props.outline) {
+    classesArray.push("border");
+    classesArray.push("border-slate-500");
+    classesArray.push("focus:border-slate-500");
+
+    if (showError.value) {
+      classesArray.push("border-rose-500");
+      classesArray.push("focus:border-rose-500");
+    }
+  }
+
+  return classesArray.join(" ");
+});
 </script>
 
 <style>
-.q-input-label {
+.q-input {
   @apply relative
     flex
     flex-col
-    space-y-1
-    pb-5;
+    space-y-1;
 }
 
-.q-input {
-  @apply border-4 border-transparent border-b-primary border-r-0 border-l-0
-    focus:shadow-none focus:outline-none;
+.q-input input {
+  @apply m-0
+    p-3
+    rounded-lg
+    focus:outline-none;
 }
 
-.q-input-error {
-  @apply absolute bottom-0
+.q-input--error {
+  @apply absolute
+    -top-0.5
+    left-3
     max-w-prose
     text-red-700
     text-xs
