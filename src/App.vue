@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import Example from './components/QDragAndDrop/Example.vue';
+import Example from './components/HelloWorld/Example.vue';
 </script>

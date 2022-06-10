@@ -1,6 +1,6 @@
 {
   "name": "quichtify",
-  "version": "1.13.0",
+  "version": "1.14.0",
   "main": "./dist/quichtify.umd.js",
   "module": "./dist/quichtify.es.js",
   "browser": "./dist/quichtify.cjs.js",
@@ -38,6 +38,7 @@
     "node-sass-magic-importer": "^5.3.2",
     "style-inject": "^0.3.0",
     "vue-easy-dnd": "^1.22.0",
+    "echarts": "^5.3.2",
     "vuedraggable": "^2.24.3"
   },
   "devDependencies": {
