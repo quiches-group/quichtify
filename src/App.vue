@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import Example from './components/HelloWorld/Example.vue';
+import Example from './components/QHelloWorld/Example.vue';
 </script>

@@ -31,10 +31,6 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  buttonText: {
-    type: String,
-    required: true,
-  },
   backgroundColor: {
     type: String,
     required: true,
