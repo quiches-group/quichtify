@@ -1,10 +1,10 @@
 <template>
-  <div ref="root" class="q-panels">
+  <div class="q-panels">
     <slot />
   </div>
 </template>
 
 <script setup>
-
+import 'vue';
 </script>
 

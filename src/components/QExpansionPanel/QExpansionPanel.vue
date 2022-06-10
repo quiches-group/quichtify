@@ -10,7 +10,8 @@
           :class="panelClasses"
           @enter="enter"
           @after-enter="afterEnter"
-          @leave="leave">
+          @leave="leave"
+      >
         <div v-show="state.panelIsOpen">
           <div class="slide__slot-container transition py-4 px-5">
             <slot name="content"/>
@@ -39,9 +40,8 @@ const state = reactive({
 });
 
 const panelClasses = computed(() => {
-  const classes = [];
-  classes.push('slide');
-  if (props.animated === true) {
+  const classes = ['slide'];
+  if (props.animated) {
     classes.push('slide-enter-active')
     classes.push('slide-leave-active')
   }
@@ -89,33 +89,24 @@ const leave = (el) => {
 }
 
 #dropdown-chevron {
-  position: relative;
-  width: 12px;
-  height: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @apply relative w-3 h-3 flex justify-center items-center;
 }
 
 #dropdown-chevron:after {
   content: '';
-  display: block;
-  width: 2px;
-  height: 8px;
   border-radius: 3px;
   background-color: rgb(55, 65, 81);
   transform-origin: 50% 100%;
   transform: translateX(-1px) rotate(-45deg);
+  @apply block w-0.5 h-3
 }
 
 #dropdown-chevron:before {
   content: '';
-  display: block;
-  width: 2px;
-  height: 8px;
   border-radius: 3px;
   background-color: rgb(55, 65, 81);
   transform-origin: 50% 100%;
   transform: rotate(45deg);
+  @apply block w-0.5 h-3
 }
 </style>
