@@ -1,12 +1,12 @@
 <template>
-    <div class="rounded-lg q-panel border bg-white border-gray-200 shadow-lg shadow-black-500/50" :class="{ 'mb-2': state.panelIsOpen }">
+    <div class="q-expansion-panel rounded-lg q-panel border bg-white border-gray-200 shadow-lg shadow-black-500/50" :class="{ 'mb-2': state.panelIsOpen }">
       <h2 class="accordion-header mb-0">
         <button :disabled="props.disabled" class="q-expansion-panel-button relative flex items-center w-full py-4 px-5 text-base text-gray-800 text-left border-0 disabled:opacity-30" type="button" @click="togglePanel">
           <slot name="header"/>
           <q-chevron :accent-color="props.accentColor" :state="state.panelIsOpen" class="ml-auto"/>
         </button>
       </h2>
-      <transition
+      <span
           :class="panelClasses"
           @enter="enter"
           @after-enter="afterEnter"
@@ -17,7 +17,7 @@
             <slot name="content"/>
           </div>
         </div>
-      </transition>
+      </span>
     </div>
 </template>
 
