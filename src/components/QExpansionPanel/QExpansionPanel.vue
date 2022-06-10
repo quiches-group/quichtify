@@ -1,9 +1,9 @@
 <template>
-    <div class="rounded-lg q-panel border bg-white border-gray-200 shadow-lg shadow-black-500/50"  :class="{ 'mb-2': state.panelIsOpen }" :data-panel-index="panelIndex">
+    <div class="rounded-lg q-panel border bg-white border-gray-200 shadow-lg shadow-black-500/50" :class="{ 'mb-2': state.panelIsOpen }" :data-panel-index="panelIndex">
       <h2 class="accordion-header mb-0">
         <button class="relative flex items-center w-full py-4 px-5 text-base text-gray-800 text-left border-0" type="button" @click="togglePanel">
           <slot name="header"/>
-          <span id="dropdown-chevron" class="ml-auto self-center transition-transform ease-in-out duration-250" :class="{ 'rotate-180': state.panelIsOpen }"/>
+          <q-chevron :accent-color="props.accentColor" :state="state.panelIsOpen" class="ml-auto"/>
         </button>
       </h2>
       <transition
@@ -23,6 +23,7 @@
 
 <script setup>
 import { reactive, computed } from 'vue';
+import QChevron from '../QChevron/QChevron.vue';
 
 const props = defineProps({
   animated: {
@@ -32,7 +33,11 @@ const props = defineProps({
   panelIndex: {
     type: String,
     default: null,
-  }
+  },
+  accentColor: {
+    type: String,
+    default: () => 'rgb(55, 65, 81)',
+  },
 });
 
 const state = reactive({
@@ -86,27 +91,5 @@ const leave = (el) => {
   &.slide-leave-active, &.slide-enter-active {
     @apply transition-all duration-300 ease-in-out overflow-hidden
   }
-}
-
-#dropdown-chevron {
-  @apply relative w-3 h-3 flex justify-center items-center;
-}
-
-#dropdown-chevron:after {
-  content: '';
-  border-radius: 3px;
-  background-color: rgb(55, 65, 81);
-  transform-origin: 50% 100%;
-  transform: translateX(-1px) rotate(-45deg);
-  @apply block w-0.5 h-3
-}
-
-#dropdown-chevron:before {
-  content: '';
-  border-radius: 3px;
-  background-color: rgb(55, 65, 81);
-  transform-origin: 50% 100%;
-  transform: rotate(45deg);
-  @apply block w-0.5 h-3
 }
 </style>

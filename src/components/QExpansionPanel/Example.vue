@@ -2,7 +2,7 @@
 <template>
   <main class="justify-center h-screen items-center">
     <q-expansion-panels>
-      <q-expansion-panel animated panel-index="panel1">
+      <q-expansion-panel :accent-color="'rgb(97, 67, 210)'" animated panel-index="panel1">
         <template #header>
           <h3>Header du panneau</h3>
         </template>
