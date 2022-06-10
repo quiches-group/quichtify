@@ -35,6 +35,7 @@ export const Example = Template.bind({});
 // More on args: https://storybook.js.org/docs/vue/writing-stories/args
 Example.args = {
   options: ['😀😎🙁🤯', '😀😡🥶🫡', '😀😶🫥🫣', '😀🥹😻', 'Ceci est un test !'],
+  placeholder: "Placeholder",
 };
 
 // More on interaction testing: https://storybook.js.org/docs/vue/writing-tests/interaction-testing
