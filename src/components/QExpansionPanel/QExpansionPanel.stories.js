@@ -10,20 +10,9 @@ export default {
   argTypes: {
     header: {
       control: 'text',
-      defaultValue: "This is the header of your panel",
     },
     content: {
       control: 'text',
-      defaultValue: `
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-        euismod nulla vitae odio pharetra maximus. In hac habitasse platea
-        dictumst. Sed maximus dolor eget massa fringilla congue. In tellus
-        ligula, pharetra in faucibus eu, hendrerit et elit. Vestibulum pellentesque,
-        dolor sed gravida porttitor, diam turpis gravida odio, dapibus dictum magna
-        turpis sodales augue. Sed in dapibus lorem. Duis sed elit tincidunt, ultrices
-        enim vel, vehicula ex.
-      `,
-
     },
     accentColor: {
       control: 'color',
@@ -60,7 +49,14 @@ const Template = (args) => ({
 export const Example = Template.bind({});
 // More on args: https://storybook.js.org/docs/vue/writing-stories/args
 Example.args = {
-  options: ['😀😎🙁🤯', '😀😡🥶🫡', '😀😶🫥🫣', '😀🥹😻', 'Ceci est un test !'],
+  header: 'This is the header of your panel',
+  content: `
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+    euismod nulla vitae odio pharetra maximus. In hac habitasse platea
+    dictumst. Sed maximus dolor eget massa fringilla congue. In tellus
+    ligula, pharetra in faucibus eu, hendrerit et elit. Vestibulum pellentesque,
+    dolor sed gravida porttitor, diam turpis gravida odio, dapibus dictum magna
+    turpis sodales augue. Sed in dapibus lorem. Duis sed elit tincidunt, ultrices
+    enim vel, vehicula ex.
+  `,
 };
-
-// More on interaction testing: https://storybook.js.org/docs/vue/writing-tests/interaction-testing
