@@ -24,6 +24,7 @@ import QDragAndDrop from './QDragAndDrop/QDragAndDrop.vue';
 import QTable from './QTable/QTable.vue';
 import QGraph from './QGraph/QGraph.vue';
 import QExpansionPanel from './QExpansionPanel/QExpansionPanel.vue';
+import QChevron from './QChevron/QChevron.vue';
 // TODO: 2 - Import your main component here
 
 const components = [
@@ -53,6 +54,7 @@ const components = [
   QDragAndDrop,
   QTable,
   QExpansionPanel,
+  QChevron,
 ]
 
 export default {
