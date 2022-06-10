@@ -1,5 +1,5 @@
 <template>
-    <div class="rounded-lg q-panel border bg-white border-gray-200 shadow-lg shadow-black-500/50" :class="{ 'mb-2': state.panelIsOpen }" :data-panel-index="panelIndex">
+    <div class="rounded-lg q-panel border bg-white border-gray-200 shadow-lg shadow-black-500/50" :class="{ 'mb-2': state.panelIsOpen }">
       <h2 class="accordion-header mb-0">
         <button class="relative flex items-center w-full py-4 px-5 text-base text-gray-800 text-left border-0" type="button" @click="togglePanel">
           <slot name="header"/>
@@ -29,10 +29,6 @@ const props = defineProps({
   animated: {
     type: Boolean,
     default: false
-  },
-  panelIndex: {
-    type: String,
-    default: null,
   },
   accentColor: {
     type: String,

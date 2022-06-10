@@ -1,5 +1,5 @@
 <template>
-  <span id="dropdown-chevron" class="self-center transition-transform ease-in-out duration-250" :class="{ 'rotate-180': props.state }" :style="style"/>
+  <span class="q-chevron self-center transition-transform ease-in-out duration-250" :class="{ 'rotate-180': props.state }" :style="style"/>
 </template>
 
 <script setup>
@@ -23,26 +23,24 @@ const style = computed(() => ({
 </script>
 
 <style scoped>
-#dropdown-chevron {
+.q-chevron {
   @apply relative w-3 h-3 flex justify-center items-center;
 }
 
-#dropdown-chevron:after {
+.q-chevron:after {
   content: '';
   border-radius: 3px;
   transform-origin: 50% 100%;
   background-color: var(--bg-color);
-  //background-color: rgb(55, 65, 81);
   transform: translateX(-1px) rotate(-45deg);
   @apply block w-0.5 h-2
 }
 
-#dropdown-chevron:before {
+.q-chevron:before {
   content: '';
   border-radius: 3px;
   transform-origin: 50% 100%;
   background-color: var(--bg-color);
-  //background-color: rgb(55, 65, 81);
   transform: rotate(45deg);
   @apply block w-0.5 h-2
 }
