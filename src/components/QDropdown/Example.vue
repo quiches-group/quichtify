@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <main class="flex justify-center h-screen items-center">
-    <q-dropdown placeholder="Placeholder" :options="randomEmojiArray" @select="selectItem" />
+    <q-dropdown placeholder="Placeholder" :options="randomEmojiArray" :accent-color="'rgb(55, 65, 81)'" @select="selectItem" />
   </main>
 </template>
 

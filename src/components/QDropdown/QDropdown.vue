@@ -9,7 +9,7 @@
         @focusout="toggleMenu(false)"
       >
         {{ state.selected ?? placeholder }}
-        <span id="dropdown-chevron" class="ml-3 self-center transition-transform ease-in-out duration-250" :class="{ 'rotate-180': state.menuIsOpen }" />
+        <q-chevron :accent-color="props.accentColor" class="ml-3" :state="state.menuIsOpen"/>
       </button>
     </div>
 
@@ -33,10 +33,11 @@
 
 <script setup>
 import { reactive, watch } from 'vue';
+import QChevron from '../QChevron/QChevron.vue';
 
 const emit = defineEmits(['select']);
 
-defineProps({
+const props = defineProps({
   placeholder: {
     type: String,
     default: '',
@@ -44,6 +45,10 @@ defineProps({
   options: {
     type: Array,
     required: true,
+  },
+  accentColor: {
+    type: String,
+    default: () => 'rgb(55, 65, 81)',
   },
 });
 
@@ -71,36 +76,3 @@ watch(
   },
 );
 </script>
-
-<style scoped>
-#dropdown-chevron {
-  position: relative;
-  width: 12px;
-  height: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#dropdown-chevron:after {
-  content: '';
-  display: block;
-  width: 2px;
-  height: 8px;
-  border-radius: 3px;
-  background-color: rgb(55, 65, 81);
-  transform-origin: 50% 100%;
-  transform: translateX(-1px) rotate(-45deg);
-}
-
-#dropdown-chevron:before {
-  content: '';
-  display: block;
-  width: 2px;
-  height: 8px;
-  border-radius: 3px;
-  background-color: rgb(55, 65, 81);
-  transform-origin: 50% 100%;
-  transform: rotate(45deg);
-}
-</style>
