@@ -1,13 +1,13 @@
 <template>
-    <div class="q-panel shadow-black-500/50" :class="panelClasses">
-      <button :disabled="props.disabled" class="q-panel__button" type="button" @click="togglePanel">
+    <div class="q-panel shadow-black-500/50" :class="panelClasses" :style="style">
+      <button :disabled="props.disabled" type="button" @click="togglePanel">
         <slot name="header"/>
         <q-chevron :accent-color="props.accentColor" :state="state.panelIsOpen" class="ml-auto"/>
       </button>
 
-      <q-separator class="mx-5 w-auto"/>
-
       <div class="q-panel__content-container">
+        <q-separator v-if="showSeparator"/>
+
         <div>
           <slot name="content"/>
         </div>
@@ -36,6 +36,14 @@ const props = defineProps({
     type: String,
     default: () => 'rgb(55, 65, 81)',
   },
+  headerBackgroundColor: {
+    type: String,
+    default: '#ffffff',
+  },
+  contentBackgroundColor: {
+    type: String,
+    default: '#ffffff',
+  },
 });
 
 const state = reactive({
@@ -56,27 +64,34 @@ const panelClasses = computed(() => {
   return classes;
 });
 
+const style = computed(() => ({
+  '--header-bg-color': props.headerBackgroundColor,
+  '--content-bg-color': props.contentBackgroundColor,
+}));
+
 const togglePanel = () => {
   state.panelIsOpen = !state.panelIsOpen
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .q-panel {
-  @apply rounded-lg border bg-white border-gray-200 shadow-lg overflow-hidden;
+  @apply rounded-lg border border-gray-200 shadow-lg overflow-hidden;
 
   &--animated {
     .q-panel__content-container {
-      @apply transition-all duration-300 ease-in-out;
+      @apply transition-all duration-300 ease-[cubic-bezier(0.95,0.05,0.05,0.95)]
     }
   }
 
-  &__button {
-    @apply relative flex items-center w-full py-4 px-5 text-base text-gray-800 text-left border-0 disabled:opacity-30 mb-0;
+  & > button {
+    @apply relative flex items-center w-full py-4 px-5 text-base text-left border-0 disabled:opacity-30 mb-0;
+    background-color: var(--header-bg-color);
   }
 
   &__content-container {
-    @apply max-h-0;
+    @apply max-h-0 m-0;
+    background-color: var(--content-bg-color);
 
     & > div {
       @apply py-4 px-5
@@ -84,8 +99,10 @@ const togglePanel = () => {
   }
 
   &--opened {
+    @apply mb-2;
+
     .q-panel__content-container {
-      @apply max-h-screen mb-2;
+      @apply max-h-screen;
     }
   }
 }
