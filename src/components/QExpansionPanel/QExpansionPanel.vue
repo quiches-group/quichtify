@@ -67,7 +67,7 @@ const togglePanel = () => {
 
   &--animated {
     .q-panel__content-container {
-      @apply transition-all duration-300 ease-in-out;
+      @apply transition-all duration-300 ease-[cubic-bezier(0.95,0.05,0.05,0.95)]
     }
   }
 
