@@ -43,7 +43,7 @@
         enim vel, vehicula ex.
       </template>
     </q-expansion-panel>
-    <q-expansion-panel>
+    <q-expansion-panel show-separator>
       <template #header>
         <h3>Header du panneau</h3>
       </template>
