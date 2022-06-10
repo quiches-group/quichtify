@@ -11,6 +11,9 @@ export default {
     accentColor: {
       control: 'color',
     },
+    disabled: {
+      control: 'boolean'
+    },
   },
   // More on Story layout: https://storybook.js.org/docs/vue/configure/story-layout
   parameters: {},
@@ -25,7 +28,7 @@ const Template = (args) => ({
     return { args };
   },
   // And then the `args` are bound to your component with `v-bind="args"`
-  template: '<q-dropdown :accent-color="args.accentColor" placeholder="Placeholder" :options="args.options" />',
+  template: '<q-dropdown v-bind="args" :accent-color="args.accentColor" placeholder="Placeholder" :options="args.options" />',
 });
 
 export const Example = Template.bind({});
