@@ -26,7 +26,7 @@ import { reactive, computed } from 'vue';
 import QChevron from '../QChevron/QChevron.vue';
 
 const props = defineProps({
-  animated: {
+  disableAnimation: {
     type: Boolean,
     default: false
   },
@@ -42,7 +42,7 @@ const state = reactive({
 
 const panelClasses = computed(() => {
   const classes = ['slide'];
-  if (props.animated) {
+  if (!props.disableAnimation) {
     classes.push('slide-enter-active')
     classes.push('slide-leave-active')
   }

@@ -15,7 +15,7 @@
         enim vel, vehicula ex.
       </template>
     </q-expansion-panel>
-    <q-expansion-panel animated>
+    <q-expansion-panel disable-animation>
       <template #header>
         <h3>Header du panneau</h3>
       </template>
