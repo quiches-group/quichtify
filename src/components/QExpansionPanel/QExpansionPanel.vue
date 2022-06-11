@@ -76,7 +76,7 @@ const togglePanel = () => {
 
 <style lang="scss" scoped>
 .q-panel {
-  @apply rounded-lg border border-gray-200 shadow-lg overflow-hidden;
+  @apply rounded-lg border border-gray-200 shadow-lg overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.95,0.05,0.05,0.95)];
 
   &--animated {
     .q-panel__content-container {
