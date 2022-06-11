@@ -1,91 +1,42 @@
 <template>
-  <ul ref="root" class="q-menu flex flex-col md:flex-row" :style="style">
-    <slot/>
+  <ul class="q-menu" :style="style" :class="classes">
+    <slot />
   </ul>
 </template>
 
 <script setup>
-import {
-  ref, onMounted, computed, watch,
-} from 'vue';
-
-const emit = defineEmits(['selectIndex']);
-const root = ref();
+import { computed } from 'vue';
 
 const props = defineProps({
-  selectedIndex: {
-    type: String,
-    default: null,
-  },
   backgroundColor: {
     type: String,
     default: null,
   },
-  textColor: {
-    type: String,
-    default: '#000',
+  rowOnMobile: {
+    type: Boolean,
+    default: false,
   },
-  activeBackgroundColor: {
-    type: String,
-    default: '#40B883',
-  },
-  activeTextColor: {
-    type: String,
-    default: '#fff',
+  rowOnDesktop: {
+    type: Boolean,
+    default: false,
   },
 });
 
 const style = computed(() => ({
-  color: props.textColor,
-  backgroundColor: props.backgroundColor,
+  '--bg-color': props.backgroundColor,
 }));
 
-const resetItems = () => {
-  const children = Array.from(root.value.children);
-
-  children.forEach((element) => {
-    element.classList.remove('q-menu-item--active');
-    element.style.removeProperty('background-color');
-    element.style.removeProperty('color');
-  });
-};
-
-const selectItem = (element) => {
-  const index = element.attributes['data-item-index'].value;
-  emit('selectIndex', index);
-};
-
-const setItemsClasses = (index) => {
-  const children = Array.from(root.value.children);
-  const item = children.find((el) => el.attributes['data-item-index'].value === index);
-
-  resetItems();
-
-  item.classList.add('q-menu-item--active');
-  item.style.setProperty('background-color', props.activeBackgroundColor);
-  item.style.setProperty('color', props.activeTextColor);
-};
-
-onMounted(() => {
-  const children = Array.from(root.value.children);
-
-  children.forEach((item, index) => {
-    if (!item.attributes['data-item-index']) {
-      item.setAttribute('data-item-index', index);
-    }
-    item.addEventListener('click', () => {
-      selectItem(item);
-    });
-  });
-
-  if (!props.selectedIndex) {
-    selectItem(children[0]);
-  } else {
-    setItemsClasses(props.selectedIndex);
-  }
-});
-
-watch(() => props.selectedIndex, (newIndex) => {
-  setItemsClasses(newIndex);
-});
+const classes = computed(() => ({
+  'flex-col': !props.rowOnMobile,
+  'flex-row': props.rowOnMobile,
+  'md:flex-col': !props.rowOnDesktop,
+  'md:flex-row': props.rowOnDesktop,
+}));
 </script>
+
+<style lang="scss" scoped>
+.q-menu {
+  @apply flex;
+  background-color: var(--bg-color);
+}
+</style>
