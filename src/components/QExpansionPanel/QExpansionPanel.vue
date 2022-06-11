@@ -1,7 +1,9 @@
 <template>
     <div class="q-panel shadow-black-500/50" :class="panelClasses" :style="style">
       <button :disabled="props.disabled" type="button" @click="togglePanel">
-        <slot name="header"/>
+        <div class="flex-1">
+          <slot name="header"/>
+        </div>
         <q-chevron :accent-color="props.accentColor" :state="state.panelIsOpen" class="ml-auto"/>
       </button>
 

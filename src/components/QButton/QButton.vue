@@ -1,5 +1,5 @@
 <template>
-  <button :class="classes" :disabled="disabled || loading" @click="$emit('click')">
+  <button :class="classes" :disabled="disabled || loading" @click="$emit('click', $event)">
     <q-loader v-if="loading" :size="20" :bg-color="loaderBgColor" :accent-color="loaderAccentColor" class="absolute top-1/2 left-1/2 text-white -translate-x-1/2 -translate-y-1/2" />
     <div class="q-btn__slot-container" :class="{ invisible: loading }">
       <slot />
