@@ -17,7 +17,16 @@ export default {
     accentColor: {
       control: 'color',
     },
+    headerBackgroundColor: {
+      control: 'color',
+    },
+    contentBackgroundColor: {
+      control: 'color',
+    },
     disabled: {
+      control: 'boolean'
+    },
+    showSeparator: {
       control: 'boolean'
     },
   },
@@ -37,7 +46,7 @@ const Template = (args) => ({
   template: `
     <q-expansion-panel v-bind="args">
       <template #header>
-        <h3 class="mr-20">{{ args.header }}</h3>
+        <h3>{{ args.header }}</h3>
       </template>
       <template #content>
         <div class="w-80">{{ args.content }}</div>
