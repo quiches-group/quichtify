@@ -2,7 +2,7 @@
   <div class="q-input">
     <input
       :value="modelValue"
-      type="text"
+      :type="inputType"
       :disabled="disabled"
       :class="classes"
       :placeholder="placeholder"
@@ -46,6 +46,11 @@ const props = defineProps({
     type: String,
     required: false,
     default: null,
+  },
+  inputType: {
+    type: String,
+    required: false,
+    default: "text",
   },
 })
 
