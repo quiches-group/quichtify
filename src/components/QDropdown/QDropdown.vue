@@ -2,7 +2,8 @@
   <div class="q-dropdown relative inline-block text-left">
     <div>
       <button
-        class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+        :disabled="props.disabled"
+        class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 disabled:opacity-40"
         :class="{ 'text-gray-400': !state.selected }"
         type="button"
         @click="toggleMenu"
@@ -38,6 +39,10 @@ import QChevron from '../QChevron/QChevron.vue';
 const emit = defineEmits(['select']);
 
 const props = defineProps({
+  disabled: {
+    type: Boolean,
+    default: false
+  },
   placeholder: {
     type: String,
     default: '',
