@@ -57,6 +57,6 @@ const style = reactive({
 }
 
 .opacity-background {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 </style>
