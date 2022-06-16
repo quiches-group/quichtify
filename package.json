@@ -1,6 +1,6 @@
 {
   "name": "quichtify",
-  "version": "1.15.7",
+  "version": "1.15.8",
   "main": "./dist/quichtify.umd.js",
   "module": "./dist/quichtify.es.js",
   "browser": "./dist/quichtify.cjs.js",
