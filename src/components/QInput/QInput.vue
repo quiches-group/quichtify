@@ -16,7 +16,7 @@
 <script setup>
 import { computed, defineEmits } from "vue";
 
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:modelValue", "input"]);
 
 const props = defineProps({
   modelValue: {
