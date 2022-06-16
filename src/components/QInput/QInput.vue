@@ -7,7 +7,7 @@
       :class="classes"
       :placeholder="placeholder"
       :style="style"
-      @input="emit('update:modelValue', $event.target.value)"
+      @input="emit('update:modelValue', $event.target.value), emit('input', $event)"
     />
     <p v-if="showError" class="q-input--error">{{ error }}</p>
   </div>
