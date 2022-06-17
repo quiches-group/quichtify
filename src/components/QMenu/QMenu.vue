@@ -27,10 +27,10 @@ const style = computed(() => ({
 }));
 
 const classes = computed(() => ({
-  'flex-col': !props.rowOnMobile,
-  'flex-row': props.rowOnMobile,
-  'md:flex-col': !props.rowOnDesktop,
-  'md:flex-row': props.rowOnDesktop,
+  'col-on-mobile': !props.rowOnMobile,
+  'row-on-mobile': props.rowOnMobile,
+  'col-on-desktop': !props.rowOnDesktop,
+  'row-on-desktop': props.rowOnDesktop,
 }));
 </script>
 
@@ -38,5 +38,21 @@ const classes = computed(() => ({
 .q-menu {
   @apply flex;
   background-color: var(--bg-color);
+
+  &.col-on-mobile {
+    @apply flex-col;
+  }
+
+  &.row-on-mobile {
+    @apply flex-row;
+  }
+
+  &.col-on-desktop {
+    @apply md:flex-col;
+  }
+
+  &.row-on-desktop {
+    @apply md:flex-row;
+  }
 }
 </style>
