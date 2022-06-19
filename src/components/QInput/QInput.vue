@@ -7,7 +7,7 @@
       :class="classes"
       :placeholder="placeholder"
       :style="style"
-      @input="emit('update:modelValue', $event.target.value), emit('input', $event)"
+      @input="emit('update:modelValue', $event.target.value), emit('change', $event)"
     />
     <p v-if="showError" class="q-input--error">{{ error }}</p>
   </div>
@@ -16,7 +16,7 @@
 <script setup>
 import { computed, defineEmits } from "vue";
 
-const emit = defineEmits(["update:modelValue", "input"]);
+const emit = defineEmits(['update:modelValue', 'change']);
 
 const props = defineProps({
   modelValue: {
