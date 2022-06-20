@@ -93,7 +93,7 @@ const bgColor = computed(() => {
   }
 
   const colors = {
-    info: '#FFB883',
+    info: '#42B883',
     alert: '#db7d26',
     error: '#db2626',
   };
