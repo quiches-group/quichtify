@@ -1,5 +1,5 @@
 <template>
-  <button :class="classes" :disabled="disabled || loading" @click="$emit('click', $event)">
+  <button :class="classes" :style="styles" :disabled="disabled || loading" @click="$emit('click', $event)">
     <q-loader v-if="loading" :size="20" :bg-color="loaderBgColor" :accent-color="loaderAccentColor" class="absolute top-1/2 left-1/2 text-white -translate-x-1/2 -translate-y-1/2" />
     <div class="q-btn__slot-container" :class="{ invisible: loading }">
       <slot />
@@ -40,7 +40,11 @@ export default {
       default: () => 'primary',
       validator(value) {
         const validValues = ['primary', 'secondary', 'white'];
-        return validValues.includes(value);
+
+        const rgbColorRegex = /rgba?\(\d{1,3}, \d{1,3}, \d{1,3}(?:, 0?.?\d{1,3})?\)/gm;
+        const hexColorRegex = /#[a-fA-F0-8]{3}(?:[a-fA-F0-8]{3})?/gm;
+
+        return validValues.includes(value) || rgbColorRegex.test(value) || hexColorRegex.test(value);
       },
     },
     animation: {
@@ -62,6 +66,9 @@ export default {
     disabled: {
       type: Boolean,
       default: () => false,
+    },
+    textColor: {
+      type: String,
     },
   },
   emits: ['click'],
@@ -173,6 +180,16 @@ export default {
       }
 
       return 'white';
+    },
+    styles() {
+      const rgbColorRegex = /rgba?\(\d{1,3}, \d{1,3}, \d{1,3}(?:, 0?.?\d{1,3})?\)/gm;
+      const hexColorRegex = /#[a-fA-F0-8]{3}(?:[a-fA-F0-8]{3})?/gm;
+
+      if (rgbColorRegex.test(this.color) || hexColorRegex.test(this.color)) {
+        return this.color;
+      }
+
+      return `background-color: ${this.color}; color: ${this.textColor}`;
     },
   },
 };
