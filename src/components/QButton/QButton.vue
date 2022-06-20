@@ -185,7 +185,7 @@ export default {
       const rgbColorRegex = /rgba?\(\d{1,3}, \d{1,3}, \d{1,3}(?:, 0?.?\d{1,3})?\)/gm;
       const hexColorRegex = /#[a-fA-F0-8]{3}(?:[a-fA-F0-8]{3})?/gm;
 
-      if (!rgbColorRegex.test(this.color) || !hexColorRegex.test(this.color)) {
+      if (!rgbColorRegex.test(this.color) && !hexColorRegex.test(this.color)) {
         return undefined;
       }
 

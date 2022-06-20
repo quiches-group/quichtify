@@ -108,6 +108,10 @@
         <q-button variant="link-underlined" color="white" :loading="true" @click="addEvent">Click Me</q-button>
         <q-button variant="outline" color="white" :loading="true" @click="addEvent">Click Me</q-button>
       </div>
+
+      <div class="grid gap-2">
+        <q-button color="#f40087" text-color="#fff" @click="addEvent">Click Me</q-button>
+      </div>
     </div>
 
     <div class="flex flex-col gap-y-5 items-center p-4 mt-5 rounded-lg border border-gray-300">
