@@ -1,5 +1,5 @@
 <template>
-  <div class="q-tab flex-auto px-2 py-1 cursor-pointer transition-colors text-center rounded-lg" :data-tab-index="tabIndex">
+  <div class="flex-auto px-2 py-1 text-center rounded-lg transition-colors cursor-pointer q-tab" :data-tab-index="tabIndex">
     <slot />
   </div>
 </template>
@@ -12,3 +12,9 @@ defineProps({
   },
 });
 </script>
+
+<style scoped>
+.q-tab[disabled] {
+  @apply pointer-events-none cursor-not-allowed opacity-75;
+}
+</style>

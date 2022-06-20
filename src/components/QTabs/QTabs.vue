@@ -1,13 +1,11 @@
 <template>
-  <div ref="root" class="q-tabs flex rounded-lg w-full p-1 space-x-1" :style="style">
+  <div ref="root" class="flex p-1 space-x-1 w-full rounded-lg q-tabs" :style="style">
     <slot />
   </div>
 </template>
 
 <script setup>
-import {
-  ref, onMounted, computed, watch,
-} from 'vue';
+import { ref, onMounted, computed, watch } from 'vue';
 
 const emit = defineEmits(['selectIndex']);
 const root = ref();
@@ -33,6 +31,10 @@ const props = defineProps({
     type: String,
     default: '#fff',
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const style = computed(() => ({
@@ -51,6 +53,9 @@ const resetTabs = () => {
 };
 
 const selectItem = (element) => {
+  if (props.disabled) {
+    return;
+  }
   const index = element.attributes['data-tab-index'].value;
 
   emit('selectIndex', index);
@@ -87,7 +92,26 @@ onMounted(() => {
   }
 });
 
-watch(() => props.selectedIndex, (newIndex) => {
-  setTabsClasses(newIndex);
-});
+watch(
+  () => props.selectedIndex,
+  (newIndex) => {
+    setTabsClasses(newIndex);
+  },
+);
+
+watch(
+  () => props.disabled,
+  () => {
+    const children = Array.from(root.value.children);
+
+    children.forEach((item) => {
+      if (!props.disabled) {
+        item.removeAttribute('disabled');
+        return;
+      }
+
+      item.setAttribute('disabled');
+    });
+  },
+);
 </script>
