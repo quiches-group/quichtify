@@ -73,7 +73,7 @@ export default {
       classes.push('q-btn');
 
       if (this.defaultPositionning === true) {
-        classes.push('revative');
+        classes.push('relative');
       }
 
       if (this.defaultStyle === true) {
@@ -192,7 +192,7 @@ export default {
 }
 
 .q-btn {
-  @apply relative flex items-center justify-center
+  @apply flex items-center justify-center
     outline-none cursor-pointer select-none
     transition-all duration-150;
 
