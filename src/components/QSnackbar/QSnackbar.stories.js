@@ -16,7 +16,7 @@ export default {
         defaultValue: false,
       },
     },
-    dissmissable: {
+    dismissable: {
       control: {
         type: 'boolean',
         defaultValue: true,
@@ -78,14 +78,14 @@ export const Info = Template.bind({});
 Info.args = {
   position: 'top',
   color: 'info',
-  dissmissable: true,
+  dismissable: true,
 };
 
 export const Error = Template.bind({});
 // More on args: https://storybook.js.org/docs/vue/writing-stories/args
 Error.args = {
   color: 'red',
-  dissmissable: false,
+  dismissable: false,
 };
 
 export const CustomBtn = (args) => ({

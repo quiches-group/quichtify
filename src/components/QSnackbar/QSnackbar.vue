@@ -4,7 +4,7 @@
       <slot />
     </div>
 
-    <div v-if="dissmissable" class="close-btn">
+    <div v-if="dismissable" class="close-btn">
       <slot name="close-btn">
         <q-button size="small" :variant="closeBtnVariant" color="white" animation="none" @click="close">Close</q-button>
       </slot>
@@ -22,7 +22,7 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
-  dissmissable: {
+  dismissable: {
     type: Boolean,
     default: false,
   },
