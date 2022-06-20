@@ -24,7 +24,7 @@ const props = defineProps({
   },
   dissmissable: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   absolute: {
     type: Boolean,
