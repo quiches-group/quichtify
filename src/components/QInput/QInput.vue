@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { computed, defineEmits } from "vue";
+import { computed } from 'vue';
 
 const emit = defineEmits(['update:modelValue', 'change']);
 
@@ -50,9 +50,9 @@ const props = defineProps({
   inputType: {
     type: String,
     required: false,
-    default: "text",
+    default: 'text',
   },
-})
+});
 
 const style = computed(() => ({
   backgroundColor: props.backgroundColor,
@@ -64,17 +64,17 @@ const classes = computed(() => {
   const classesArray = [];
 
   if (props.outline) {
-    classesArray.push("border");
-    classesArray.push("border-slate-500");
-    classesArray.push("focus:border-slate-500");
+    classesArray.push('border');
+    classesArray.push('border-slate-500');
+    classesArray.push('focus:border-slate-500');
 
     if (showError.value) {
-      classesArray.push("border-rose-500");
-      classesArray.push("focus:border-rose-500");
+      classesArray.push('border-rose-500');
+      classesArray.push('focus:border-rose-500');
     }
   }
 
-  return classesArray.join(" ");
+  return classesArray.join(' ');
 });
 </script>
 
