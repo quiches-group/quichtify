@@ -1,23 +1,34 @@
 <template>
-  <div v-if="isOpen" class="z-50 border px-4 py-3 rounded" :class="classes" :style="`background-color: ${color}`">
-    <slot/>
-    <div class="absolute top-0 right-0 px-4 py-3 cursor-pointer">
+  <div v-if="isShowed" :class="classes" :style="styles">
+    <div class="content">
+      <slot />
+    </div>
+
+    <div v-if="dissmissable" class="close-btn">
       <slot name="close-btn">
-        <button @click="$emit('update:isOpen', false)">Close</button>
+        <q-button size="small" :variant="closeBtnVariant" color="white" animation="none" @click="close">Close</q-button>
       </slot>
     </div>
   </div>
 </template>
 
 <script setup>
-import {computed} from "vue";
+import { computed } from 'vue';
 
-defineEmits(['update:isOpen']);
+const emit = defineEmits(['update:modelValue', 'close']);
 
 const props = defineProps({
-  isOpen: {
+  modelValue: {
     type: Boolean,
     required: true,
+  },
+  dissmissable: {
+    type: Boolean,
+    default: true,
+  },
+  absolute: {
+    type: Boolean,
+    default: false,
   },
   size: {
     type: String,
@@ -30,110 +41,148 @@ const props = defineProps({
     type: String,
     default: 'bottom',
     validator(value) {
-      return ['bottom', 'bottom-left', 'bottom-right', 'top', 'top-left', 'top-right', 'left', 'right'].includes(value);
+      return ['top-left', 'top', 'top-right', 'right', 'bottom-right', 'bottom', 'bottom-left', 'left'].includes(value);
     },
   },
   color: {
     type: String,
-    default: 'rgba(0, 0, 0, 0.1)',
+    default: 'info',
+    validator(value) {
+      const rgbColorRegex = /rgba?\(\d{1,3}, \d{1,3}, \d{1,3}(?:, 0?.?\d{1,3})?\)/gm;
+      const hexColorRegex = /#[a-fA-F0-8]{3}(?:[a-fA-F0-8]{3})?/gm;
+
+      return ['info', 'alert', 'error'].includes(value) || rgbColorRegex.test(value) || hexColorRegex.test(value);
+    },
+  },
+  closeBtnStyle: {
+    type: String,
+    default: 'button',
+    validator(value) {
+      return ['button', 'btn', 'text', 'button-outlined', 'btn-outlined', 'button-outline', 'btn-outline'].includes(value);
+    },
   },
 });
 
-const classes = computed(() => {
-  const styles = [];
+const isShowed = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(value) {
+    emit('update:modelValue', value);
+    if (!value) {
+      emit('close');
+    }
+  },
+});
 
-  if (props.isOpen) {
-    styles.push('q-animate-fadeIn');
-  }
-  // Size
-  if (props.size === 'small') {
-    styles.push('q-snkb--small');
-  }
+const classes = computed(() => ({
+  fixed: !props.absolute,
+  absolute: props.absolute,
+  'q-snkb': true,
+  'q-animate-fadeIn': isShowed.value,
+  [`q-snkb--${props.size}`]: true,
+  [`q-snkb--pos-${props.position}`]: true,
+}));
 
-  if (props.size === 'medium') {
-    styles.push('q-snkb--medium');
-  }
+const bgColor = computed(() => {
+  const rgbColorRegex = /rgba?\(\d{1,3}, \d{1,3}, \d{1,3}(?:, 0?.?\d{1,3})?\)/gm;
+  const hexColorRegex = /#[a-fA-F0-8]{3}(?:[a-fA-F0-8]{3})?/gm;
 
-  if (props.size === 'large') {
-    styles.push('q-snkb--large');
-  }
-  // Position
-  if (props.position === 'bottom') {
-    styles.push('q-snkb--bottom')
-  }
-
-  if (props.position === 'bottom-left') {
-    styles.push('q-snkb--bottom-left')
-  }
-
-  if (props.position === 'bottom-right') {
-    styles.push('q-snkb--bottom-right')
+  if (rgbColorRegex.test(props.color) || hexColorRegex.test(props.color)) {
+    return props.color;
   }
 
-  if (props.position === 'top') {
-    styles.push('q-snkb--top')
+  const colors = {
+    info: '#FFB883',
+    alert: '#db7d26',
+    error: '#db2626',
+  };
+
+  return colors[props.color];
+});
+
+const styles = computed(() => {
+  if (!bgColor.value) {
+    return undefined;
   }
-  if (props.position === 'top-left') {
-    styles.push('q-snkb--top-left')
-  }
-  if (props.position === 'top-right') {
-    styles.push('q-snkb--top-right')
-  }
-  if (props.position === 'left') {
-    styles.push('q-snkb--left')
-  }
-  if (props.position === 'right') {
-    styles.push('q-snkb--right')
-  }
-  return styles;
-})
+
+  return `background-color: ${bgColor.value}`;
+});
+
+const closeBtnVariant = computed(() => {
+  const valuesDictionnary = {
+    button: 'plain-rounded',
+    btn: 'plain-rounded',
+    text: 'link',
+    'button-outlined': 'outline',
+    'btn-outlined': 'outline',
+    'button-outline': 'outline',
+    'btn-outline': 'outline',
+  };
+
+  return valuesDictionnary[props.closeBtnStyle];
+});
+function close() {
+  isShowed.value = !isShowed.value;
+}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.q-snkb {
+  @apply z-50 flex flex-col md:flex-row px-4 py-3 mx-auto rounded shadow;
 
-/* Size */
-.q-snkb--small {
-  @apply w-3/12
-}
+  /* SIZES */
+  &--small {
+    @apply w-3/12;
+  }
 
-.q-snkb--medium {
-  @apply w-6/12
-}
+  &--medium {
+    @apply w-6/12;
+  }
 
-.q-snkb--large {
-  @apply w-9/12
-}
+  &--large {
+    @apply w-7/12;
+  }
 
-/* Position */
-.q-snkb--bottom {
-  @apply absolute left-1/2 -translate-x-1/2 bottom-2
-}
+  /* POSITIONS */
+  &--pos-top-left {
+    @apply top-2 left-2;
+  }
 
-.q-snkb--bottom-left {
-  @apply absolute left-2 bottom-2
-}
+  &--pos-top {
+    @apply top-2 left-1/2 -translate-x-1/2;
+  }
 
-.q-snkb--bottom-right {
-  @apply absolute right-2 bottom-2
-}
+  &--pos-top-right {
+    @apply top-2 right-2;
+  }
 
-.q-snkb--top {
-  @apply absolute left-1/2 -translate-x-1/2 top-2
-}
+  &--pos-right {
+    @apply right-2 top-1/2 -translate-y-1/2;
+  }
 
-.q-snkb--top-right {
-  @apply absolute right-2 top-2
-}
+  &--pos-bottom-right {
+    @apply bottom-2 right-2;
+  }
 
-.q-snkb--top-left {
-  @apply absolute left-2 top-2
-}
+  &--pos-bottom {
+    @apply left-1/2 -translate-x-1/2 bottom-2;
+  }
 
-.q-snkb--left {
-  @apply absolute left-2 top-1/2 -translate-y-1/2
-}
+  &--pos-bottom-left {
+    @apply left-2 bottom-2;
+  }
 
-.q-snkb--right {
-  @apply absolute right-2 top-1/2 -translate-y-1/2
+  &--pos-left {
+    @apply left-2 top-1/2 -translate-y-1/2;
+  }
+
+  .content {
+    @apply flex-grow;
+  }
+
+  .close-btn {
+    @apply mx-auto mt-4 md:mt-0 md:mr-0 md:ml-2;
+  }
 }
 </style>

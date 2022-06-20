@@ -78,5 +78,7 @@ module.exports = {
     {
       pattern: /text-(left|center|right|justify)/,
     },
+    'fixed',
+    'absolute',
   ],
 };

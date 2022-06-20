@@ -1,33 +1,50 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <q-snackbar v-model:isOpen="state.showSnackbar" size="medium" position="bottom" color="#9C27B0">
-    <div class="flex flex-col">
-      <strong class="font-bold">Holy smokes!</strong>
-      <span class="block sm:inline">Something seriously bad happened.</span>
-    </div>
+  <q-snackbar v-model="state.showSnkbInfo" position="top" dissmissable>
+    <strong class="block font-bold">Info.</strong>
+    <span class="block">Something happened.</span>
   </q-snackbar>
 
-  <q-snackbar v-model:isOpen="state.showSnackbarCustomCloseBtn" size="medium" position="top" color="#E91E63">
-    <div class="flex flex-col">
-      <strong class="font-bold">Holy smokes!</strong>
-      <span class="block sm:inline">Something seriously bad happened.</span>
-    </div>
+  <q-snackbar v-model="state.showSnkbAlert" color="alert" position="right" dissmissable>
+    <strong class="block font-bold">Alert !</strong>
+    <span class="block">Something bad happened.</span>
+  </q-snackbar>
+
+  <q-snackbar v-model="state.showSnkbError" color="error" dissmissable>
+    <strong class="block font-bold">Holy smokes!</strong>
+    <span class="block">Something seriously bad happened.</span>
+  </q-snackbar>
+
+  <q-snackbar v-model="state.showCustomSnkb" color="error" position="left" dissmissable>
+    <strong class="block font-bold">Hey 👋</strong>
+    <span class="block">Check out my fancy custom close button !</span>
     <template #close-btn>
-      <span @click="state.showSnackbarCustomCloseBtn = false">Custom Close Btn</span>
+      <span @click="state.showCustomSnkb = false">Custom Close Btn ✨</span>
     </template>
   </q-snackbar>
-  <div>
-    <button @click="state.showSnackbar = true">Open Snackbar</button>
-    <br>
-    <button @click="state.showSnackbarCustomCloseBtn = true">Open Snackbar Custom Close Button</button>
+
+  <div class="flex justify-center items-center w-screen h-screen">
+    <div class="flex relative flex-col justify-center items-center pb-20 m-auto w-1/2 h-1/2">
+      <q-button :disabled="state.showSnkbInfo" @click="state.showSnkbInfo = true">Show info snackbar</q-button>
+      <q-button class="mt-5" :disabled="state.showSnkbAlert" @click="state.showSnkbAlert = true">Show alert snackbar</q-button>
+      <q-button class="mt-5" :disabled="state.showSnkbError" @click="state.showSnkbError = true">Show error snackbar</q-button>
+      <q-button class="mt-5" :disabled="state.showCustomSnkb" @click="state.showCustomSnkb = true">Show custom snackbar</q-button>
+      <q-button class="mt-5" :disabled="state.showAbsSnkb" @click="state.showAbsSnkb = true">Show absolute snackbar</q-button>
+      <q-snackbar v-model="state.showAbsSnkb" color="#000" close-btn-style="btn-outline" dissmissable absolute>
+        <span class="text-white">Custom container snackbar.</span>
+      </q-snackbar>
+    </div>
   </div>
 </template>
 
 <script setup>
-import {reactive} from 'vue';
+import { reactive } from 'vue';
 
 const state = reactive({
-  showSnackbar: false,
-  showSnackbarCustomCloseBtn: false
+  showSnkbInfo: false,
+  showSnkbAlert: false,
+  showSnkbError: false,
+  showCustomSnkb: false,
+  showAbsSnkb: false,
 });
 </script>
