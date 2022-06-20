@@ -189,7 +189,7 @@ export default {
         return this.color;
       }
 
-      return `background-color: ${this.color}; color: ${this.textColor}`;
+      return `background-color: ${this.color}; color: ${this.textColor || 'white'}; --q-accent-color: ${this.color}; --q-text-color: ${this.textColor || 'white'}`;
     },
   },
 };
@@ -230,6 +230,18 @@ export default {
   /* VARIANTS */
   &--plain {
     /* COLORS */
+    background-color: var(--q-accent-color, 'rgb(64, 184, 131)');
+    color: var(--q-text-color, 'rgb(255, 255, 255)');
+
+    &::deep * {
+      color: var(--q-text-color, 'rgb(255, 255, 255)');
+    }
+
+    &:visited,
+    &:visited::deep * {
+      color: var(--q-text-color, 'rgb(255, 255, 255)');
+    }
+
     &.q-btn--primary {
       @apply bg-primary text-white;
 
@@ -326,6 +338,18 @@ export default {
     @apply rounded shadow;
 
     /* COLORS */
+    background-color: var(--q-accent-color, 'rgb(64, 184, 131)');
+    color: var(--q-text-color, 'rgb(255, 255, 255)');
+
+    &::deep * {
+      color: var(--q-text-color, 'rgb(255, 255, 255)');
+    }
+
+    &:visited,
+    &:visited::deep * {
+      color: var(--q-text-color, 'rgb(255, 255, 255)');
+    }
+
     &.q-btn--primary {
       @apply bg-primary text-white;
 
@@ -422,6 +446,18 @@ export default {
     @apply rounded-full shadow;
 
     /* COLORS */
+    background-color: var(--q-accent-color, 'rgb(64, 184, 131)');
+    color: var(--q-text-color, 'rgb(255, 255, 255)');
+
+    &::deep * {
+      color: var(--q-text-color, 'rgb(255, 255, 255)');
+    }
+
+    &:visited,
+    &:visited::deep * {
+      color: var(--q-text-color, 'rgb(255, 255, 255)');
+    }
+
     &.q-btn--primary {
       @apply bg-primary text-white;
 
@@ -519,6 +555,24 @@ export default {
     }
 
     /* COLORS */
+    color: var(--q-accent-color, 'rgb(64, 184, 131)');
+
+    &::deep * {
+      color: var(--q-text-color, 'rgb(255, 255, 255)');
+    }
+
+    &:visited,
+    &:visited::deep * {
+      color: var(--q-text-color, 'rgb(255, 255, 255)');
+    }
+
+    &:hover .q-btn__slot-container:after,
+    &:focus .q-btn__slot-container:after,
+    &.active:not(.q-btn--no-anim-on-active) .q-btn__slot-container:after,
+    &.js-active:not(.q-btn--no-anim-on-active) .q-btn__slot-container:after {
+      background-color: var(--q-accent-color, 'rgb(64, 184, 131)');
+    }
+
     &.q-btn--primary {
       @apply text-primary;
 
@@ -644,6 +698,21 @@ export default {
     }
 
     /* COLORS */
+    color: var(--q-accent-color, 'rgb(64, 184, 131)');
+
+    &::deep * {
+      color: var(--q-text-color, 'rgb(255, 255, 255)');
+    }
+
+    &:visited,
+    &:visited::deep * {
+      color: var(--q-text-color, 'rgb(255, 255, 255)');
+    }
+
+    .q-btn__slot-container:after {
+      background-color: var(--q-accent-color, 'rgb(64, 184, 131)');
+    }
+
     &.q-btn--primary {
       @apply text-primary;
 
@@ -762,6 +831,18 @@ export default {
     @apply rounded border;
 
     /* COLORS */
+    border-color: var(--q-accent-color, 'rgb(64, 184, 131)');
+    color: var(--q-accent-color, 'rgb(64, 184, 131)');
+
+    &::deep * {
+      color: var(--q-text-color, 'rgb(255, 255, 255)');
+    }
+
+    &:visited,
+    &:visited::deep * {
+      color: var(--q-text-color, 'rgb(255, 255, 255)');
+    }
+
     &.q-btn--primary {
       @apply text-primary border-primary;
 
