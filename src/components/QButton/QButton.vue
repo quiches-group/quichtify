@@ -555,7 +555,7 @@ export default {
     }
 
     /* COLORS */
-    color: var(--q-accent-color, 'rgb(64, 184, 131)');
+    color: var(--q-text-color, 'rgb(64, 184, 131)');
 
     &::deep * {
       color: var(--q-text-color, 'rgb(255, 255, 255)');
@@ -564,6 +564,10 @@ export default {
     &:visited,
     &:visited::deep * {
       color: var(--q-text-color, 'rgb(255, 255, 255)');
+    }
+
+    .q-btn__slot-container:after {
+      background-color: var(--q-accent-color, 'rgb(64, 184, 131)');
     }
 
     &:hover .q-btn__slot-container:after,
@@ -698,7 +702,7 @@ export default {
     }
 
     /* COLORS */
-    color: var(--q-accent-color, 'rgb(64, 184, 131)');
+    color: var(--q-text-color, 'rgb(64, 184, 131)');
 
     &::deep * {
       color: var(--q-text-color, 'rgb(255, 255, 255)');
@@ -832,7 +836,7 @@ export default {
 
     /* COLORS */
     border-color: var(--q-accent-color, 'rgb(64, 184, 131)');
-    color: var(--q-accent-color, 'rgb(64, 184, 131)');
+    color: var(--q-text-color, 'rgb(64, 184, 131)');
 
     &::deep * {
       color: var(--q-text-color, 'rgb(255, 255, 255)');
