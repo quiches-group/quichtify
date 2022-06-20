@@ -1,14 +1,6 @@
 <template>
   <div class="q-input">
-    <input
-      :value="modelValue"
-      :type="inputType"
-      :disabled="disabled"
-      :class="classes"
-      :placeholder="placeholder"
-      :style="style"
-      @input="emit('update:modelValue', $event.target.value), emit('change', $event)"
-    />
+    <input :value="modelValue" :type="inputType" :disabled="disabled" :class="classes" :placeholder="placeholder" :style="style" @input="emit('update:modelValue', $event.target.value)" />
     <p v-if="showError" class="q-input--error">{{ error }}</p>
   </div>
 </template>
@@ -16,7 +8,7 @@
 <script setup>
 import { computed } from 'vue';
 
-const emit = defineEmits(['update:modelValue', 'change']);
+const emit = defineEmits(['update:modelValue']);
 
 const props = defineProps({
   modelValue: {
