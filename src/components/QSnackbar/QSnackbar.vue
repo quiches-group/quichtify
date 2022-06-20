@@ -129,7 +129,8 @@ function close() {
 
 <style lang="scss" scoped>
 .q-snkb {
-  @apply z-50 flex flex-col md:flex-row px-4 py-3 mx-auto rounded shadow;
+  @apply z-50 flex flex-col md:flex-row items-center px-4 py-3 mx-auto rounded shadow;
+  min-width: 56px;
 
   /* SIZES */
   &--small {
