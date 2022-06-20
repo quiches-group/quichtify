@@ -189,7 +189,7 @@ export default {
         return undefined;
       }
 
-      return `background-color: ${this.color}; color: ${this.textColor || 'white'}; --q-accent-color: ${this.color}; --q-text-color: ${this.textColor || 'white'}`;
+      return `--q-accent-color: ${this.color}; --q-text-color: ${this.textColor || 'white'}`;
     },
   },
 };
