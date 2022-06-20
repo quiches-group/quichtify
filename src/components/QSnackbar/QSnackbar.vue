@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 
 const emit = defineEmits(['update:modelValue', 'close']);
 
@@ -60,6 +60,10 @@ const props = defineProps({
     validator(value) {
       return ['button', 'btn', 'text', 'button-outlined', 'btn-outlined', 'button-outline', 'btn-outline'].includes(value);
     },
+  },
+  timemout: {
+    type: [Number, String],
+    default: undefined,
   },
 });
 
@@ -122,9 +126,23 @@ const closeBtnVariant = computed(() => {
 
   return valuesDictionnary[props.closeBtnStyle];
 });
+
 function close() {
   isShowed.value = !isShowed.value;
 }
+
+watch(
+  () => isShowed.value,
+  () => {
+    if (!props.timemout && isShowed.value) {
+      return;
+    }
+
+    const timemout = Number(props.timemout);
+
+    setTimeout(close, timemout);
+  },
+);
 </script>
 
 <style lang="scss" scoped>
