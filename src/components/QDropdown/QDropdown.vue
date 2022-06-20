@@ -3,8 +3,12 @@
     <div>
       <button
         :disabled="props.disabled"
-        class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 disabled:opacity-40"
+        class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 disabled:opacity-40"
         :class="{ 'text-gray-400': !state.selected }"
+        :style="`
+          color: ${textColor};
+          background-color: ${bgColor}
+        `"
         type="button"
         @click="toggleMenu"
         @focusout="toggleMenu(false)"
@@ -15,7 +19,7 @@
     </div>
 
     <div
-      class="q-dropdown-menu origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition-shadow focus:outline-none opacity-0 pointer-events-none"
+      class="q-dropdown-menu origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition-shadow focus:outline-none opacity-0 pointer-events-none z-10"
       :class="{ 'q-animate-fadeIn': state.menuIsOpen, 'q-animate-fadeOut': state.menuIsOpen === false }"
     >
       <div class="py-1">
@@ -54,6 +58,14 @@ const props = defineProps({
   accentColor: {
     type: String,
     default: () => 'rgb(55, 65, 81)',
+  },
+  textColor: {
+    type: String,
+    default: () => 'rgb(55, 65, 81)',
+  },
+  bgColor: {
+    type: String,
+    default: () => 'white',
   },
 });
 
