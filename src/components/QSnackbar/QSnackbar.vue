@@ -34,7 +34,7 @@ const props = defineProps({
     type: String,
     default: 'medium',
     validator(value) {
-      return ['small', 'medium', 'large'].includes(value);
+      return ['small', 'medium', 'large', 'full'].includes(value);
     },
   },
   position: {
@@ -161,6 +161,10 @@ watch(
 
   &--large {
     @apply w-7/12;
+  }
+
+  &--full {
+    @apply w-full;
   }
 
   /* POSITIONS */
