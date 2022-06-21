@@ -61,7 +61,7 @@ const props = defineProps({
       return ['button', 'btn', 'text', 'button-outlined', 'btn-outlined', 'button-outline', 'btn-outline'].includes(value);
     },
   },
-  timemout: {
+  timeout: {
     type: [Number, String],
     default: undefined,
   },
@@ -134,13 +134,14 @@ function close() {
 watch(
   () => isShowed.value,
   (newValue, oldValue) => {
-    if (!props.timemout || (oldValue === true && newValue === false)) {
+    console.log({ timeout: props.timeout, oldValue, newValue });
+    if (!props.timeout || (oldValue === true && newValue === false)) {
       return;
     }
 
-    const timemout = Number(props.timemout);
+    const timeout = Number(props.timeout);
 
-    setTimeout(close, timemout);
+    setTimeout(close, timeout);
   },
 );
 </script>

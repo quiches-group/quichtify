@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <q-snackbar v-model="state.showSnkbInfo" position="top" dismissable timemout="1000">
+  <q-snackbar v-model="state.showSnkbInfo" position="top" dismissable timeout="1000">
     <strong class="block font-bold">Info.</strong>
     <span class="block">Something happened.</span>
   </q-snackbar>
