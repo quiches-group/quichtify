@@ -128,13 +128,13 @@ const closeBtnVariant = computed(() => {
 });
 
 function close() {
-  isShowed.value = !isShowed.value;
+  isShowed.value = false;
 }
 
 watch(
   () => isShowed.value,
-  () => {
-    if (!props.timemout && isShowed.value) {
+  (newValue, oldValue) => {
+    if (!props.timemout || (oldValue === true && newValue === false)) {
       return;
     }
 
