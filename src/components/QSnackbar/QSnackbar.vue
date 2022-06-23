@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, watch } from 'vue';
+import { computed, onUnmounted, reactive, watch } from 'vue';
 
 const emit = defineEmits(['update:modelValue', 'close']);
 
@@ -65,6 +65,10 @@ const props = defineProps({
     type: [Number, String],
     default: undefined,
   },
+});
+
+const state = reactive({
+  closeTimeoutId: undefined,
 });
 
 const isShowed = computed(() => props.modelValue);
@@ -124,16 +128,22 @@ function close() {
 watch(
   () => isShowed.value,
   (newValue, oldValue) => {
-    console.log({ timeout: props.timeout, oldValue, newValue });
     if (!props.timeout || (oldValue === true && newValue === false)) {
+      console.log('Clear timeout: ', state.closeTimeoutId, ' from watch');
+      clearTimeout(state.closeTimeoutId);
       return;
     }
 
     const timeout = Number(props.timeout);
 
-    setTimeout(close, timeout);
+    state.closeTimeoutId = setTimeout(close, timeout);
   },
 );
+
+onUnmounted(() => {
+  console.log('Clear timeout: ', state.closeTimeoutId);
+  clearTimeout(state.closeTimeoutId);
+});
 </script>
 
 <style lang="scss">
