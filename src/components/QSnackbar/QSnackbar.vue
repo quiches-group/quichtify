@@ -67,14 +67,7 @@ const props = defineProps({
   },
 });
 
-const isShowed = computed({
-  get() {
-    return props.modelValue;
-  },
-  set(value) {
-    emit('update:modelValue', value);
-  },
-});
+const isShowed = computed(() => props.modelValue);
 
 const classes = computed(() => ({
   fixed: !props.absolute,
