@@ -73,9 +73,6 @@ const isShowed = computed({
   },
   set(value) {
     emit('update:modelValue', value);
-    if (!value) {
-      emit('close');
-    }
   },
 });
 
@@ -128,7 +125,7 @@ const closeBtnVariant = computed(() => {
 });
 
 function close() {
-  isShowed.value = false;
+  emit('update:modelValue', false);
 }
 
 watch(
