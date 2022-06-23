@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { computed, watch } from 'vue';
+import { computed, onMounted, watch } from 'vue';
 
 const emit = defineEmits(['update:modelValue', 'close']);
 
@@ -146,7 +146,7 @@ watch(
 );
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .q-snkb {
   @apply z-50 flex flex-col md:flex-row items-center px-4 py-3 mx-auto rounded shadow;
   min-width: 56px;
